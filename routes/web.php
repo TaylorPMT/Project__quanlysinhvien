@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.home');
-});
+
+Route::get('','Frontend\Page@home__Page')->name('home__Page');
+
+    //Login student
+Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
+
+    //registration student
+Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');

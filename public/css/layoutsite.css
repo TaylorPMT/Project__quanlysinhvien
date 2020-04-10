@@ -1,0 +1,176 @@
+@keyframes dropdown__box {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes identifier__spinning {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+* {
+    box-sizing: inherit;
+}
+
+:root {
+    --color-nav-href: #F5F5F5;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    box-sizing: border-box;
+}
+
+.dropdown__animation {
+    -webkit-animation: dropdown__box 1s ease-in-out;
+    /* Safari 4+ */
+    -moz-animation: dropdown__box 1s ease-in-out;
+    /* Fx 5+ */
+    -o-animation: dropdown__box 1s ease-in-out;
+    /* Opera 12+ */
+    animation: dropdown__box 1s ease-in-out;
+    /* IE 10+, Fx 29+ */
+}
+
+.identifier__spinning {
+    -webkit-animation: identifier__spinning 0.5s ease-in;
+    /* Safari 4+ */
+    -moz-animation: identifier__spinning 0.5s ease-in;
+    /* Fx 5+ */
+    -o-animation: identifier__spinning 0.5s ease-in;
+    /* Opera 12+ */
+    animation: identifier__spinning 0.5s ease-in;
+}
+
+.header-top {
+    height: 120px;
+    text-align: center;
+    align-content: center;
+}
+
+.main__notification {
+    min-height: 700px;
+}
+
+.footer__container {
+    background-color: rgba(63, 81, 181, 0.9);
+    min-height: 200px;
+}
+
+.col__footer {
+    min-height: 200px;
+    border: 2px solid;
+}
+
+.col__notification {
+    min-height: 35px;
+    background-color: royalblue;
+}
+
+.footer__coppyright {
+    border-top: 3px solid black;
+    background-color: rgba(63, 81, 181, 1);
+    min-height: 30px;
+}
+
+.row__footer {
+    text-align: center;
+    align-items: center;
+}
+
+.col__coppyright {
+    text-align: center;
+    align-items: center;
+}
+
+.navbar {
+    background-color: rgb(63, 81, 181) !important;
+}
+
+body {
+    background-color: #F5F5F5;
+}
+
+.dropdown__menu-width {
+    min-width: 300px;
+    min-height: 300px;
+    width: 30% !important;
+    height: 30% !important;
+}
+
+.border__triangle::before {
+    content: "";
+    border: 20px solid;
+    border-color: transparent transparent white transparent;
+    position: absolute;
+    left: 34px;
+    top: -30px;
+}
+
+.border__login::before {
+    content: "";
+    border: 20px solid;
+    border-color: transparent transparent white transparent;
+    position: absolute;
+    right: 30px;
+    top: -30px;
+}
+
+.nav__bar-header {
+    border-top: 8px solid rebeccapurple;
+    border-radius: 8px;
+}
+
+.header__top-logo {
+    height: 120px;
+}
+
+.header__top-image-logo {
+    height: 130px;
+    width: 100%;
+}
+
+
+/*nav header */
+
+.nav__link-href {
+    margin: 4px 8px;
+    font-size: 1.6rem;
+    color: var(--color-nav-href) !important;
+    text-transform: capitalize;
+}
+
+.nav__logo {
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 10px;
+}
+
+
+/* main content */
+
+.title__col {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.title__text {
+    color: var(--color-nav-href);
+    border-bottom: 2px solid var(--color-nav-href);
+    cursor: text;
+}

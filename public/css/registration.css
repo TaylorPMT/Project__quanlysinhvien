@@ -1,0 +1,16 @@
+.table__height {
+    min-height: 200px;
+    width: 100%;
+}
+
+.title__head {
+    font-size: 2rem;
+}
+
+.form__tilte {
+    font-size: 1.6rem;
+}
+
+.btn__box-submit {
+    text-align: center;
+}
