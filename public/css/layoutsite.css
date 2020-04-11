@@ -77,6 +77,9 @@ html {
 .col__notification {
     min-height: 35px;
     background-color: royalblue;
+    font-size: 18px;
+    font-family: Tahoma;
+    color:#EEEEEE;
 }
 
 .footer__coppyright {

@@ -61,6 +61,12 @@
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </div>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link nav__link-href" href="{{ Route('contactStudent') }}">Gửi Yêu Cầu </a>
+                            </li>
+                             <li class="nav-item">
+                                <a class="nav-link nav__link-href" href="{{ Route('talkpageStudent') }}">Thảo Luận </a>
+                            </li>
                         </ul>
                         <ul class="navbar-nav ml-auto nav-flex-icons">
                             <li class="nav-item">

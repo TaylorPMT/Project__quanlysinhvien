@@ -24,4 +24,14 @@ class Page extends Controller
     {
         return view('frontend.registration');
     }
+    //view Gửi Yêu Cầu
+    function contactStudent()
+    {
+        return view('frontend.contact');
+    }
+    //view Thảo Luận
+    function talkpageStudent()
+    {
+        return view('frontend.talkpage');
+    }
 }

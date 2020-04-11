@@ -19,3 +19,7 @@ Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 
     //registration student
 Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
+	//contact student
+Route::get('contact','Frontend\Page@contactStudent')->name('contactStudent');
+    //talkpage Sutudent
+Route::get('talkkpage','Frontend\Page@talkpageStudent')->name('talkpageStudent');
