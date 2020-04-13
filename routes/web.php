@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,12 +17,19 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
 
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
+Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
 
     //registration student
 Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
 
+Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
+    Route::get('','Frontend\Page@dashboard')->name('dashboard');
+
+});
 //Backend
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@show_dashboard');
 Route::get('/logout', 'AdminController@logout');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
+
+Route::get('logout','Frontend\Page@logout')->name('logout');
