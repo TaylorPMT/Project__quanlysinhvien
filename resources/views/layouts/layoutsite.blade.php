@@ -78,8 +78,8 @@
                                     <i class="fas fa-users"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-default border__login dropdown__animation nav__link-href" aria-labelledby="navbarDropdownMenuLink-333">
-                                    <a class="dropdown-item" href="{{ Route('loginStudent') }}">Đăng Nhập</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="{{ Route('loginStudent') }}">Đăng Nhập SV</a>
+                                    <a class="dropdown-item" href="{{URL::to('/admin')}}">Đăng nhập GV</a>
                                 </div>
                             </li>
                         </ul>

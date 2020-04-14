@@ -29,10 +29,19 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
     });
 
 });
-//Backend
+//Backend đăng nhập
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@show_dashboard');
 Route::get('/logout', 'AdminController@logout');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
 
 Route::get('logout','Frontend\Page@logout')->name('logout');
+
+//backend quản lý sinh viên
+Route::get('/add-student', 'StudentManagementController@add_student');
+Route::get('/edit-student/{student_id}', 'StudentManagementController@edit_student');
+Route::get('/delete-student/{student_id}', 'StudentManagementController@delete_student');
+Route::get('/all-student', 'StudentManagementController@all_student');
+
+Route::post('/save-student', 'StudentManagementController@save_student');
+Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
