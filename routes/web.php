@@ -20,10 +20,13 @@ Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
 
     //registration student
-Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
     Route::get('','Frontend\Page@dashboard')->name('dashboard');
+    Route::group(['prefix' => 'controllers'], function () {
+        Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
+
+    });
 
 });
 //Backend
