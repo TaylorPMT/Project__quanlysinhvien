@@ -95,8 +95,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Quản lý sinh viên</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/add-category-product')}}">Thêm sinh viên mới</a></li>
-						<li><a href="{{URL::to('/all-category-product')}}">Liệt kê danh sách sinh viên</a></li>
+						<li><a href="{{URL::to('/add-student')}}">Thêm sinh viên mới</a></li>
+						<li><a href="{{URL::to('/all-student')}}">Liệt kê danh sách sinh viên</a></li>
                     </ul>
                 </li>
 
