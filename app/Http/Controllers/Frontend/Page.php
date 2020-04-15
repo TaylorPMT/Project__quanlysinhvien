@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\lop_monhoc;
+use App\Models\mon_hoc;
+use App\Models\sinh_vien;
+
 use Illuminate\Http\Request;
 
 
@@ -28,12 +32,16 @@ class Page extends Controller
       $data=['name'=>$username,'password'=>$password,'access'=>1];
       if(Auth::attempt($data))
       {
-
+            $id_taikhoan=Auth::user()->id;
+            $sql_query=sinh_vien::where('id_taikhoan','=',$id_taikhoan)->first();
+            $ten_sinh_vien=$sql_query->ten_sinhvien;
+            $request->session()->put('ten_sinh_vien',$ten_sinh_vien);
        return redirect()->route('dashboard');
       }
       else
       {
-          return redirect()->route('loginStudent');
+
+          return redirect()->route('loginStudent')->with('msg','Đăng Nhập Thất Bại');
       }
 
 
@@ -46,14 +54,30 @@ class Page extends Controller
 
     function registrationStudent()
     {
-        return view('frontend.registration');
+        $list_mon_hoc=mon_hoc::get();
+
+        return view('frontend.registration',compact('list_mon_hoc'));
     }
-    function logout()
+    function logout(Request $request)
     {
         if(Auth::check())
         {
          Auth::logout();
+        $request->session()->flush();
         }
+
         return redirect()->route('loginStudent');
+    }
+    function course_registration($id_courser)
+    {
+
+        $list_lopmonhoc=lop_monhoc::where('lop_monhoc.id_monhoc','=',$id_courser)
+        ->join("mon_hoc","lop_monhoc.id_monhoc","=","mon_hoc.id_monhoc")
+        ->select('lop_monhoc.*','mon_hoc.ten_monhoc as tenmonhoc')->get()
+        ;
+
+        return view('frontend.course_registration',compact('list_lopmonhoc'));
+
+
     }
 }

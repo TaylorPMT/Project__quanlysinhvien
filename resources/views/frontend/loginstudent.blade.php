@@ -48,9 +48,15 @@
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
 
+                    @if (session('msg'))
+                    <div class="text-danger">
+                        {{ session('msg') }}
+                     </div>
+                  @endif
+
 				</div>
 				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+					<a href="{{ Route('home__Page') }}"><i class="fas fa-backward"></i>   Back Home </a>
 				</div>
 			</div>
 		</div>

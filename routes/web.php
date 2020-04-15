@@ -25,6 +25,7 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
     Route::get('','Frontend\Page@dashboard')->name('dashboard');
     Route::group(['prefix' => 'controllers'], function () {
         Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
+        Route::get('registration/course_registration/{id_courser}','Frontend\Page@course_registration')->name('course_registration');
 
     });
 

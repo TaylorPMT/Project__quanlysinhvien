@@ -1,4 +1,3 @@
-<a href="{{ Route('logout') }}">Đăng Xuất</a>
 @extends('layouts.layoutsite')
 @section("title","Trang Chủ")
 

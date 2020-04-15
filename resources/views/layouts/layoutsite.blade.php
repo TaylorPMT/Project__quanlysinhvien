@@ -76,10 +76,17 @@
                             <li class="nav-item dropdown nav__link-href">
                                 <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-users"></i>
+                                    @if (Session::get('ten_sinh_vien')!=null)
+                                       <span> Xin Chào {{ Session::get('ten_sinh_vien') }}</span>
+                                    @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right dropdown-default border__login dropdown__animation nav__link-href" aria-labelledby="navbarDropdownMenuLink-333">
                                     <a class="dropdown-item" href="{{ Route('loginStudent') }}">Đăng Nhập SV</a>
                                     <a class="dropdown-item" href="{{URL::to('/admin')}}">Đăng nhập GV</a>
+                                    @if (Session::get('ten_sinh_vien')!=null)
+                                    <a class="dropdown-item" href="{{ Route('logout') }}">Đăng Xuất </a>
+
+                                    @endif
                                 </div>
                             </li>
                         </ul>

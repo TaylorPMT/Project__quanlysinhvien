@@ -25,7 +25,7 @@ class LoginStudentMiddleware
             }
         }else
         {
-            return redirect('loginStudent');
+            return redirect('loginStudent')->with('erro','Đăng Nhập Không Thành Công');
         }
     }
 }
