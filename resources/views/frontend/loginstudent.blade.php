@@ -22,19 +22,20 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form>
+				<form action="{{ Route('postloginStudent') }}" method="POST">
+                    @csrf
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username">
+						<input type="text" class="form-control" placeholder="username" name="username">
 
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password">
+						<input type="password" class="form-control" placeholder="password" name="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -47,9 +48,15 @@
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
 
+                    @if (session('msg'))
+                    <div class="text-danger">
+                        {{ session('msg') }}
+                     </div>
+                  @endif
+
 				</div>
 				<div class="d-flex justify-content-center">
-					<a href="#">Forgot your password?</a>
+					<a href="{{ Route('home__Page') }}"><i class="fas fa-backward"></i>   Back Home </a>
 				</div>
 			</div>
 		</div>

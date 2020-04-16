@@ -37,4 +37,8 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function tai_khoan()
+    {
+        return 'tai_khoan';
+    }
 }
