@@ -1,5 +1,5 @@
 @extends('layouts.layoutsite')
-@section("title","Gửi Yêu Cầu")
+@section("title","Thảo Luận")
 @section('head')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
 
@@ -11,6 +11,16 @@
         <div class="row">
             <div class="col col__notification">Bài Viết</div>
         </div>
+     
+
+        <div class="row">
+        	<div class="col-md-6 col__box-notification">
+        	
+        	
+        </div>
+
+
+
     </div>
 </main>
 @endsection

@@ -15,50 +15,43 @@
         	<div class="col-md-12 col__box-notification">
         		<div class="title-notification">
         		<span> Thông báo V/v Tổ chức dạy học kỳ 2 năm học 2019 – 2020 theo nhiều phương thức kết hợp và triển khai giảng dạy trực tuyến từ ngày 13/04/2020 </span>
-        		<span  class="NgayTitle">(08/01/1998)</span
+        		<span  class="NgayTitle">(08/01/1998)</span>
         		
-        		</div>
+                 </div>
+
         		<div class="main-notification" >
         			<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                     <a class="chitiet"   href="#"> Xem chi tiết </a>
         		</div>
-        	</div>
+
+
+               {{--  table yêu cầu --}}
                 <div class="title-notification">
                 <span> Thông báo V/v Tổ chức dạy học kỳ 2 năm học 2019 – 2020 theo nhiều phương thức kết hợp và triển khai giảng dạy trực tuyến từ ngày 13/04/2020 </span>
-                <span  class="NgayTitle">(08/01/1998)</span
+                <span  class="NgayTitle">(08/01/1998)</span>
                 
-                </div>
+                 </div>
+
                 <div class="main-notification" >
                     <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
                     <a class="chitiet"   href="#"> Xem chi tiết </a>
                 </div>
+
+               {{--  table yêu cầu --}}
+               
+        	</div>
+
+            
+                
+            
+                
             </div>
 
-                <div class="title-notification">
-                <span> Thông báo V/v Tổ chức dạy học kỳ 2 năm học 2019 – 2020 theo nhiều phương thức kết hợp và triển khai giảng dạy trực tuyến từ ngày 13/04/2020 </span>
-                <span  class="NgayTitle">(08/01/1998)</span
-                
-                </div>
-                <div class="main-notification" >
-                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                    <a class="chitiet"   href="#"> Xem chi tiết </a>
-                </div>
-            </div>
-            <div class="title-notification">
-                <span> Thông báo V/v Tổ chức dạy học kỳ 2 năm học 2019 – 2020 theo nhiều phương thức kết hợp và triển khai giảng dạy trực tuyến từ ngày 13/04/2020 </span>
-                <span  class="NgayTitle">(08/01/1998)</span
-                
-                </div>
-                <div class="main-notification" >
-                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                    <a class="chitiet"   href="#"> Xem chi tiết </a>
-                </div>
-            </div>
-            
+               
         	
         </div>
 
 
-    </div>
+    
 </main>
 @endsection
