@@ -106,8 +106,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Quản lý môn học</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/add-brand-product')}}">Thêm môn học mới</a></li>
-						<li><a href="{{URL::to('/all-brand-product')}}">Liệt kê danh sách môn học</a></li>
+						<li><a href="{{URL::to('/add-subject')}}">Thêm môn học mới</a></li>
+						<li><a href="{{URL::to('/all-subject')}}">Liệt kê danh sách môn học</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">

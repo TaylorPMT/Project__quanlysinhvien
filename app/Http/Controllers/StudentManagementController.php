@@ -23,24 +23,24 @@ class StudentManagementController extends Controller
     }
     public function add_student(){
         $this->AuthLogin();
-        return view('admin.add_student');
+        $account_product = DB::table('tai_khoan')->orderby('id_taikhoan','desc')->get();
+        return view('admin.add_student')->with('account_product',$account_product);
     }
     public function all_student(){
         $this->AuthLogin();
-        $all_student = DB::table('sinh_vien')->get();
+        $all_student = DB::table('sinh_vien')->join('tai_khoan','tai_khoan.id_taikhoan','=','sinh_vien.id_taikhoan')->orderby('sinh_vien.id_sinhvien','desc')->get();
         $manager_student = view('admin.all_student')->with('all_student',$all_student);
         return view('admin_layout')->with('admin.all_student',$manager_student);
     }
     public function save_student(Request $request){
         $this->AuthLogin();
         $data = array();
-        $id = array();
-        $id = DB::table('tai_khoan')->value('id');
+        
         $data['ten_sinhvien'] = $request->student_name;
         $data['gioi_tinh'] = $request->student_sex;
         $data['dia_chi'] = $request->student_address;
         $data['sdt'] = $request->student_phone;
-        $data['id_taikhoan'] = $id;
+        $data['id_taikhoan'] = $request->student_cate;
         
         //$dulieu = DB::table('nha_cung_cap')->where('tenNcc',$request->brand_product_name)->get();
         $new = $data['ten_sinhvien'];
@@ -58,20 +58,20 @@ class StudentManagementController extends Controller
     
     public function edit_student($student_id){
         $this->AuthLogin();
+        $account_product = DB::table('tai_khoan')->orderby('id_taikhoan','desc')->get();
         $edit_student = DB::table('sinh_vien')->where('id_sinhvien',$student_id)->get();
-        $manager_student = view('admin.edit_student')->with('edit_student',$edit_student);
+        $manager_student = view('admin.edit_student')->with('edit_student',$edit_student)->with('account_product',$account_product);
         return view('admin_layout')->with('admin.edit_student',$manager_student);
     }
     public function update_student(Request $request,$student_id){
        $this->AuthLogin();
         $data = array();
-        $id = array();
-        $id = DB::table('tai_khoan')->value('id');
+        
         $data['ten_sinhvien'] = $request->student_name;
         $data['gioi_tinh'] = $request->student_sex;
         $data['dia_chi'] = $request->student_address;
         $data['sdt'] = $request->student_phone;
-        $data['id_taikhoan'] = $id;
+        $data['id_taikhoan'] = $request->student_cate;
         DB::table('sinh_vien')->where('id_sinhvien',$student_id)->update($data);
         Session::put('message','Cập nhật thông tin thành công!');
         return Redirect::to('all-student');

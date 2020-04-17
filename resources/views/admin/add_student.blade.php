@@ -33,10 +33,18 @@
                                     <label for="exampleInputEmail1">Số điện thoại</label>
                                     <input type="text" name="student_phone" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Email</label>
+                                     <select name="student_cate" class="form-control input-sm m-bot15">
+                                       @foreach($account_product as $key => $cate)
+                                        <option value="{{$cate->id_taikhoan}}">{{$cate->email}}</option>
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
                                 
                                 
-                                
-                                <button type="submit" name="add_category_product" class="btn btn-info">Thêm danh mục</button>
+                                <button type="submit" name="add_student" class="btn btn-info">Thêm sinh viên</button>
                             </form>
                             </div>
 

@@ -34,6 +34,19 @@
                                     <label for="exampleInputEmail1">Số điện thoại</label>
                                     <input type="text" value="{{$edit_value->sdt}}" name="student_phone" class="form-control" id="exampleInputEmail1" placeholder="Số điện thoại">
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Email</label>
+                                     <select name="student_cate" class="form-control input-sm m-bot15" >
+                                       @foreach($account_product as $key => $cate)
+                                       @if($cate->id_taikhoan==$edit_value->id_taikhoan)
+                                        <option selected value="{{$cate->id_taikhoan}}">{{$cate->email}}</option>
+                                        @else
+                                        <option value="{{$cate->id_taikhoan}}">{{$cate->email}}</option>
+                                        @endif
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
                                 <button type="submit" name="update_student" class="btn btn-info">Cập nhật thông tin </button>
                             </form>
                             </div>

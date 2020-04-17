@@ -50,3 +50,11 @@ Route::get('/all-student', 'StudentManagementController@all_student');
 
 Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
+//Backend quản lý môn học
+Route::get('/add-subject', 'SubjectManagementController@add_subject');
+Route::get('/edit-subject/{subject_id}', 'SubjectManagementController@edit_subject');
+Route::get('/delete-subject/{subject_id}', 'SubjectManagementController@delete_subject');
+Route::get('/all-subject', 'SubjectManagementController@all_subject');
+
+Route::post('/save-subject', 'SubjectManagementController@save_subject');
+Route::post('/update-subject/{subject_id}', 'SubjectManagementController@update_subject');

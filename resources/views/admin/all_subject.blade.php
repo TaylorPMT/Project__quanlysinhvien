@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh sách sinh viên
+      Liệt kê danh sách môn học
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -32,28 +32,26 @@
                 <input type="checkbox"><i></i>
               </label>
             </th>
-            <th>Tên sinh viên</th>
-            <th>Giới tính</th>
-            <th>Địa chỉ</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
+            <th>Tên môn học</th>
+            <th>Số tiết</th>
+            <th>Số tín chỉ</th>
+            
             
             
             <th style="width:30px;"></th>
           </tr>
         </thead>
         <tbody>
-          @foreach($all_student as $key => $cate_pro)
+          @foreach($all_subject as $key => $subject_pro)
           <tr>
             <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
-            <td>{{ $cate_pro->ten_sinhvien}}</td>
-            <td>{{ $cate_pro->gioi_tinh}}</td>
-            <td>{{ $cate_pro->dia_chi}}</td>
-            <td>{{ $cate_pro->sdt}}</td>
-            <td>{{ $cate_pro->email}}</td>
+            <td>{{ $subject_pro->ten_monhoc}}</td>
+            <td>{{ $subject_pro->so_tiet}}</td>
+            <td>{{ $subject_pro->so_tinchi}}</td>
+            
             <td>
-              <a href="{{URL::to('/edit-student/'.$cate_pro->id_sinhvien)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa sinh viên này không?')" href="{{URL::to('/delete-student/'.$cate_pro->id_sinhvien)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
+              <a href="{{URL::to('/edit-subject/'.$subject_pro->id_monhoc)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc là muốn xóa môn học này không?')" href="{{URL::to('/delete-subject/'.$subject_pro->id_monhoc)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
