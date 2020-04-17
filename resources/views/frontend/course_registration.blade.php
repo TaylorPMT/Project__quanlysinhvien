@@ -3,7 +3,8 @@
 @section('head')
 <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/registration.css') }}">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
 @endsection
 @section('main')
 <main>
@@ -14,27 +15,46 @@
         </div>
         <div class="row my-5">
             <div class="col-md-12">
+                @includeIf('frontend.modules.message')
                 {{--  table đăng ký  --}}
                     <table class="table table-striped table__height" id="myTable">
                         <thead>
                         <tr>
-                            <th scope="col "> <span class="title__head">STT</span> </th>
+                            <th scope="col "> <span class="title__head"></span> </th>
                             <th scope="col "><span class="title__head">Số Lượng </span> </th>
                             <th scope="col "><span class="title__head">Lớp Học</span> </th>
                             <th scope="col "><span class="title__head">Tên Môn Học</span> </th>
 
+                            <th scope="col "><span class="title__head">Nhóm</span> </th>
                             <th scope="col "><span class="title__head">Thao Tác</span> </th>
                         </tr>
                         </thead>
+
                         <tbody>
+
                           @foreach ($list_lopmonhoc as $item)
+
                           <tr>
-                            <th scope="row">{{ $item->id_lop_mh }}</th>
+                            <th scope="row">
+                                @foreach ($nhom_da_dangky as $nhomdk)
+                                    @if ($nhomdk->id_nhom_dk ==$item->id_nhom)
+                                    <i class="fas fa-check text-success"></i>
+                                    @else
+
+
+
+                                    @endif
+
+                                    @endforeach
+
+                             </th>
                             <td>{{ $item->so_luong }}</td>
                             <td>{{ $item->ten_lop_mh }}</td>
                             <td>{{ $item->tenmonhoc }}</td>
 
-                            <td><a href="{{ Route('course_registration',['id_courser'=>$item->id_monhoc]) }}">Xem Nhóm Môn Học</a></td>
+                            <td> {{ $item->ten_nhom }}</td>
+                            <td> <a href="{{ Route('registration_group',['id_group'=>$item->id_nhom])}}">Đăng ký</a></td>
+
                         </tr>
 
                           @endforeach
@@ -45,6 +65,8 @@
                 </div>
                 {{--  end table đăng ký  --}}
         </div>
+        {{--  message thông báo kết quả  --}}
+
         <div class="row">
             <div class="col col__notification title__col"><span class="title__text">Yêu Cầu Tạo Nhóm</span></div>
         </div>
@@ -76,7 +98,7 @@
                                 <button type="submit" class="btn btn-success">
                                     Gửi yêu Cầu
                                 </button>
-                            </div>
+                               </div>
                           </form>
                     </div>
             </div>

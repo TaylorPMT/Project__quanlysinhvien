@@ -119,12 +119,13 @@
 
 
 </body>
-<script defer src="./js/all.js"></script>
+<script defer src="{{ asset('js/all.js') }}"></script>
 {{--
 <!--load all styles -->--}}
 <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
 @yield('script')
 
 </html>
