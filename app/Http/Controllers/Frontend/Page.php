@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\ds_thanhviennhom;
 use App\Models\lop_monhoc;
 use App\Models\mon_hoc;
+use App\Models\nhom;
 use App\Models\sinh_vien;
 
 use Illuminate\Http\Request;
@@ -27,6 +29,7 @@ class Page extends Controller
     }
     function postloginStudent(Request $request)
     {
+
         $username=$request->username;
         $password=$request->password;
       $data=['name'=>$username,'password'=>$password,'access'=>1];
@@ -73,11 +76,35 @@ class Page extends Controller
 
         $list_lopmonhoc=lop_monhoc::where('lop_monhoc.id_monhoc','=',$id_courser)
         ->join("mon_hoc","lop_monhoc.id_monhoc","=","mon_hoc.id_monhoc")
-        ->select('lop_monhoc.*','mon_hoc.ten_monhoc as tenmonhoc')->get()
-        ;
+        ->join("nhom","lop_monhoc.id_lop_mh","=","nhom.id_lopmonhoc")
+        ->select('lop_monhoc.*','mon_hoc.ten_monhoc as tenmonhoc','nhom.ten_nhom as ten_nhom','nhom.id_nhom as id_nhom')->orderBy('id_nhom','desc')->get();
+        $nhom_da_dangky=ds_thanhviennhom::join("nhom","nhom.id_nhom","=","ds_thanhviennhom.id_nhom")->select('nhom.id_nhom as id_nhom_dk')->get();
 
-        return view('frontend.course_registration',compact('list_lopmonhoc'));
+
+
+
+        return view('frontend.course_registration',compact('list_lopmonhoc','nhom_da_dangky'));
 
 
     }
+    function registration_group($id_group)
+    {
+        $id_sinhvien=Auth::user()->id;
+        $id_nhom=$id_group;
+
+
+
+        $row_ds_thanhviennhom= new ds_thanhviennhom;
+        $row_ds_thanhviennhom->id_nhom=$id_nhom;
+
+        $row_ds_thanhviennhom->id_sinhvien=$id_sinhvien;
+        if($row_ds_thanhviennhom->save()==true)
+        {
+           return redirect()->back()->with("message",["type"=>"success","msg"=>"Đăng Ký Nhóm Thành Công "]);
+        }
+        else{
+            echo "false";
+        }
+    }
+
 }

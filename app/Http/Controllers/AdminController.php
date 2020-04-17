@@ -30,9 +30,10 @@ class AdminController extends Controller
     }
     public function dashboard(Request $request){
     	$admin_email = $request->admin_email;
-    	$admin_password = md5($request->admin_password);
+        $admin_password = md5($request->admin_password);
+
         $admin_access = 2;
-    	
+
 
     	$result = DB::table('tai_khoan')->where('email',$admin_email)->where('password',$admin_password)->where('access',$admin_access)->first();
     	if ($result){
