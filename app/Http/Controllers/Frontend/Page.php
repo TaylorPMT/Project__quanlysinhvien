@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 use App\Http\Controllers\Controller;
 use App\Models\lop_monhoc;
 use App\Models\mon_hoc;
 use App\Models\sinh_vien;
+use App\Models\thong_bao;
+use App\Models\phan_hoi;
+use App\Models\giang_vien;
 
 use Illuminate\Http\Request;
 
@@ -16,8 +19,11 @@ class Page extends Controller
 {
     //trang chủ
     function home__Page()
-    {
-        return view('frontend.home');
+    { 
+        $list_thong_bao=thong_bao::get();
+
+        return view('frontend.home',compact('list_thong_bao'));
+     
     }
     //Đăng Nhập Sinh Viên
 
@@ -80,14 +86,8 @@ class Page extends Controller
 
 
     }
-    //view Gửi Yêu Cầu
-    function contactStudent()
-    {
-        return view('frontend.contact');
-    }
-    //view Thảo Luận
-    function talkpageStudent()
-    {
-        return view('frontend.talkpage');
-    }
+  
+ 
+   
+  
 }

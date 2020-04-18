@@ -12,44 +12,33 @@
             <div class="col col__notification">Thông Báo Tin Quản Lý Phòng Đào Tạo</div>
         </div>
         <div class="row">
+             
         	<div class="col-md-12 col__box-notification">
-        		<div class="title-notification">
-        		<span> Thông báo V/v Tổ chức dạy học kỳ 2 năm học 2019 – 2020 theo nhiều phương thức kết hợp và triển khai giảng dạy trực tuyến từ ngày 13/04/2020 </span>
-        		<span  class="NgayTitle">(08/01/1998)</span>
-        		
-                 </div>
-
-        		<div class="main-notification" >
-        			<i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                    <a class="chitiet"   href="#"> Xem chi tiết </a>
-        		</div>
-
-
-               {{--  table yêu cầu --}}
-                <div class="title-notification">
-                <span> Thông báo V/v Tổ chức dạy học kỳ 2 năm học 2019 – 2020 theo nhiều phương thức kết hợp và triển khai giảng dạy trực tuyến từ ngày 13/04/2020 </span>
-                <span  class="NgayTitle">(08/01/1998)</span>
-                
-                 </div>
-
-                <div class="main-notification" >
-                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                    <a class="chitiet"   href="#"> Xem chi tiết </a>
-                </div>
-
-               {{--  table yêu cầu --}}
+    @foreach ($list_thong_bao as $item)
                
-        	</div>
+       <div class="navigate-base"><br>
+     <table class="classTable"  border="0" width="100%">
+       <tbody>
+      <tr>
+        <td align="left">
+            <a class="tieude" href="{{$item->noi_dung}}">
+                <span style="font-size: 15pt; color: #000000;">{{$item->tieu_de}} </span></a>
 
-            
-                
-            
-                
+                <a class="chitiet" href="{{$item->noi_dung}}"><span style="font-size: 14px" > (xem chi tiết)</span></a>
+        </td>
+    </tr>
+       </tbody>
+    </table>
+        </div>
+
+
+                @endforeach
+        	</div>
+                                                      
             </div>
 
                
-        	
-        </div>
+        	</div>
 
 
     
