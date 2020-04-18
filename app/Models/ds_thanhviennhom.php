@@ -12,6 +12,8 @@ class ds_thanhviennhom extends Model
     const UPDATED_AT = null;
 
     const CREATED_AT=null;
+    protected $primaryKey = 'id_thanhviennhom';
+
 
 
 }

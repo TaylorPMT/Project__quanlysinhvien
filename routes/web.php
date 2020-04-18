@@ -23,13 +23,15 @@ Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStu
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
     Route::get('','Frontend\Page@dashboard')->name('dashboard');
-    Route::group(['prefix' => 'controllers'], function () {
+    Route::group(['prefix' => 'contronller'], function () {
         //xem danh sach mon
         Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
         //xem danh sach lop va nhom
         Route::get('registration/course_registration/{id_courser}','Frontend\Page@course_registration')->name('course_registration');
         //dang ky
         Route::get('registration_group/{id_group}','Frontend\Page@registration_group')->name('registration_group');
+        //xem danh sách nhóm đã đăng ký
+        Route::get('view_registrationGroup','Frontend\Page@view_registrationGroup')->name('view_registrationGroup');
 
     });
 

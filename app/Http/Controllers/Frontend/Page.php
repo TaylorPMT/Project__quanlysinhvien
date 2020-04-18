@@ -106,5 +106,19 @@ class Page extends Controller
             echo "false";
         }
     }
+    // view xem nhóm đã đăng ký
+    function view_registrationGroup()
+    {
+        $id_sinhvien=Auth::user()->id;
+        $list_dsmonhoc=ds_thanhviennhom::where('id_sinhvien','=',$id_sinhvien)->get('id_nhom');
+        dd($list_dsmonhoc);
+
+
+
+
+
+        return view('frontend.view_registrationGroup');
+    }
+
 
 }

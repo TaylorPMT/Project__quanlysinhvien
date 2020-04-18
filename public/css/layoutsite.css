@@ -161,6 +161,18 @@ body {
 }
 
 
+/* nav header */
+
+.item-group {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 10px 10px;
+}
+
+
+/* end nav header */
+
+
 /* main content */
 
 .title__col {

@@ -18,9 +18,10 @@
 </head>
 
 <body>
+    <div class="container-fluid">
     @includeIf('modul.modalLogin')
     <header>
-        <div class="container-fluid">
+        <div class="container">
 
             <div class="row header-top">
                 <div class="col-md-12 header__top-logo">
@@ -46,9 +47,18 @@
                                         <span class="sr-only">(current)</span>
                                  </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link nav__link-href" href="{{ Route('registrationStudent') }}">đăng kí nhóm</a>
+                            <li class="nav-item dropdown dropdown__notification">
+                                <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nhóm
+                                 </a>
+                                <div class="dropdown-menu dropdown-default dropdown__menu-width border__triangle dropdown__animation " aria-labelledby="navbarDropdownMenuLink-333">
+                                    <a class="dropdown-item item-group" href="{{ Route('registrationStudent') }}">Đăng Ký Nhóm</a>
+                                    <a class="dropdown-item  item-group" href="{{ Route('view_registrationGroup') }}">Xem Danh Sách Nhóm Của Bạn</a>
+                                    <a class="dropdown-item  item-group" href="#">Something else here</a>
+                                </div>
                             </li>
+
+
+
                             <li class="nav-item">
                                 <a class="nav-link nav__link-href" href="#">Liên Hệ</a>
                             </li>
@@ -116,7 +126,7 @@
         </div>
     </footer>
     {{-- /* include modal */ --}}
-
+</div>
 
 </body>
 <script defer src="{{ asset('js/all.js') }}"></script>
