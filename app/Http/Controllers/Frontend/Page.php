@@ -10,7 +10,7 @@ use App\Models\lop_monhoc;
 use App\Models\mon_hoc;
 use App\Models\nhom;
 use App\Models\sinh_vien;
-
+use App\Library\library;
 use Illuminate\Http\Request;
 
 
@@ -111,13 +111,22 @@ class Page extends Controller
     {
         $id_sinhvien=Auth::user()->id;
         $list_dsmonhoc=ds_thanhviennhom::where('id_sinhvien','=',$id_sinhvien)->get('id_nhom');
-        dd($list_dsmonhoc);
+
+        $nhom_listid=library::nhom_listid($list_dsmonhoc);
+         $list_nhomdk=nhom::whereIn('nhom.id_nhom',$nhom_listid)
+         ->join("lop_monhoc","nhom.id_lopmonhoc","=","lop_monhoc.id_lop_mh")
+         ->join("mon_hoc","mon_hoc.id_monhoc","=","lop_monhoc.id_monhoc")
+         ->select("nhom.*","lop_monhoc.*","mon_hoc.*")->get();
 
 
 
 
 
-        return view('frontend.view_registrationGroup');
+
+
+
+
+        return view('frontend.view_registrationGroup',compact('list_nhomdk'));
     }
 
 
