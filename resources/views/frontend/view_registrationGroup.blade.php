@@ -21,10 +21,16 @@
                         <tr>
                             <th scope="col "> <span class="title__head"></span> </th>
                             <th scope="col "><span class="title__head">Tên Môn Học</span> </th>
+                            <th scope="col "><span class="title__head">Tên Giảng Viên</span> </th>
+
                             <th scope="col "><span class="title__head">Lớp Học</span> </th>
                             <th scope="col "><span class="title__head">Nhóm</span> </th>
+                            <th scope="col "><span class="title__head">Ngày Học</span> </th>
+
                             <th scope="col "><span class="title__head">Số Tiết</span> </th>
                             <th scope="col "><span class="title__head">Số Tín Chỉ</span> </th>
+
+
 
                         </tr>
                         </thead>
@@ -34,10 +40,13 @@
 
 
                           <tr>
-                            <th scope="row"> <i class="fas fa-check text-success"></i></th>
+                            <td> <i class="fas fa-check text-success"></i></td>
                             <td>{{ $item->ten_monhoc }}</td>
+                            <td>{{ $item->ten_giangvien }}</td>
                             <td>{{ $item->ten_lop_mh }}</td>
                             <td>{{ $item->ten_nhom }}</td>
+                            <td>{{ $item->ngay }}</td>
+
                             <td>{{ $item->so_tiet }}</td>
                             <td>{{ $item->so_tinchi }}</td>
 

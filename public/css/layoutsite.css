@@ -104,7 +104,7 @@ body {
 }
 
 .dropdown__menu-width {
-    min-width: 300px;
+    min-width: 600px;
     min-height: 300px;
     width: 30% !important;
     height: 30% !important;
@@ -146,7 +146,7 @@ body {
 /*nav header */
 
 .nav__link-href {
-    margin: 4px 8px;
+    margin: 4px 10px;
     font-size: 1.6rem;
     color: var(--color-nav-href) !important;
     text-transform: capitalize;
@@ -155,7 +155,7 @@ body {
 .nav__logo {
     align-items: center;
     text-align: center;
-    font-size: 2rem;
+    font-size: 3rem;
     font-weight: 600;
     margin: 0 10px;
 }
@@ -165,8 +165,13 @@ body {
 
 .item-group {
     font-size: 1.4rem;
+    margin-top: 10px;
     font-weight: 600;
-    margin: 10px 10px;
+}
+
+.item-group:hover {
+    background-image: linear-gradient(to right, var(--color-nav-href) 0%, #26a0da 51%, var(--color-nav-href) 100%);
+    background-position: right center;
 }
 
 

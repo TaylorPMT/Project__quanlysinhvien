@@ -77,7 +77,11 @@ class Page extends Controller
         $list_lopmonhoc=lop_monhoc::where('lop_monhoc.id_monhoc','=',$id_courser)
         ->join("mon_hoc","lop_monhoc.id_monhoc","=","mon_hoc.id_monhoc")
         ->join("nhom","lop_monhoc.id_lop_mh","=","nhom.id_lopmonhoc")
-        ->select('lop_monhoc.*','mon_hoc.ten_monhoc as tenmonhoc','nhom.ten_nhom as ten_nhom','nhom.id_nhom as id_nhom')->orderBy('id_nhom','desc')->get();
+        ->join("giang_day","lop_monhoc.id_lop_mh","=","giang_day.id_lopmonhoc")
+        ->join("giang_vien","giang_day.id_giangvien","=","giang_vien.id_giangvien")
+        ->select('lop_monhoc.*','mon_hoc.ten_monhoc as tenmonhoc','nhom.ten_nhom as ten_nhom','nhom.id_nhom as id_nhom',"giang_vien.ten_giangvien as ten_giang_vien","giang_day.*","mon_hoc.id_monhoc as id_monhoc")->orderBy('id_nhom','desc')->get();
+
+
         $nhom_da_dangky=ds_thanhviennhom::join("nhom","nhom.id_nhom","=","ds_thanhviennhom.id_nhom")->select('nhom.id_nhom as id_nhom_dk')->get();
 
 
@@ -87,24 +91,47 @@ class Page extends Controller
 
 
     }
-    function registration_group($id_group)
+    function registration_group($id_group,$id_monhoc)
     {
-        $id_sinhvien=Auth::user()->id;
         $id_nhom=$id_group;
-
-
-
-        $row_ds_thanhviennhom= new ds_thanhviennhom;
-        $row_ds_thanhviennhom->id_nhom=$id_nhom;
-
-        $row_ds_thanhviennhom->id_sinhvien=$id_sinhvien;
-        if($row_ds_thanhviennhom->save()==true)
+        $id_sinhvien=Auth::user()->id;
+        $id_dsdangky=ds_thanhviennhom::where('id_sinhvien','=',$id_sinhvien)->get('id_nhom')->toArray();
+        $id_monhocdk=nhom::whereIn('nhom.id_nhom',$id_dsdangky)
+        ->join('lop_monhoc','nhom.id_lopmonhoc','=','lop_monhoc.id_lop_mh')->value('id_monhoc');
+        if($id_monhocdk==$id_monhoc)
         {
-           return redirect()->back()->with("message",["type"=>"success","msg"=>"Đăng Ký Nhóm Thành Công "]);
+            $save=ds_thanhviennhom::where('id_nhom','=',$id_dsdangky)->first();
+
+            $save->id_nhom=$id_nhom;
+            $save->id_sinhvien=$id_sinhvien;
+
+            $save->save();
+            return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu chuyển nhóm được gửi đến GV  "]);
+
+
+
+        }else
+        {
+
+            $row_ds_thanhviennhom= new ds_thanhviennhom;
+            $row_ds_thanhviennhom->id_nhom=$id_nhom;
+
+            $row_ds_thanhviennhom->id_sinhvien=$id_sinhvien;
+
+            if($row_ds_thanhviennhom->save()==true)
+            {
+            return redirect()->back()->with("message",["type"=>"success","msg"=>"Các nhóm được tạo  "]);
+            }
+            else{
+                echo "false";
+            }
         }
-        else{
-            echo "false";
-        }
+
+
+
+
+
+
     }
     // view xem nhóm đã đăng ký
     function view_registrationGroup()
@@ -115,8 +142,10 @@ class Page extends Controller
         $nhom_listid=library::nhom_listid($list_dsmonhoc);
          $list_nhomdk=nhom::whereIn('nhom.id_nhom',$nhom_listid)
          ->join("lop_monhoc","nhom.id_lopmonhoc","=","lop_monhoc.id_lop_mh")
+         ->join("giang_day","lop_monhoc.id_lop_mh","=","giang_day.id_lopmonhoc")
+         ->join("giang_vien","giang_day.id_giangvien","=","giang_vien.id_giangvien")
          ->join("mon_hoc","mon_hoc.id_monhoc","=","lop_monhoc.id_monhoc")
-         ->select("nhom.*","lop_monhoc.*","mon_hoc.*")->get();
+         ->select("nhom.*","lop_monhoc.*","mon_hoc.*","giang_vien.ten_giangvien as ten_giangvien","giang_day.lich_day as ngay")->get();
 
 
 
@@ -128,6 +157,9 @@ class Page extends Controller
 
         return view('frontend.view_registrationGroup',compact('list_nhomdk'));
     }
-
+    function create_group()
+    {
+       return view('frontend.create_group');
+    }
 
 }

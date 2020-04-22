@@ -25,6 +25,7 @@
                             <th scope="col "><span class="title__head">Số Lượng </span> </th>
                             <th scope="col "><span class="title__head">Lớp Học</span> </th>
                             <th scope="col "><span class="title__head">Tên Môn Học</span> </th>
+                            <th scope="col "><span class="title__head">Giảng Viên</span> </th>
 
                             <th scope="col "><span class="title__head">Nhóm</span> </th>
                             <th scope="col "><span class="title__head">Thao Tác</span> </th>
@@ -52,9 +53,10 @@
                             <td>{{ $item->so_luong }}</td>
                             <td>{{ $item->ten_lop_mh }}</td>
                             <td>{{ $item->tenmonhoc }}</td>
-
+                            <td>{{ $item->ten_giang_vien }}</td>
+                                {{ $item->id_monhoc }}
                             <td> {{ $item->ten_nhom }}</td>
-                            <td> <a href="{{ Route('registration_group',['id_group'=>$item->id_nhom])}}">Đăng ký</a></td>
+                            <td> <a href="{{ Route('registration_group',['id_group'=>$item->id_nhom,'id_monhoc'=>$item->id_monhoc])}}">Đăng ký</a></td>
 
                         </tr>
 
