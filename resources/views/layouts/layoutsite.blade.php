@@ -53,7 +53,7 @@
                                 <div class="dropdown-menu dropdown-default dropdown__menu-width border__triangle dropdown__animation dropdown__notification" aria-labelledby="navbarDropdownMenuLink-333">
                                     <a class="dropdown-item item-group" href="{{ Route('registrationStudent') }}">Đăng Ký Nhóm</a>
                                     <a class="dropdown-item  item-group" href="{{ Route('view_registrationGroup') }}">Xem Danh Sách Nhóm Của Bạn</a>
-                                    <a class="dropdown-item  item-group" href="{{ Route('create_group') }}"> Yêu Câu Tạo Nhóm</a>
+                                    <a class="dropdown-item  item-group" href="{{ Route('create_group') }}"> Yêu Câu Giáo Viên</a>
                                 </div>
                             </li>
 

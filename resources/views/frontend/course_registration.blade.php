@@ -22,12 +22,13 @@
                         <thead>
                         <tr>
                             <th scope="col "> <span class="title__head"></span> </th>
-                            <th scope="col "><span class="title__head">Số Lượng </span> </th>
+
                             <th scope="col "><span class="title__head">Lớp Học</span> </th>
                             <th scope="col "><span class="title__head">Tên Môn Học</span> </th>
                             <th scope="col "><span class="title__head">Giảng Viên</span> </th>
 
                             <th scope="col "><span class="title__head">Nhóm</span> </th>
+                            <th scope="col "><span class="title__head">Có Thể Đăng Ký</span> </th>
                             <th scope="col "><span class="title__head">Thao Tác</span> </th>
                         </tr>
                         </thead>
@@ -47,16 +48,25 @@
 
                                     @endif
 
-                                    @endforeach
+                                 @endforeach
 
                              </th>
-                            <td>{{ $item->so_luong }}</td>
+
                             <td>{{ $item->ten_lop_mh }}</td>
                             <td>{{ $item->tenmonhoc }}</td>
                             <td>{{ $item->ten_giang_vien }}</td>
                                 {{ $item->id_monhoc }}
                             <td> {{ $item->ten_nhom }}</td>
-                            <td> <a href="{{ Route('registration_group',['id_group'=>$item->id_nhom,'id_monhoc'=>$item->id_monhoc])}}">Đăng ký</a></td>
+                            <td> {{ $item->soluongnhom }}</td>
+
+                            <td>
+
+                                <a href="{{ Route('registration_group',['id_group'=>$item->id_nhom,'id_monhoc'=>$item->id_monhoc])}}">Đăng ký</a>
+
+
+
+
+                            </td>
 
                         </tr>
 
@@ -78,32 +88,29 @@
         <div class="row">
             <div class="col-md-12">
                     <div class="form__box">
-                        <form>
-                            <div class="form-group">
-                              <label for="exampleFormControlInput1" class="form__tilte">Nhập Tên Nhóm Cần Đăng Ký</label>
-                              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Điền Tên">
-                            </div>
-                            <div class="form-group">
-                              <label for="exampleFormControlSelect1" class="form__tilte">Chọn Môn Học</label>
-                              <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Tên Môn Học</option>
-                                <option>Tên Môn Học</option>
-                                <option>Tên Môn Học</option>
-                                <option>Tên Môn Học</option>
-                                <option>Tên Môn Học</option>
-                              </select>
-                            </div>
+                        @foreach ($monHocYeuCau as $item)
+                        <form action="{{ Route('post_create_group') }}" method="POST">
+                            @csrf
+
+
 
                             <div class="form-group">
-                              <label for="exampleFormControlTextarea1" class="form__tilte">Lý Do Yêu Cầu</label>
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                            </div>
-                            <div class="form-group btn__box-submit">
-                                <button type="submit" class="btn btn-success">
+                              <label for="exampleFormControlSelect1" class="form__tilte">Môn Học Yêu Cầu Mở Lớp </label>
+                              <select class="form-control" id="exampleFormControlSelect1" name="id_monhoc">
+                                <option value="{{ $item->id_monhoc }}">{{ $item->ten_monhoc}}</option>
+
+                              </select>
+                            </>
+
+
+                            <div class="form-group btn__box-submit" style="margin-top:10px ">
+                                <button type="submit" class="btn btn-success" name="submit">
                                     Gửi yêu Cầu
                                 </button>
-                               </div>
+                               </>
+
                           </form>
+                          @endforeach
                     </div>
             </div>
         </div>

@@ -18,7 +18,7 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
-
+Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
     //registration student
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
@@ -33,7 +33,9 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         //xem danh sách nhóm đã đăng ký
         Route::get('view_registrationGroup','Frontend\Page@view_registrationGroup')->name('view_registrationGroup');
         //Yêu Câu tạo Nhóm
-        Route::get('create_group','Frontend\Page@create_group')->name('create_group');
+       Route::get('create_group','Frontend\Page@create_group')->name('create_group');
+        Route::post('post_create_group','Frontend\Page@post_create_group')->name('post_create_group');
+
 
     });
 
@@ -44,7 +46,7 @@ Route::get('/dashboard', 'AdminController@show_dashboard');
 Route::get('/logout', 'AdminController@logout');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
 
-Route::get('logout','Frontend\Page@logout')->name('logout');
+
 
 //backend quản lý sinh viên
 Route::get('/add-student', 'StudentManagementController@add_student');
