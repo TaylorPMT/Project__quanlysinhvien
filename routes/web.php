@@ -18,7 +18,7 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
-
+Route::get('logout','Frontend\Page@logout')->name('logout');
     //registration student
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
@@ -38,13 +38,14 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
     });
 
 });
+
 //Backend đăng nhập
 Route::get('/admin', 'AdminController@index');
 Route::get('/dashboard', 'AdminController@show_dashboard');
 Route::get('/logout', 'AdminController@logout');
 Route::post('/admin-dashboard', 'AdminController@dashboard');
 
-Route::get('logout','Frontend\Page@logout')->name('logout');
+
 
 //backend quản lý sinh viên
 Route::get('/add-student', 'StudentManagementController@add_student');
