@@ -116,11 +116,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Quản lý lớp học</span>
                     </a>
                     <ul class="sub">
-						<li><a href="{{URL::to('/add-product')}}">Thêm lớp học </a></li>
-						<li><a href="{{URL::to('/all-product')}}">Liệt kê danh sách lớp học</a></li>
+						<li><a href="{{URL::to('/add-classroom')}}">Thêm lớp học </a></li>
+						<li><a href="{{URL::to('/all-classroom')}}">Liệt kê danh sách lớp học</a></li>
                     </ul>
                 </li>
-                
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý lớp môn học</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/add-classsub')}}">Thêm lớp môn học </a></li>
+                        <li><a href="{{URL::to('/all-classsub')}}">Liệt kê danh sách lớp môn học</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý giảng dạy</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/add-teaching')}}">Thêm giảng dạy</a></li>
+                        <li><a href="{{URL::to('/all-teaching')}}">Liệt kê danh sách giảng dạy</a></li>
+                    </ul>
+                </li>
             </ul>            </div>
         <!-- sidebar menu end-->
     </div>

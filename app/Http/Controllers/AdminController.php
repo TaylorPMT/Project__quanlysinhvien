@@ -38,7 +38,7 @@ class AdminController extends Controller
     	$result = DB::table('tai_khoan')->where('email',$admin_email)->where('password',$admin_password)->where('access',$admin_access)->first();
     	if ($result){
     		Session::put('admin_name',$result->name);
-    		Session::put('admin_id',$result->id_taikhoan);
+    		Session::put('admin_id',$result->id);
     		return Redirect::to('/dashboard');
     	}else{
     		Session::put('message','Tài khoản hoặc mật khẩu không đúng!');

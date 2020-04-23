@@ -37,7 +37,7 @@
                                     <label for="exampleInputPassword1">Email</label>
                                      <select name="student_cate" class="form-control input-sm m-bot15">
                                        @foreach($account_product as $key => $cate)
-                                        <option value="{{$cate->id_taikhoan}}">{{$cate->email}}</option>
+                                        <option value="{{$cate->id}}">{{$cate->email}}</option>
                                         @endforeach
                                         
                                     </select>

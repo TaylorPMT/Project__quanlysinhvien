@@ -23,12 +23,12 @@ class StudentManagementController extends Controller
     }
     public function add_student(){
         $this->AuthLogin();
-        $account_product = DB::table('tai_khoan')->orderby('id_taikhoan','desc')->get();
+        $account_product = DB::table('tai_khoan')->orderby('id','desc')->get();
         return view('admin.add_student')->with('account_product',$account_product);
     }
     public function all_student(){
         $this->AuthLogin();
-        $all_student = DB::table('sinh_vien')->join('tai_khoan','tai_khoan.id_taikhoan','=','sinh_vien.id_taikhoan')->orderby('sinh_vien.id_sinhvien','desc')->get();
+        $all_student = DB::table('sinh_vien')->join('tai_khoan','tai_khoan.id','=','sinh_vien.id_taikhoan')->orderby('sinh_vien.id_sinhvien','desc')->get();
         $manager_student = view('admin.all_student')->with('all_student',$all_student);
         return view('admin_layout')->with('admin.all_student',$manager_student);
     }
@@ -58,7 +58,7 @@ class StudentManagementController extends Controller
     
     public function edit_student($student_id){
         $this->AuthLogin();
-        $account_product = DB::table('tai_khoan')->orderby('id_taikhoan','desc')->get();
+        $account_product = DB::table('tai_khoan')->orderby('id','desc')->get();
         $edit_student = DB::table('sinh_vien')->where('id_sinhvien',$student_id)->get();
         $manager_student = view('admin.edit_student')->with('edit_student',$edit_student)->with('account_product',$account_product);
         return view('admin_layout')->with('admin.edit_student',$manager_student);

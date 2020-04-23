@@ -27,24 +27,20 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th style="width:20px;">
-              <label class="i-checks m-b-none">
-                <input type="checkbox"><i></i>
-              </label>
-            </th>
+            
             <th>Tên môn học</th>
             <th>Số tiết</th>
             <th>Số tín chỉ</th>
             
             
             
-            <th style="width:30px;"></th>
+            
           </tr>
         </thead>
         <tbody>
           @foreach($all_subject as $key => $subject_pro)
           <tr>
-            <td><label class="i-checks m-b-none"><input type="checkbox" name="post[]"><i></i></label></td>
+            
             <td>{{ $subject_pro->ten_monhoc}}</td>
             <td>{{ $subject_pro->so_tiet}}</td>
             <td>{{ $subject_pro->so_tinchi}}</td>
