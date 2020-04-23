@@ -18,7 +18,7 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
-Route::get('logout','Frontend\Page@logout')->name('logout');
+Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
     //registration student
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
