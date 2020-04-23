@@ -38,10 +38,10 @@
                                     <label for="exampleInputPassword1">Email</label>
                                      <select name="student_cate" class="form-control input-sm m-bot15" >
                                        @foreach($account_product as $key => $cate)
-                                       @if($cate->id_taikhoan==$edit_value->id_taikhoan)
-                                        <option selected value="{{$cate->id_taikhoan}}">{{$cate->email}}</option>
+                                       @if($cate->id==$edit_value->id_taikhoan)
+                                        <option selected value="{{$cate->id}}">{{$cate->email}}</option>
                                         @else
-                                        <option value="{{$cate->id_taikhoan}}">{{$cate->email}}</option>
+                                        <option value="{{$cate->id}}">{{$cate->email}}</option>
                                         @endif
                                         @endforeach
                                         

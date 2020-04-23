@@ -62,3 +62,30 @@ Route::get('/all-subject', 'SubjectManagementController@all_subject');
 
 Route::post('/save-subject', 'SubjectManagementController@save_subject');
 Route::post('/update-subject/{subject_id}', 'SubjectManagementController@update_subject');
+
+//backend quản lý lớp học
+Route::get('/add-classroom', 'ClassroomManagement@add_classroom');
+Route::get('/edit-classroom/{classroom_id}', 'ClassroomManagement@edit_classroom');
+Route::get('/delete-classroom/{classroom_id}', 'ClassroomManagement@delete_classroom');
+Route::get('/all-classroom', 'ClassroomManagement@all_classroom');
+
+Route::post('/save-classroom', 'ClassroomManagement@save_classroom');
+Route::post('/update-classroom/{classroom_id}', 'ClassroomManagement@update_classroom');
+
+//backend quản lý lớp môn học
+Route::get('/add-classsub', 'ClasssubjectManagement@add_classsub');
+Route::get('/edit-classsub/{classsub_id}', 'ClasssubjectManagement@edit_classsub');
+Route::get('/delete-classsub/{classsub_id}', 'ClasssubjectManagement@delete_classsub');
+Route::get('/all-classsub', 'ClasssubjectManagement@all_classsub');
+
+Route::post('/save-classsub', 'ClasssubjectManagement@save_classsub');
+Route::post('/update-classsub/{classsub_id}', 'ClasssubjectManagement@update_classsub');
+
+//backend quản lý lịch giảng dạy
+Route::get('/add-teaching', 'TeachingManagement@add_teaching');
+Route::get('/edit-teaching/{teaching_id}', 'TeachingManagement@edit_teaching');
+Route::get('/delete-teaching/{teaching_id}', 'TeachingManagement@delete_teaching');
+Route::get('/all-teaching', 'TeachingManagement@all_teaching');
+
+Route::post('/save-teaching', 'TeachingManagement@save_teaching');
+Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teaching');
