@@ -94,3 +94,8 @@ Route::get('/all-teaching', 'TeachingManagement@all_teaching');
 
 Route::post('/save-teaching', 'TeachingManagement@save_teaching');
 Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teaching');
+
+//backend quản lý phản hồi
+Route::get('/view_report/','ReportController@reportview')->name('view_report');
+//Route::get('/view_port-un/{id_phanhoi}','ReportController@postReportUn')->name('post_report');
+Route::get('/view_port-ac/{id_phanhoi}','ReportController@postReportAc')->name('post_report');
