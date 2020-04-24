@@ -9,6 +9,7 @@ use App\Models\sinh_vien;
 use App\Models\phan_hoi;
 use App\Models\giang_vien;
 use DB;
+use Carbon;
 
 
 use Illuminate\Http\Request;
@@ -62,6 +63,7 @@ class userController extends Controller
           //view Thảo Luận
     function talkpageStudent()
     {
+      
         return view('frontend.talkpage');
     }
     function postsStudent(){

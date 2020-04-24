@@ -35,3 +35,13 @@
 .title__head2{
 	font-size: 16px;
 }
+.preview__action--buy, .preview__action--close {
+    display: inline-block;
+    padding: 0 20px;
+}
+.button {
+	border-radius: 8px;
+	background-color: #008000;
+	font-size: 18px;
+	padding: 32px 16px;
+}
