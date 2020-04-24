@@ -104,7 +104,7 @@ class Page extends Controller
 
         if($soluongnhom ==0)
         {
-            return redirect()->back()->with("message",["type"=>"success","msg"=>"Nhóm Đã Đủ Số Lượng  "]);
+            return redirect()->back()->with("message",["type"=>"danger","msg"=>"Nhóm Đã Đủ Số Lượng  "]);
         }else
         {
             if($id_monhocdk==$id_monhoc)
