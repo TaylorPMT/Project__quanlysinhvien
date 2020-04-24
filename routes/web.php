@@ -55,6 +55,7 @@ Route::post('/update-student/{student_id}', 'StudentManagementController@update_
 Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
 	//contact student
 Route::get('contact','Frontend\userController@contactStudent')->name('contactStudent');
-//Route::get('contact','Frontend\userController@postcontactStudent')->name('postcontactStudent');
+Route::post('contact','Frontend\userController@postcontactStudent')->name('postcontactStudent');
     //talkpage Sutudent
 Route::get('talkkpage','Frontend\userController@talkpageStudent')->name('talkpageStudent');
+Route::get('posts','Frontend\userController@postsStudent')->name('postsStudent');

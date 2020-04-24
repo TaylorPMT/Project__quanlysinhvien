@@ -10,6 +10,7 @@ use App\Models\phan_hoi;
 use App\Models\giang_vien;
 use DB;
 
+
 use Illuminate\Http\Request;
 
 
@@ -26,24 +27,45 @@ class userController extends Controller
         
 
        $list_gv=giang_vien::get();
-        return view('frontend.contact',compact('list_phanhoi','list_gv'));
+       $list_sv=sinh_vien::get();
+        return view('frontend.contact',compact('list_phanhoi','list_gv','list_sv'));
       }
 
-     /* function postcontactStudent(Request $req)
+     function  postcontactStudent(Request $req)
       {
+
+      	/*$this->validate($req,[
+        'noidung' => 'required',
+        
+    ],[
+         'noidung.required'=>'Bạn chưa nhập nội dung',
+
+       ]);*/
+      
+      
+
+       
+
        $phanhoi= new phan_hoi;
        $phanhoi->noi_dung = $req->noidung;
-       $phanhoi->ten_giangvien=$req->giangvien;
        $phanhoi->trang_thai=$req->trangthai;
+       $phanhoi->id_giangvien=$req->giangvien;
+       $phanhoi->id_sinhvien=$req->sinhvien;
+          
        $phanhoi->save();
-       return view('frontend.contact');
+       
+       	return view('frontend.home');
+       
 
-      }*/
+      }
 
           //view Thảo Luận
     function talkpageStudent()
     {
         return view('frontend.talkpage');
+    }
+    function postsStudent(){
+      return view('frontend.posts');
     }
     
 }

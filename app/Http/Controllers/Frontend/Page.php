@@ -41,6 +41,7 @@ class Page extends Controller
             $id_taikhoan=Auth::user()->id;
             $sql_query=sinh_vien::where('id_taikhoan','=',$id_taikhoan)->first();
             $ten_sinh_vien=$sql_query->ten_sinhvien;
+            $id_sinh_vien=$sql_query->id_sinhvien;
             $request->session()->put('ten_sinh_vien',$ten_sinh_vien);
        return redirect()->route('dashboard');
       }

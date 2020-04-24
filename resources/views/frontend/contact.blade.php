@@ -53,25 +53,30 @@
      <div class="row">
             <div class="col-md-12">
                     <div class="form__box">
-                        <form role="form" action="" method="post" class="beta-form-checkout">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <form role="form" action="{{ Route('postcontactStudent') }}" method="POST">
+                              @csrf
                             <div class="form-group">
-                              <label for="exampleFormControlInput1" class="form__tilte1">Nội Dung Yêu Cầu</label>
-                              <input type="text" class="form-control" id="noidung" placeholder="Điền Chủ Đề" >
+                              <label for="exampleFormControlInput1" class="form__tilte1">Nội Dung Yêu Cầu</label><br>
+                              <textarea class="form-control"   name ="noidung" rows="5"></textarea>
+                            </div>
+                             <div class="form-group">
+                              <label for="exampleFormControlInput1" class="form__tilte1">Trạng Thái</label>
+                              <input type="text" class="form-control" name="trangthai" value ="0" readonly >
                             </div>
                             <div class="form-group">
                               <label for="exampleFormControlSelect1" class="form__tilte1">Tên Giảng Viên</label>
-                              <select class="form-control" id="giangvien">
+                              <select class="form-control" name="giangvien">
                           @foreach ($list_gv as $list)
-                                <option>{{$list->ten_giangvien}}</option>
+                                <option>{{$list->id_giangvien}}- {{$list->ten_giangvien}} </option>
                          @endforeach
                               </select>
                             </div>
-
-                             <div class="form-group">
-                              <label for="exampleFormControlInput1" class="form__tilte1">Trạng Thái</label>
-                              <input type="text" class="form-control" id="trangthai" value ="0" readonly >
+                            <div class="form-group">
+                              <label for="exampleFormControlInput1" class="form__tilte1">Mã Sinh Viên</label>
+                                   <input type="text" class="form-control" name="sinhvien" value =""  >
                             </div>
+                             
+                                                    
 
                          
                             <div class="form-group btn__box-submit">
