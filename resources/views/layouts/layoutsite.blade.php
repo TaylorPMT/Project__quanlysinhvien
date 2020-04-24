@@ -48,12 +48,14 @@
                                  </a>
                             </li>
                             <li class="nav-item dropdown dropdown__notification" style="cursor: pointer">
-                                <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nhóm
+                                <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sinh Viên
                                  </a>
                                 <div class="dropdown-menu dropdown-default dropdown__menu-width border__triangle dropdown__animation dropdown__notification" aria-labelledby="navbarDropdownMenuLink-333">
                                     <a class="dropdown-item item-group" href="{{ Route('registrationStudent') }}">Đăng Ký Nhóm</a>
                                     <a class="dropdown-item  item-group" href="{{ Route('view_registrationGroup') }}">Xem Danh Sách Nhóm Của Bạn</a>
-                                    <a class="dropdown-item  item-group" href="{{ Route('create_group') }}"> Yêu Câu Tạo Nhóm</a>
+                                    <a class="dropdown-item  item-group" href="{{ Route('view_contact') }}">Xem Danh Sách Các Yêu Cầu Của Bạn</a>
+
+                                    <a class="dropdown-item  item-group" href="{{ Route('create_group') }}"> Yêu Câu Giáo Viên</a>
                                 </div>
                             </li>
 
@@ -114,17 +116,31 @@
         <div class="my-3"></div>
         <div class="container-fluid footer__container">
             <div class="row row__footer">
-                <div class="col col__footer">380 x 100</div>
-                <div class="col col__footer">380 x 100</div>
-                <div class="col col__footer">380 x 100</div>
+                <div class="col col__footer">
+                    <h3 class="title-footer">
+                        Đồ Án Thực Tập
+                    </h3>
+                </div>
+                <div class="col col__footer">
+                    <h3 class="title-footer">
+                        Giảng Viên Hướng Dẫn
+                    </h3>
+                </div>
+                <div class="col col__footer">
+                    <h3 class="title-footer">
+                        Danh Sách Các Thành Viên
+                    </h3>
+                </div>
             </div>
         </div>
         <div class="container-fluid footer__coppyright">
             <div class="row">
-                <div class="col col__coppyright">© 2020 - Bản quyền thuộc về Phạm Minh Thiện</div>
+                <div class="col col__coppyright"><h3 class="title-footer">© 2020 - Bản quyền thuộc về Phạm Minh Thiện </h3></div>
             </div>
         </div>
     </footer>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-angle-double-up"></i></button>
+
     {{-- /* include modal */ --}}
 </div>
 
@@ -135,7 +151,27 @@
 <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script>
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
 
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+    </script>
 @yield('script')
 
 </html>

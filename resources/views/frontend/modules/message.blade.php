@@ -5,7 +5,7 @@
     $type=session('message');
 @endphp
 <div class="alert alert-{{ $type['type'] }}">
-    <strong>{{ $type['msg'] }}!</strong>
+    <h3 class="text-center"><strong>{{ $type['msg'] }}!</strong></h3>
 </div>
 
 

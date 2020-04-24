@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class nhom extends Model
+class phan_hoi extends Model
 {
     //
-    protected $table='nhom';
-    protected $primaryKey = 'id_nhom';
+    protected $table="phan_hoi";
     const UPDATED_AT = null;
 
     const CREATED_AT=null;
-
 }

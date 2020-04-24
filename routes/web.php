@@ -18,7 +18,7 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
-Route::get('logout','Frontend\Page@logout')->name('logout');
+Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
     //registration student
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
@@ -33,7 +33,11 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         //xem danh sách nhóm đã đăng ký
         Route::get('view_registrationGroup','Frontend\Page@view_registrationGroup')->name('view_registrationGroup');
         //Yêu Câu tạo Nhóm
-        Route::get('create_group','Frontend\Page@create_group')->name('create_group');
+       Route::get('create_group','Frontend\Page@create_group')->name('create_group');
+        Route::post('post_create_group','Frontend\Page@post_create_group')->name('post_create_group');
+        //Xem Danh Sách Yêu cầu
+        Route::get('view_contact','Frontend\Page@view_contact')->name('view_contact');
+
 
     });
 
@@ -90,3 +94,8 @@ Route::get('/all-teaching', 'TeachingManagement@all_teaching');
 
 Route::post('/save-teaching', 'TeachingManagement@save_teaching');
 Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teaching');
+
+//backend quản lý phản hồi
+Route::get('/view_report/','ReportController@reportview')->name('view_report');
+//Route::get('/view_port-un/{id_phanhoi}','ReportController@postReportUn')->name('post_report');
+Route::get('/view_port-ac/{id_phanhoi}','ReportController@postReportAc')->name('post_report');
