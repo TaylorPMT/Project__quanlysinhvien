@@ -48,11 +48,13 @@
                                  </a>
                             </li>
                             <li class="nav-item dropdown dropdown__notification" style="cursor: pointer">
-                                <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Nhóm
+                                <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sinh Viên
                                  </a>
                                 <div class="dropdown-menu dropdown-default dropdown__menu-width border__triangle dropdown__animation dropdown__notification" aria-labelledby="navbarDropdownMenuLink-333">
                                     <a class="dropdown-item item-group" href="{{ Route('registrationStudent') }}">Đăng Ký Nhóm</a>
                                     <a class="dropdown-item  item-group" href="{{ Route('view_registrationGroup') }}">Xem Danh Sách Nhóm Của Bạn</a>
+                                    <a class="dropdown-item  item-group" href="{{ Route('view_contact') }}">Xem Danh Sách Các Yêu Cầu Của Bạn</a>
+
                                     <a class="dropdown-item  item-group" href="{{ Route('create_group') }}"> Yêu Câu Giáo Viên</a>
                                 </div>
                             </li>

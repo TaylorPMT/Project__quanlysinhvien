@@ -99,8 +99,9 @@ class Page extends Controller
         $id_dsdangky=ds_thanhviennhom::where('id_sinhvien','=',$id_sinhvien)->get('id_nhom')->toArray();
         $id_monhocdk=nhom::whereIn('nhom.id_nhom',$id_dsdangky)
         ->join('lop_monhoc','nhom.id_lopmonhoc','=','lop_monhoc.id_lop_mh')->value('id_monhoc');
-        $nhom=nhom::find($id_nhom);
-        $soluongnhom=$nhom->so_luong;
+        $list_nhom=nhom::find($id_group);
+        $soluongnhom=$list_nhom->so_luong;
+
         if($soluongnhom ==0)
         {
             return redirect()->back()->with("message",["type"=>"success","msg"=>"Nhóm Đã Đủ Số Lượng  "]);
@@ -115,8 +116,7 @@ class Page extends Controller
 
                 if($save->save()==true)
                 {
-                $nhom->so_luong=$soluongnhom-1;
-                $nhom->save();
+
                 return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu chuyển nhóm được gửi đến GV  "]);
 
                 }
@@ -132,8 +132,9 @@ class Page extends Controller
                 $row_ds_thanhviennhom->id_sinhvien=$id_sinhvien;
 
                 if($row_ds_thanhviennhom->save()==true)
-                {        $nhom->so_luong=$soluongnhom-1;
-                          $nhom->save();
+                {
+                    $list_nhom->so_luong=$soluongnhom-1;
+                    $list_nhom->save();
                 return redirect()->back()->with("message",["type"=>"success","msg"=>"Các nhóm được tạo  "]);
                 }
                 else{
@@ -188,6 +189,13 @@ class Page extends Controller
         return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu tạo nhóm được gửi đến GV  "]);
 
 
+    }
+    //view_contact
+    function view_contact()
+    {
+        $id_sinhvien=Auth::user()->id;
+        $list_contact=phan_hoi::where('id_sinhvien','=',$id_sinhvien)->get();
+        return view('frontend.view_contact',compact('list_contact'));
     }
 
 }

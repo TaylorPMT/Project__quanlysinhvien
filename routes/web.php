@@ -35,6 +35,8 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         //Yêu Câu tạo Nhóm
        Route::get('create_group','Frontend\Page@create_group')->name('create_group');
         Route::post('post_create_group','Frontend\Page@post_create_group')->name('post_create_group');
+        //Xem Danh Sách Yêu cầu
+        Route::get('view_contact','Frontend\Page@view_contact')->name('view_contact');
 
 
     });

@@ -11,7 +11,7 @@
     <div class="my-3"></div>
     <div class="container main__notification">
         <div class="row">
-            <div class="col col__notification title__col"><span class="title__text">Danh Sách Các Môn Học</span></div>
+            <div class="col col__notification title__col"><span class="title__text">Danh Sách Lớp Môn Học</span></div>
         </div>
         <div class="row my-5">
             <div class="col-md-12">
