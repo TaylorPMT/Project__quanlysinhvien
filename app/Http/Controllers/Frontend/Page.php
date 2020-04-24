@@ -135,7 +135,7 @@ class Page extends Controller
                 {
                     $list_nhom->so_luong=$soluongnhom-1;
                     $list_nhom->save();
-                return redirect()->back()->with("message",["type"=>"success","msg"=>"Các nhóm được tạo  "]);
+                    return redirect()->back()->with("message",["type"=>"success","msg"=>"Các nhóm được tạo  "]);
                 }
                 else{
                     echo "false";
@@ -180,14 +180,25 @@ class Page extends Controller
     {
         $monHocYeuCau=$request->id_monhoc;
         $id_sinhvien=Auth::user()->id;
-        $noiDung="Yêu cầu mở lớp";
-        $row_yc=new phan_hoi;
-        $row_yc->noi_dung=$noiDung;
+        $monHocYeuCau=$request->id_monhoc;
+        $MonHoc=mon_hoc::find($monHocYeuCau);
+        $tenMonHoc=$MonHoc->ten_monhoc;
 
-        $row_yc->id_sinhvien=$id_sinhvien;
-        $row_yc->save();
-        return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu tạo nhóm được gửi đến GV  "]);
+        $listPhanHoi=phan_hoi::where('id_sinhvien','=',$id_sinhvien)->get('noi_dung');
+        $noiDung="Yêu cầu mở lớp ".$tenMonHoc;
+       foreach($listPhanHoi as $item)
+       {
+        if($item->noi_dung==$noiDung)
+        {
+            return redirect()->back()->with("message",["type"=>"danger","msg"=>"".$noiDung ." Đã Được Gửi Xin Chờ Xác Nhận Giảng Viên !!!!"]);
+        }
+     }
+            $row_yc=new phan_hoi;
+            $row_yc->noi_dung=$noiDung;
 
+            $row_yc->id_sinhvien=$id_sinhvien;
+            $row_yc->save();
+            return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu tạo nhóm được gửi đến GV  "]);
 
     }
     //view_contact
