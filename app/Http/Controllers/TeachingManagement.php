@@ -29,11 +29,11 @@ class TeachingManagement extends Controller
     }
     public function all_teaching(){
         $this->AuthLogin();
-        $all_teaching = DB::table('giang_day')
-        ->join('giang_vien','giang_vien.id_giangvien','=','giang_day.id_giangday')
+        $all_teaching = DB::table('giang_vien')
+        ->join('giang_day','giang_day.id_giangvien','=','giang_vien.id_giangvien')
         ->join('lop_monhoc','lop_monhoc.id_lop_mh','=','giang_day.id_lopmonhoc')
         ->join('mon_hoc','mon_hoc.id_monhoc','=','lop_monhoc.id_monhoc')
-        ->select('giang_day.*','giang_vien.*','lop_monhoc.*','mon_hoc.ten_monhoc')
+        ->select('giang_day.*','giang_vien.*','lop_monhoc.*','mon_hoc.*')
         ->orderby('giang_day.id_giangday','desc')->get();
         $manager_teaching = view('admin.all_teaching')->with('all_teaching',$all_teaching);
         return view('admin_layout')->with('admin.all_teaching',$manager_teaching);

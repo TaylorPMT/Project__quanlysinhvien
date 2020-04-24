@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh sách sinh viên
+      Liệt kê danh sách giảng dạy
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -40,18 +40,18 @@
           </tr>
         </thead>
         <tbody>
-          @foreach($all_teaching as $key => $cate_pro)
+          @foreach($all_teaching as $key => $pro)
           <tr>
             
-            <td>{{ $cate_pro->tiet_bd}}</td>
-            <td>{{ $cate_pro->tiet_kt}}</td>
-            <td>{{ $cate_pro->lich_day}}</td>
-            <td>{{ $cate_pro->ten_giangvien}}</td>
-            <td>{{ $cate_pro->ten_lop_mh}}</td>
-            <td>{{ $cate_pro->ten_monhoc}}</td>
+            <td>{{ $pro->tiet_bd}}</td>
+            <td>{{ $pro->tiet_kt}}</td>
+            <td>{{ $pro->lich_day}}</td>
+            <td>{{ $pro->ten_giangvien}}</td>
+            <td>{{ $pro->ten_lop_mh}}</td>
+            <td>{{ $pro->ten_monhoc}}</td>
             <td>
-              <a href="{{URL::to('/edit-teaching/'.$cate_pro->id_giangday)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa lịch dạy này không này không?')" href="{{URL::to('/delete-teaching/'.$cate_pro->id_giangday)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
+              <a href="{{URL::to('/edit-teaching/'.$pro->id_giangday)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc là muốn xóa lịch dạy này không này không?')" href="{{URL::to('/delete-teaching/'.$pro->id_giangday)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
