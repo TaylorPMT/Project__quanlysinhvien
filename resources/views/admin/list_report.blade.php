@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh sách giảng dạy
+  Danh Sách Các Phản Hồi
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -28,36 +28,29 @@
         <thead>
           <tr>
             
-            <th>Tiết bắt đầu</th>
-            <th>Tiết kết thúc</th>
-            <th>Lịch dạy</th>
-            <th>Tên giảng viên</th>
-            <th>Tên lớp</th>
-            <th>Tên môn học</th>
-            
-            
+            <th>ID phan hồi</th>
+            <th>Nội dung</th>
+            <th>Trạng thái</th>
+            <th>Tên Sinh viên</th>
             
           </tr>
         </thead>
+        @foreach ($list_report as $key => $item)
         <tbody>
-          @foreach($all_teaching as $key => $pro)
+        
           <tr>
-            
-            <td>{{ $pro->tiet_bd}}</td>
-            <td>{{ $pro->tiet_kt}}</td>
-            <td>{{ $pro->lich_day}}</td>
-            <td>{{ $pro->ten_giangvien}}</td>
-            <td>{{ $pro->ten_lop_mh}}</td>
-            <td>{{ $pro->ten_monhoc}}</td>
-            <td>
-              <a href="{{URL::to('/edit-teaching/'.$pro->id_giangday)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa lịch dạy này không này không?')" href="{{URL::to('/delete-teaching/'.$pro->id_giangday)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
-            </td>
+            <td>{{ $item->id_giangvien }}</td>
+            <td>{{ $item->noi_dung }}</td>
+            @if ($item->trang_thai == 1)<!--Chưa xác nhận--> 
+              <td><a href="{{URL::to('/view_port-ac/'.$item->id_phanhoi)}}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+            @elseif ($item->trang_thai == 0)<!--Đã xác nhận-->  
+              <td><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+            @endif
+            <th>{{ $item->ten_sinhvien}}</th>
           </tr>
-          @endforeach
+         
         </tbody>
+        @endforeach
       </table>
     </div>
     <footer class="panel-footer">
