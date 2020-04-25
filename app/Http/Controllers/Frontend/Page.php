@@ -142,6 +142,12 @@ class Page extends Controller
 
                 if($save->save()==true)
                 {
+                    $row_ds_thanhviennhom= new ds_thanhviennhom;
+                    $row_ds_thanhviennhom->id_nhom=$id_nhom;
+
+                    $row_ds_thanhviennhom->id_sinhvien=$id_sinhvien;
+                    $list_nhom->so_luong=$soluongnhom-1;
+                    $list_nhom->save();
 
                 return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu chuyển nhóm được gửi đến GV  "]);
 
