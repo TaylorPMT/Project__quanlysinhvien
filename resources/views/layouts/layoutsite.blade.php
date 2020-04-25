@@ -14,10 +14,18 @@
 
     <!--load all styles -->
     <link rel="stylesheet" href="{{ asset('css/layoutsite.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/loader.scss') }}">
     @yield('head')
 </head>
 
 <body>
+    <!-- START LOADER HTML -->
+<div class="fullpage-loader">
+	<div class="fullpage-loader__logo">
+        <img src="{{ asset('image/load.gif')  }}" />
+	</div>
+</div>
+<!-- END LOADER HTML -->
     <div class="container-fluid">
     @includeIf('modul.modalLogin')
     <header>
@@ -172,6 +180,9 @@
       document.documentElement.scrollTop = 0;
     }
     </script>
+ <script src="{{ asset('js/loader.js') }}">
+
+</script>
 @yield('script')
 
 </html>
