@@ -18,13 +18,13 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
-//<<<<<<< HEAD
 
 
-//=======
+
+
 Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
     //registration student
-//>>>>>>> 27961b042b59319f39048ee02b0fff68ee5a0eee
+
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
     Route::get('','Frontend\Page@dashboard')->name('dashboard');
@@ -64,9 +64,9 @@ Route::get('/all-student', 'StudentManagementController@all_student');
 
 Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
-//<<<<<<< HEAD
 
-//router de o day di 
+
+//router de o day di
     //registration student
 
 
@@ -119,4 +119,4 @@ Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teachin
 Route::get('/view_report/','ReportController@reportview')->name('view_report');
 //Route::get('/view_port-un/{id_phanhoi}','ReportController@postReportUn')->name('post_report');
 Route::get('/view_port-ac/{id_phanhoi}','ReportController@postReportAc')->name('post_report');
-//>>>>>>> 27961b042b59319f39048ee02b0fff68ee5a0eee
+

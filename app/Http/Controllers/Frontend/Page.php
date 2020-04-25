@@ -10,21 +10,21 @@ use App\Models\lop_monhoc;
 use App\Models\mon_hoc;
 use App\Models\nhom;
 use App\Models\sinh_vien;
-//<<<<<<< HEAD
+
 use App\Models\thong_bao;
 use App\Models\phan_hoi;
 use App\Models\giang_vien;
 
-//=======
+
 use App\Library\library;
-//>>>>>>> 27961b042b59319f39048ee02b0fff68ee5a0eee
+
 use Illuminate\Http\Request;
 use App\Http\Requests\Request\contactRequest;
 
 
 class Page extends Controller
 {
- 
+
     function home__Page(){
         if (Auth::check()) {
             # code...
@@ -66,7 +66,7 @@ class Page extends Controller
 
 
     }
-    
+
     function dashboard()
     {
          if (Auth::check()) {
@@ -117,12 +117,7 @@ class Page extends Controller
 
 
     }
-//<<<<<<< HEAD
-  
- 
-   
-  
-//=======
+
     function registration_group($id_group,$id_monhoc)
     {
         $id_nhom=$id_group;
@@ -243,5 +238,5 @@ class Page extends Controller
         return view('frontend.view_contact',compact('list_contact'));
     }
 
-//>>>>>>> 27961b042b59319f39048ee02b0fff68ee5a0eee
+
 }
