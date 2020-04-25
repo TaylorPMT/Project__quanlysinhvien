@@ -2,19 +2,19 @@
 namespace App\Library;
 class library{
 
-    public static function list_id($list ,$id,$arr)
+    public static function nhom_listid($list)
     {
+
         foreach($list as $row)
-        {
-            if($row->id ==$id)
-
             {
-                  $arr[]=$row->id;
-                  library::list_id($list,$id,$arr);
+                if($row->id_nhom!=null)
+                {
+                    $arr[]=$row->id_nhom;
+
+                }
             }
-
-
-        }
         return $arr;
     }
+
+
 }

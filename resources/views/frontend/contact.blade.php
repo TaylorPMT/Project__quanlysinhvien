@@ -24,7 +24,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                         @foreach ($list_phanhoi as $item)
+                         @foreach ($list_phanhoi as $key => $item)
                           <tr>
                             <th scope="row">{{ $item->id_phanhoi }}</th>
                             <td>{{ $item->noi_dung }}</td>
@@ -66,14 +66,14 @@
                             <div class="form-group">
                               <label for="exampleFormControlSelect1" class="form__tilte1">Tên Giảng Viên</label>
                               <select class="form-control" name="giangvien">
-                          @foreach ($list_gv as $list)
-                                <option>{{$list->id_giangvien}}- {{$list->ten_giangvien}} </option>
+                          @foreach ($list_gv as $key => $list)
+                                <option value="{{$list->id_giangvien}}">{{$list->ten_giangvien}} </option>
                          @endforeach
                               </select>
                             </div>
                             <div class="form-group">
                               <label for="exampleFormControlInput1" class="form__tilte1">Mã Sinh Viên</label>
-                                   <input type="text" class="form-control" name="sinhvien" value =""  >
+                                   <input type="text" class="form-control" name="sinhvien" value ="{{ $item->id_sinhvien}}"  readonly>{{ Session::get('ten_sinh_vien') }}
                             </div>
                              
                                                     

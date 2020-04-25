@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh sách sinh viên
+  Danh Sách Các Phản Hồi
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -28,34 +28,29 @@
         <thead>
           <tr>
             
-            <th>Tên sinh viên</th>
-            <th>Giới tính</th>
-            <th>Địa chỉ</th>
-            <th>Số điện thoại</th>
-            <th>Email</th>
-            
-            
+            <th>ID phan hồi</th>
+            <th>Nội dung</th>
+            <th>Trạng thái</th>
+            <th>Tên Sinh viên</th>
             
           </tr>
         </thead>
+        @foreach ($list_report as $key => $item)
         <tbody>
-          @foreach($all_student as $key => $cate_pro)
+        
           <tr>
-            
-            <td>{{ $cate_pro->ten_sinhvien}}</td>
-            <td>{{ $cate_pro->gioi_tinh}}</td>
-            <td>{{ $cate_pro->dia_chi}}</td>
-            <td>{{ $cate_pro->sdt}}</td>
-            <td>{{ $cate_pro->email}}</td>
-            <td>
-              <a href="{{URL::to('/edit-student/'.$cate_pro->id_sinhvien)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa sinh viên này không?')" href="{{URL::to('/delete-student/'.$cate_pro->id_sinhvien)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
-            </td>
+            <td>{{ $item->id_giangvien }}</td>
+            <td>{{ $item->noi_dung }}</td>
+            @if ($item->trang_thai == 1)<!--Chưa xác nhận--> 
+              <td><a href="{{URL::to('/view_port-ac/'.$item->id_phanhoi)}}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
+            @elseif ($item->trang_thai == 0)<!--Đã xác nhận-->  
+              <td><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
+            @endif
+            <th>{{ $item->ten_sinhvien}}</th>
           </tr>
-          @endforeach
+         
         </tbody>
+        @endforeach
       </table>
     </div>
     <footer class="panel-footer">
