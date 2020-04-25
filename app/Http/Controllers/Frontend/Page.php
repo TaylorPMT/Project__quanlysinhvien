@@ -3,24 +3,39 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 use App\Http\Controllers\Controller;
 use App\Models\ds_thanhviennhom;
 use App\Models\lop_monhoc;
 use App\Models\mon_hoc;
 use App\Models\nhom;
 use App\Models\sinh_vien;
+//<<<<<<< HEAD
+use App\Models\thong_bao;
+use App\Models\phan_hoi;
+use App\Models\giang_vien;
+
+//=======
 use App\Library\library;
+//>>>>>>> 27961b042b59319f39048ee02b0fff68ee5a0eee
 use Illuminate\Http\Request;
 use App\Http\Requests\Request\contactRequest;
-use App\Models\phan_hoi;
+
 
 class Page extends Controller
 {
-    //trang chủ
-    function home__Page()
-    {
-        return view('frontend.home');
+ 
+    function home__Page(){
+        if (Auth::check()) {
+            # code...
+          $list_thong_bao=thong_bao::get();
+
+        return view('frontend.dashboard',compact('list_thong_bao'));
+    }
+    else{
+        return view('frontend.loginstudent');
+    }
+
     }
     //Đăng Nhập Sinh Viên
 
@@ -39,6 +54,7 @@ class Page extends Controller
             $id_taikhoan=Auth::user()->id;
             $sql_query=sinh_vien::where('id_taikhoan','=',$id_taikhoan)->first();
             $ten_sinh_vien=$sql_query->ten_sinhvien;
+            $id_sinh_vien=$sql_query->id_sinhvien;
             $request->session()->put('ten_sinh_vien',$ten_sinh_vien);
        return redirect()->route('dashboard');
       }
@@ -50,9 +66,18 @@ class Page extends Controller
 
 
     }
+    
     function dashboard()
     {
-        return view('frontend.dashboard');
+         if (Auth::check()) {
+            # code...
+          $list_thong_bao=thong_bao::get();
+
+        return view('frontend.dashboard',compact('list_thong_bao'));
+    }
+    else{
+        return view('frontend.loginstudent');
+    }
     }
     // view trang đăng ký
 
@@ -92,6 +117,12 @@ class Page extends Controller
 
 
     }
+//<<<<<<< HEAD
+  
+ 
+   
+  
+//=======
     function registration_group($id_group,$id_monhoc)
     {
         $id_nhom=$id_group;
@@ -212,4 +243,5 @@ class Page extends Controller
         return view('frontend.view_contact',compact('list_contact'));
     }
 
+//>>>>>>> 27961b042b59319f39048ee02b0fff68ee5a0eee
 }

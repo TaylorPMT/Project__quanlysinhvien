@@ -51,7 +51,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item ">
-                                <a class="nav-link nav__link-href" href="{{ Route('home__Page') }}">Trang Chủ
+                                <a class="nav-link nav__link-href" href="{{ Route('dashboard') }}">Trang Chủ
                                         <span class="sr-only">(current)</span>
                                  </a>
                             </li>
@@ -67,19 +67,12 @@
                                 </div>
                             </li>
 
-
-
+                           
                             <li class="nav-item">
-                                <a class="nav-link nav__link-href" href="#">Liên Hệ</a>
+                                <a class="nav-link nav__link-href" href="{{ Route('contactStudent') }}">Gửi Yêu Cầu </a>
                             </li>
-                            <li class="nav-item dropdown dropdown__notification">
-                                <a class="nav-link dropdown-toggle nav__link-href" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Thông Báo
-                                 </a>
-                                <div class="dropdown-menu dropdown-default dropdown__menu-width border__triangle dropdown__animation " aria-labelledby="navbarDropdownMenuLink-333">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
-                                </div>
+                             <li class="nav-item">
+                                <a class="nav-link nav__link-href" href="{{ Route('talkpageStudent') }}">Thảo Luận </a>
                             </li>
                         </ul>
                         <ul class="navbar-nav ml-auto nav-flex-icons">

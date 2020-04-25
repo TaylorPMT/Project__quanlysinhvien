@@ -1,0 +1,47 @@
+:root{
+	--min-height: 600px;
+	--background-color:#BFCAE6;
+}
+.col__box-notification{
+	height: var(--min-height);
+	background-color: var(--background-color); 	
+}
+.title-notification{
+   font-size: 20px;
+   color: #103667;
+}
+.NgayTitle{
+	font-size: 16px;
+	color: red;
+}
+.main-notification{
+	font-size: 16px;
+	color: #B2001F;
+	text-align: right;
+	text-decoration:none;
+}
+.chitiet{
+	color: #B2001F;
+	font-size: 20px;
+}
+
+.form__tilte1{
+	font-size: 18px;
+	font-weight: bold;
+}
+.title__head1{
+	font-size: 18px;
+}
+.title__head2{
+	font-size: 16px;
+}
+.preview__action--buy, .preview__action--close {
+    display: inline-block;
+    padding: 0 20px;
+}
+.button {
+	border-radius: 8px;
+	background-color: #008000;
+	font-size: 18px;
+	padding: 32px 16px;
+}
