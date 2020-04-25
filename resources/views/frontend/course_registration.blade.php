@@ -84,16 +84,46 @@
         <div class="row">
             <div class="col col__notification title__col"><span class="title__text">Yêu Cầu Tạo Nhóm</span></div>
         </div>
+        @php
+        $filter=array();
+        foreach ($list_lopmonhoc as $item)
+            {
+
+
+
+                    $filter[$item->id_giangvien]=$item->ten_giang_vien;
+                    echo "<br>";
+
+
+            }
+
+            $filter=array_unique($filter);
+
+
+        @endphp
             {{--  form đăng ký  --}}
         <div class="row">
             <div class="col-md-12">
+
                     <div class="form__box">
                         @foreach ($monHocYeuCau as $item)
                         <form action="{{ Route('post_create_group') }}" method="POST">
                             @csrf
 
 
+                        <div class="form-group">
+                                <label for="sel1">Chọn Giáo Viên Mở Lớp</label>
+                                <select class="form-control" id="sel1" name="id_giang_vien">
+                                @foreach ($filter as $key =>$value)
 
+
+                                <option value="{{  $key }}">{{ $value}}</option>
+
+
+
+                                @endforeach
+                             </select>
+                            </div>
                             <div class="form-group">
                               <label for="exampleFormControlSelect1" class="form__tilte">Môn Học Yêu Cầu Mở Lớp </label>
                               <select class="form-control" id="exampleFormControlSelect1" name="id_monhoc">

@@ -160,7 +160,7 @@ class Page extends Controller
          ->join("giang_day","lop_monhoc.id_lop_mh","=","giang_day.id_lopmonhoc")
          ->join("giang_vien","giang_day.id_giangvien","=","giang_vien.id_giangvien")
          ->join("mon_hoc","mon_hoc.id_monhoc","=","lop_monhoc.id_monhoc")
-         ->select("nhom.*","lop_monhoc.*","mon_hoc.*","giang_vien.ten_giangvien as ten_giangvien","giang_day.lich_day as ngay")->get();
+         ->select("nhom.*","lop_monhoc.*","mon_hoc.*","giang_vien.ten_giangvien as ten_giangvien","giang_day.lich_day as ngay","giang_vien.id_giangvien as id_giangvien")->get();
 
 
 
@@ -183,6 +183,7 @@ class Page extends Controller
         $monHocYeuCau=$request->id_monhoc;
         $MonHoc=mon_hoc::find($monHocYeuCau);
         $tenMonHoc=$MonHoc->ten_monhoc;
+        $id_giangvien=$request->id_giang_vien;
 
         $listPhanHoi=phan_hoi::where('id_sinhvien','=',$id_sinhvien)->get('noi_dung');
         $noiDung="Yêu cầu mở lớp ".$tenMonHoc;
@@ -195,7 +196,9 @@ class Page extends Controller
      }
             $row_yc=new phan_hoi;
             $row_yc->noi_dung=$noiDung;
-
+            $row_yc->trang_thai=0;
+            $row_yc->id_giangvien=$id_giangvien;
+            $row_yc->id_giangvien=
             $row_yc->id_sinhvien=$id_sinhvien;
             $row_yc->save();
             return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu tạo nhóm được gửi đến GV  "]);
