@@ -24,13 +24,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                         @foreach ($list_phanhoi as $key => $item)
+                         @foreach ($list_phanhoi as  $item)
                           <tr>
                             <th scope="row">{{ $item->id_phanhoi }}</th>
                             <td>{{ $item->noi_dung }}</td>
                             <td>{{ $item->tengv}}</td>
-                          <td>{{ $item->trang_thai}}</td>
-                            
+                           
+                          <td>{{ ($item->trang_thai == 'chưa duyệt') ? 'Chưa duyệt':'Đã duyệt'}}</td>
+                       
                         </tr>
 
                           @endforeach
@@ -61,7 +62,7 @@
                             </div>
                              <div class="form-group">
                               <label for="exampleFormControlInput1" class="form__tilte1">Trạng Thái</label>
-                              <input type="text" class="form-control" name="trangthai" value ="0" readonly >
+                              <input type="text" class="form-control" name="trangthai" value ="chưa duyệt" readonly >
                             </div>
                             <div class="form-group">
                               <label for="exampleFormControlSelect1" class="form__tilte1">Tên Giảng Viên</label>
@@ -73,7 +74,11 @@
                             </div>
                             <div class="form-group">
                               <label for="exampleFormControlInput1" class="form__tilte1">Mã Sinh Viên</label>
-                                   <input type="text" class="form-control" name="sinhvien" value ="{{ $item->id_sinhvien}}"  readonly>{{ Session::get('ten_sinh_vien') }}
+                              <!--------lấy id tai khoản------------>
+                             @if( Auth::check())
+                                   <input type="text" class="form-control" name="sinhvien" value ="{{Auth::user()->id}}  "  readonly>
+                            @endif
+                                   {{ Session::get('ten_sinh_vien') }} 
                             </div>
                              
                                                     

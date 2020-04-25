@@ -23,15 +23,16 @@ class userController extends Controller
 	   function contactStudent()
     {  
        if (Auth::check()) {
-             # code...
+        
         $list_phanhoi = DB::table('phan_hoi')
         ->join('giang_vien','giang_vien.id_giangvien','=','phan_hoi.id_giangvien')
        
         ->select('phan_hoi.*','giang_vien.ten_giangvien as tengv')->get();
+       
          
        $list_gv=giang_vien::get();
        $list_sv=sinh_vien::get();
-        return view('frontend.contact',compact('list_phanhoi','list_gv','list_sv'));
+        return view('frontend.contact',['list_phanhoi'=>$list_phanhoi,'list_gv'=>$list_gv,'list_sv'=>$list_sv]);
            }    
            else{
             return view('frontend.loginstudent');
@@ -52,7 +53,7 @@ class userController extends Controller
         
          DB::table('phan_hoi')->insert($data);
             Session::put('message','Thêm yêu cầu thành công!');
-              return view('frontend.contact');
+              return redirect()->back();
               
     
       
