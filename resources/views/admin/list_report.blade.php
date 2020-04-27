@@ -39,7 +39,7 @@
         <tbody>
         
           <tr>
-            <td>{{ $item->id_giangvien }}</td>
+            <td>{{ $item->id_phanhoi }}</td>
             <td>{{ $item->noi_dung }}</td>
             @if ($item->trang_thai == 1)<!--Chưa xác nhận--> 
               <td><a href="{{URL::to('/view_port-ac/'.$item->id_phanhoi)}}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
