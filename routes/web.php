@@ -27,7 +27,7 @@ Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
 
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
-    Route::get('','Frontend\Page@dashboard')->name('dashboard');
+    Route::get('chuc-nang','Frontend\Page@dashboard')->name('dashboard');
     Route::group(['prefix' => 'contronller'], function () {
         //xem danh sach mon
         Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');

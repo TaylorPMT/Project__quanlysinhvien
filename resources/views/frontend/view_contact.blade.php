@@ -13,7 +13,7 @@
             <div class="col col__notification title__col"><span class="title__text">Danh Sách Các Môn Học</span></div>
         </div>
         <div class="row my-5">
-            <div class="col-md-12">
+            <div class="table-responsive">
                 {{--  table đăng ký  --}}
                     <table class="table table-striped table__height" id="myTable">
                         <thead>

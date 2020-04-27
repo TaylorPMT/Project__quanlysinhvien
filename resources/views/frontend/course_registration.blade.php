@@ -17,15 +17,14 @@
             <div class="col-md-12">
                 @includeIf('frontend.modules.message')
                 {{--  table đăng ký  --}}
-                <div class="container">
+                <div class="table-responsive">
                     <table class="table table-striped table__height" id="myTable">
                         <thead>
                         <tr>
                             <th scope="col "> <span class="title__head"></span> </th>
 
                             <th scope="col "><span class="title__head">Lớp Học</span> </th>
-                            <th scope="col "><span class="title__head">Tên Môn Học</span> </th>
-                            <th scope="col "><span class="title__head">Giảng Viên</span> </th>
+
 
                             <th scope="col "><span class="title__head">Nhóm</span> </th>
                             <th scope="col "><span class="title__head">Có Thể Đăng Ký</span> </th>
@@ -53,9 +52,8 @@
                              </th>
 
                             <td>{{ $item->ten_lop_mh }}</td>
-                            <td>{{ $item->tenmonhoc }}</td>
-                            <td>{{ $item->ten_giang_vien }}</td>
-                                {{ $item->id_monhoc }}
+
+
                             <td> {{ $item->ten_nhom }}</td>
                             <td> {{ $item->soluongnhom }}</td>
 
