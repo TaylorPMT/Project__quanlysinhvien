@@ -24,10 +24,10 @@ Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStu
 
 Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
     //registration student
-
+    Route::get('chuc-nang','Frontend\Page@dashboard')->name('dashboard');
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
-    Route::get('chuc-nang','Frontend\Page@dashboard')->name('dashboard');
+
     Route::group(['prefix' => 'contronller'], function () {
         //xem danh sach mon
         Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
@@ -42,8 +42,16 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         Route::post('post_create_group','Frontend\Page@post_create_group')->name('post_create_group');
         //Xem Danh Sách Yêu cầu
         Route::get('view_contact','Frontend\Page@view_contact')->name('view_contact');
+        //Đăng Ký Môn Học Update
+        Route::get('dang-ky.html','Frontend\Update@dang_ky')->name('dang_ky');
+        Route::post('postdang_ky','Frontend\Update@post_dang_ky')->name('post_dang_ky');
+        //Thời Khóa biểu
+        Route::get('thoi-khoa-bieu.html','Frontend\Update@thoi_khoa_bieu')->name('thoi_khoa_bieu');
+        // Đăng ký nhóm ajax
 
-
+        Route::get('danh_sach/{id}/{id_monhoc}', 'Frontend\Update@getRequest')->name('getRequest');
+        // Chọn nhóm
+        Route::get('nhom/{id_nhom}/{id_monhoc}', 'Frontend\Update@chon_nhom')->name('chon_nhom');
     });
 
 });
