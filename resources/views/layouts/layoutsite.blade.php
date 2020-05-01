@@ -21,9 +21,9 @@
 <body>
     <!-- START LOADER HTML -->
 <div class="fullpage-loader">
-	<div class="fullpage-loader__logo">
+    <div class="fullpage-loader__logo">
         <img src="{{ asset('image/load.gif')  }}" />
-	</div>
+    </div>
 </div>
 <!-- END LOADER HTML -->
     <div class="container-fluid">
@@ -155,10 +155,8 @@
 <script>
     //Get the button
     var mybutton = document.getElementById("myBtn");
-
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
-
     function scrollFunction() {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
@@ -166,7 +164,6 @@
         mybutton.style.display = "none";
       }
     }
-
     // When the user clicks on the button, scroll to the top of the document
     function topFunction() {
       document.body.scrollTop = 0;
@@ -174,7 +171,6 @@
     }
     </script>
  <script src="{{ asset('js/loader.js') }}">
-
 </script>
 @yield('script')
 

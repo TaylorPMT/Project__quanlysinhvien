@@ -24,7 +24,10 @@
             </div>
         </div>
     <div class="container main__notification">
-	<form method="POST" action="" accept-charset="UTF-8" class="border shadow-sm bg-white rounded p-3"><input name="_token" type="hidden" >
+
+	<form  action="{{ Route('Post_postsStudent') }}" method="POST" >
+               @csrf
+        <input name="_token" type="hidden" >
                     <div class="form-group">
                         <label for="title">Tiêu Đề <span class="text-danger">*</span></label>
 
@@ -40,14 +43,16 @@
                         
 
                         <textarea class="form-control wmd-input autoresize" id="wmd-input" placeholder="Nội dung chi tiết..." rows="8" minlength="100" required="1" name="content" cols="50"></textarea>
+                        
+                       
 
                         <div id="wmd-preview" class="wmd-preview"></div>
                     </div>
 
                     
                     <div class="form-group">
-                        <button class="btn btn-primary">Tạo Mới</button>
-                        <button class="btn btn-primary">Hủy</button>
+                        <button class="btn btn-primary">Đăng</button>
+                        
                     </div>
                 </form>
             </div>

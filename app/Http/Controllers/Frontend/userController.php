@@ -9,6 +9,7 @@ use App\Models\sinh_vien;
 use App\Models\phan_hoi;
 use App\Models\giang_vien;
 use App\Models\thao_luan;
+use App\Models\lop_monhoc;
 use DB;
 use Carbon;
 
@@ -42,35 +43,32 @@ class userController extends Controller
       }
 
      function  postcontactStudent(Request $req)
-      {
-
-      	//$this->AuthLogin();
+      {  
+     //  $list_gv=lop_monhoc::get('id_giangvien')
+      //  $id_giang= DB::table('phan_hoi')->where('id_giangvien', '=', $list_gv)->get('id_giangvien');
+        
         $data = array();
-          $data['noi_dung'] =$req->noidung; 
-        $data['trang_thai'] =$req->trangthai; 
-      $data['id_giangvien'] =$req->giangvien;
-       $data['id_sinhvien'] =$req->sinhvien; 
+        $data['noi_dung'] =$req->noidung; 
+        $data['trang_thai'] ='0'; 
+      //$data['id_giangvien'] =$id_gv;  //id gv trong lớp môn hc
+        $data['id_sinhvien'] =Auth::user()->id; 
         
          DB::table('phan_hoi')->insert($data);
-            Session::put('message','Thêm yêu cầu thành công!');
-              return redirect()->back();
-              
-    
+          
+              return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu đã được gửi đến GV  "]);
+
       
-
-       
-
-       
-       
-       
-
       }
 
           //view Thảo Luận
     function talkpageStudent()
     {
       if(Auth::check()){
-        $list_tl=thao_luan::get();
+        $list_tl=DB::table('thao_luan')
+        ->join('sinh_vien','sinh_vien.id_sinhvien','=','thao_luan.id_sinhvien')
+       
+        ->select('thao_luan.*','sinh_vien.ten_sinhvien as tensv')->get();
+       
          return view('frontend.talkpage',compact('list_tl'));
       }
       else{
@@ -80,7 +78,20 @@ class userController extends Controller
        
     }
     function postsStudent(){
+      
+
       return view('frontend.posts');
+    }
+    function Post_postsStudent(Request $req){
+       $arr = array();
+       $arr['tieu_de'] =$req->title;
+       $arr['noi_dung'] =$req->content; 
+        $arr['id_giangvien'] =1;
+        $arr['id_lop_monhoc'] =2;
+        $arr['id_sinhvien'] =Auth::user()->id; 
+      
+         DB::table('thao_luan')->insert($arr);
+          return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu đã được gửi đến GV  "]);
     }
     
 }

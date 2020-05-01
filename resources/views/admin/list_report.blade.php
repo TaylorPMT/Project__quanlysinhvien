@@ -41,9 +41,9 @@
           <tr>
             <td>{{ $item->id_phanhoi }}</td>
             <td>{{ $item->noi_dung }}</td>
-            @if ($item->trang_thai == 1)<!--Chưa xác nhận--> 
+            @if ($item->trang_thai === 0)<!--Chưa xác nhận--> 
               <td><a href="{{URL::to('/view_port-ac/'.$item->id_phanhoi)}}"><i class="fa fa-times" aria-hidden="true"></i></a></td>
-            @elseif ($item->trang_thai == 0)<!--Đã xác nhận-->  
+            @elseif ($item->trang_thai === 1)<!--Đã xác nhận-->  
               <td><a href="#"><i class="fa fa-check" aria-hidden="true"></i></a></td>
             @endif
             <th>{{ $item->ten_sinhvien}}</th>

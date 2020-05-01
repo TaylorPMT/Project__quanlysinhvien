@@ -78,6 +78,7 @@ Route::post('contact','Frontend\userController@postcontactStudent')->name('postc
     //talkpage Sutudent
 Route::get('talkkpage','Frontend\userController@talkpageStudent')->name('talkpageStudent');
 Route::get('posts','Frontend\userController@postsStudent')->name('postsStudent');
+Route::post('posts','Frontend\userController@Post_postsStudent')->name('Post_postsStudent');
 //=======
 //Backend quản lý môn học
 Route::get('/add-subject', 'SubjectManagementController@add_subject');
