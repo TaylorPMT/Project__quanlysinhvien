@@ -72,7 +72,26 @@
                             <td>{{ $item->so_tinchi }}</td>
                             <td>{{ $item->soluong }}</td>
                             <td>{{ $item->Ngay_bd }}</td>
-                            <td><a href="">Hủy Đăng Ký</a></td>
+                            @php
+                            if(isset($arr))
+                            {
+                            if(in_array($item->id_lop_mh,$arr))
+                                {
+
+
+
+                            @endphp
+                                <td> <a href="{{ Route('huy_dang_ky',['id_lopmonhoc'=>$item->id_lop_mh]) }}">Hủy Đăng Ký</a></td>
+                            @php
+                                }else
+                                {
+                                    echo "<td></td>";
+                                }
+                            }
+
+                            @endphp
+
+
                         </tr>
 
                           @endforeach

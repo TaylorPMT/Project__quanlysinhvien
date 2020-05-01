@@ -17,7 +17,7 @@
     <div class="container main__notification">
 
         <div class="row">
-            <div class="col col__notification title__col"><span class="title__text">Thời Khóa Biểu</span></div>
+            <div class="col col__notification title__col" style="width: 470px;"><span class="title__text">Thời Khóa Biểu</span></div>
         </div>
             {{--  form đăng ký  --}}
         <div class="row">
@@ -36,7 +36,7 @@
 
                             <th scope="col "><span class="title__head">Ngày Học</span> </th>
                             <th scope="col "><span class="title__head">Ngày Kết Thúc</span> </th>
-                            <th scope="col "><span class="title__head">Chọn Nhóm</span> </th>
+                            <th scope="col "><span class="title__head">Nhóm</span> </th>
                         </tr>
                         </thead>
 
@@ -63,19 +63,21 @@
 
                             </td>
                             <td>
+                            @foreach ($list_dk_nhom as $list_dk)
 
 
-                                @if ($list_dk_nhom->id_lopmonhoc == $item->id_lopmonhoc)
+
+                                @if ($list_dk->id_lopmonhoc == $item->id_lopmonhoc)
 
 
-                              <a  href="{{  Route('getRequest',['id'=>$list_dk_nhom->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
+                              <a  href="{{  Route('getRequest',['id'=>$list_dk->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
 
 
                                 @include('frontend.modules.bootmodal');
 
                                 @endif
 
-
+                             @endforeach
 
 
 
@@ -90,22 +92,28 @@
                         </tbody>
                     </table>
                 </div>
-                </div>
+
             </div>
         </div>
             {{--  end form đăng ký  --}}
     </div>
     {{--  modal box dk nhom   --}}
+
 </div>
 
     {{--  end modal box  --}}
 </main>
 @endsection
 @section('script')
- <script src="{{ asset('js/ajax.js') }}">
+<script src="{{ asset('js/ajax.js') }}">
 
 </script>
 
-
+<script>
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+  } );
+  </script>
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
 
 @endsection

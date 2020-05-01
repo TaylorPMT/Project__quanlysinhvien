@@ -45,6 +45,7 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         //Đăng Ký Môn Học Update
         Route::get('dang-ky.html','Frontend\Update@dang_ky')->name('dang_ky');
         Route::post('postdang_ky','Frontend\Update@post_dang_ky')->name('post_dang_ky');
+        Route::get('huy_dang_ky/{id_lopmonhoc}','Frontend\Update@huy_dang_ky')->name('huy_dang_ky');
         //Thời Khóa biểu
         Route::get('thoi-khoa-bieu.html','Frontend\Update@thoi_khoa_bieu')->name('thoi_khoa_bieu');
         // Đăng ký nhóm ajax
@@ -52,6 +53,8 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         Route::get('danh_sach/{id}/{id_monhoc}', 'Frontend\Update@getRequest')->name('getRequest');
         // Chọn nhóm
         Route::get('nhom/{id_nhom}/{id_monhoc}', 'Frontend\Update@chon_nhom')->name('chon_nhom');
+        //yêu cầu tạo nhóm
+        Route::get('tao_nhom/{id_monhoc}','Frontend\Update@tao_nhom')->name('tao_nhom');
     });
 
 });
