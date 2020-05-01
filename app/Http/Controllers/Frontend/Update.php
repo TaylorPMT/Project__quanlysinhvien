@@ -12,6 +12,7 @@ use App\Library\ds_lopmh;
 use App\Models\ds_thanhviennhom;
 use App\Models\nhom;
 use App\Library\library;
+use Carbon\Carbon;
 
 class Update extends Controller
 {
@@ -90,6 +91,8 @@ class Update extends Controller
         ->join('lop_monhoc','ds_thanhvienlop_mh.id_lopmonhoc','=','lop_monhoc.id_lop_mh')
         ->join('nhom','lop_monhoc.id_lop_mh','=','nhom.id_lopmonhoc')
         ->first();
+       
+
 
 
 

@@ -37,6 +37,7 @@
                             <th scope="col "><span class="title__head">Ngày Học</span> </th>
                             <th scope="col "><span class="title__head">Ngày Kết Thúc</span> </th>
                             <th scope="col "><span class="title__head">Chọn Nhóm</span> </th>
+                            <th scope="col "><span class="title__head">Gửi Yêu Cầu</span> </th>
                         </tr>
                         </thead>
 
@@ -69,7 +70,7 @@
 
 
                               <a  href="{{  Route('getRequest',['id'=>$list_dk_nhom->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
-
+                              
 
                                 @include('frontend.modules.bootmodal');
 
@@ -81,6 +82,14 @@
 
 
                              </td>
+                          <td>
+                              
+                            <a  href="{{ Route('contactStudent') }}">
+                              <button type="button" class="btn btn-info">Gửi Yêu Cầu</button>
+                            </a>
+                               
+
+                          </td>
 
                         </tr>
 

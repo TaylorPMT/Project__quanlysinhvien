@@ -10,6 +10,7 @@ use App\Models\phan_hoi;
 use App\Models\giang_vien;
 use App\Models\thao_luan;
 use App\Models\lop_monhoc;
+use App\Models\giang_day;
 use DB;
 use Carbon;
 
@@ -43,14 +44,13 @@ class userController extends Controller
       }
 
      function  postcontactStudent(Request $req)
-      {  
-     //  $list_gv=lop_monhoc::get('id_giangvien')
-      //  $id_giang= DB::table('phan_hoi')->where('id_giangvien', '=', $list_gv)->get('id_giangvien');
-        
+      {   
+        $id_gv=lop_monhoc::get()->first();
+
         $data = array();
         $data['noi_dung'] =$req->noidung; 
         $data['trang_thai'] ='0'; 
-      //$data['id_giangvien'] =$id_gv;  //id gv trong lớp môn hc
+        $data['id_giangvien'] =$id_gv;  //id gv trong lớp môn hc
         $data['id_sinhvien'] =Auth::user()->id; 
         
          DB::table('phan_hoi')->insert($data);
