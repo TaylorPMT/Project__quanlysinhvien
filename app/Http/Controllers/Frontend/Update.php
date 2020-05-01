@@ -92,7 +92,7 @@ class Update extends Controller
         ->join('nhom','lop_monhoc.id_lop_mh','=','nhom.id_lopmonhoc')
         ->first();
        
-
+       
 
 
 
