@@ -164,7 +164,7 @@ class Update extends Controller
                 $output.="
                     <div class='row'>
                         <div class='col text-center'>
-                            <span class='btn btn-default'><a href='tao_nhom/$id_monhoc'>yêu cầu tạo nhóm</a></span>
+                           <a href='tao_nhom/$id_monhoc' class='btn-warning' style='padding:6px 10px;'>yêu cầu tạo nhóm</a>
                         </div>
                     </div>
 
@@ -239,11 +239,22 @@ class Update extends Controller
     {
         $f_lop_monhoc=lop_monhoc::where('id_monhoc','=',$id_monhoc)->value('id_lop_mh');
         $f_lop_monhoc_ten=lop_monhoc::where('id_monhoc','=',$id_monhoc)->first();
-        dd($f_lop_monhoc_ten);
+
         $f_l_sinhvien=ds_thanhvienlop_mh::where('id_lopmonhoc','=',$f_lop_monhoc)->get('id_sinhvien');
         $l_id_sinhvien=library::ds_thanhvienlop_mh_l_sv($f_l_sinhvien);
         $l_sinhvien=sinh_vien::whereIn('id_sinhvien',$l_id_sinhvien)->get();
 
-        return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien'));
+        return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten','id_monhoc'));
+    }
+    function tao_nhom_post($id_monhoc,Request $request)
+    {
+        $id_sv_tao=Auth::user()->id;
+        $l_lopmonhoc=lop_monhoc::where('id_monhoc','=',$id_monhoc)->first();
+        $i_lopmonhoc= $l_lopmonhoc->id_lop_mh;
+        $id_sv_dk=$request->input('id_sinhvien');
+        $t_sinhvien =sinh_vien::find($id_sv_tao);
+        //tạo nhóm
+        $rows_nhom=new nhom;
+
     }
 }

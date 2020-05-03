@@ -62,7 +62,7 @@
 
 
                             </td>
-                            <td>
+                            <td class="text-center">
                             @foreach ($list_dk_nhom as $list_dk)
 
 
@@ -70,7 +70,7 @@
                                 @if ($list_dk->id_lopmonhoc == $item->id_lopmonhoc)
 
 
-                              <a  href="{{  Route('getRequest',['id'=>$list_dk->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
+                              <a  href="{{  Route('getRequest',['id'=>$list_dk->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global " style="width: 50%"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
 
 
                                 @include('frontend.modules.bootmodal');

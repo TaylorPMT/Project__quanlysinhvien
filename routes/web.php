@@ -55,6 +55,7 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         Route::get('nhom/{id_nhom}/{id_monhoc}', 'Frontend\Update@chon_nhom')->name('chon_nhom');
         //yêu cầu tạo nhóm
         Route::get('tao_nhom/{id_monhoc}','Frontend\Update@tao_nhom')->name('tao_nhom');
+        Route::post('tao_nhom_post/{id_monhoc}','Frontend\Update@tao_nhom_post')->name('tao_nhom_post');
     });
 
 });
