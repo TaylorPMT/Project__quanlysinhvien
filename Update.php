@@ -133,7 +133,6 @@ class Update extends Controller
                   <th scope='col'>Tên Nhóm</th>
                   <th scope='col'>Số Lượng</th>
                   <th scope='col'></th>
-
                 </tr>
               </thead>";
                 foreach($l_nhom as $item)
@@ -141,7 +140,6 @@ class Update extends Controller
                     {
 
                     $output .= "<tr>
-
                          <td>  <input type='checkbox' class='checkbox' disabled  checked></td>
                         <td> $item->ten_nhom </td>
                         <td>  $item->so_luong  </td>
@@ -151,7 +149,6 @@ class Update extends Controller
                     else
                     {
                         $output .= "<tr>
-
                         <td>  <input type='checkbox' class='checkbox' disabled ></td>
                        <td> $item->ten_nhom </td>
                        <td>  $item->so_luong  </td>
@@ -167,7 +164,6 @@ class Update extends Controller
                            <a href='tao_nhom/$id_monhoc' class='btn-warning' style='padding:6px 10px;'>yêu cầu tạo nhóm</a>
                         </div>
                     </div>
-
                 ";
                 return Response($output);
 
@@ -187,7 +183,7 @@ class Update extends Controller
         $list_nhom=nhom::find($id_group);
         $soluongnhom=$list_nhom->so_luong;
 
-        if($soluongnhom ==0 )
+        if($soluongnhom ==0)
         {
             return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Nhóm Đã Đủ Số Lượng  "]);
         }else
@@ -255,10 +251,8 @@ class Update extends Controller
         $t_sinhvien =sinh_vien::find($id_sv_tao);
         //tạo nhóm
         $check_exist=nhom::where([['nhom.id_lopmonhoc','=',$i_lopmonhoc]])->join('ds_thanhviennhom','nhom.id_nhom','=','ds_thanhviennhom.id_nhom')->first();
-        if($check_exist ==NULL)
-        {
         $rows_nhom=new nhom;
-        $rows_nhom->ten_nhom="Yêu  Cầu Tạo Nhóm  ".$t_sinhvien->ten_sinhvien;
+        $rows_nhom->ten_nhom="Nhóm Của Sinh Viên ".$t_sinhvien->ten_sinhvien;
         $rows_nhom->id_lopmonhoc=$i_lopmonhoc;
         $rows_nhom->trang_thai=1;
         $rows_nhom->id_yeu_cau=$id_sv_tao;
@@ -279,11 +273,7 @@ class Update extends Controller
 
 
         }
-        }
-        else
-        {
-            return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Bạn Đã Có Nhóm"]);
-        }
+
 
     }
 }
