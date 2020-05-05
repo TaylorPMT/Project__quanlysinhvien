@@ -28,11 +28,7 @@
 	<form  action="{{ Route('Post_postsStudent') }}" method="POST" >
                @csrf
         <input name="_token" type="hidden" >
-                    <div class="form-group">
-                        <label for="title">Tiêu Đề <span class="text-danger">*</span></label>
-
-                        <input class="form-control" id="title" placeholder="Tiêu đề bài viết" minlength="10" maxlength="255" required="1" name="title" type="text">
-                    </div>
+                    
 
                     <div class="wmd-panel form-group">
                         
@@ -48,6 +44,10 @@
 
                         <div id="wmd-preview" class="wmd-preview"></div>
                     </div>
+                     <div class="wmd-panel form-group">
+
+                     <input type="file" id="myFile" name="filename2">
+                     </div>
 
                     
                     <div class="form-group">

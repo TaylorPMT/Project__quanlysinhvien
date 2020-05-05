@@ -23,9 +23,9 @@
                 
                 <div class="card-body">
                    <h5> đăng bởi :<a href="#" style="font-size: 16px;">{{$tl->tensv}}</a></h5>
-                     <h2 class="tieude">{{$tl->tieu_de}}</h2> 
-                     <div class="noidung" style="font-size: 16px;" >
-                         {{$tl->noi_dung}}
+                     <h3 class="tieude">{{$tl->noi_dung}}</h3> 
+                     <div class="noidung" name="hinh" >
+                         <img src="/public/image{{$tl->hinh_anh}}" >
                      </div> 
                      <div class="like">
 

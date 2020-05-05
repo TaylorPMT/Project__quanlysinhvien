@@ -73,9 +73,7 @@
                                 <a class="nav-link nav__link-href" href="{{ Route('thoi_khoa_bieu') }}">Xem thời khóa biểu</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link nav__link-href" href="{{ Route('contactStudent') }}">Gửi Yêu Cầu </a>
-                            </li>
+                            
                              <li class="nav-item">
                                 <a class="nav-link nav__link-href" href="{{ Route('talkpageStudent') }}">Thảo Luận </a>
                             </li>

@@ -11,4 +11,6 @@ class ds_thanhvienlop_mh extends Model
     const UPDATED_AT = null;
 
     const CREATED_AT=null;
+    protected $primaryKey = 'id_ds_thanhvienlop';
+
 }
