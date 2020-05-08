@@ -18,11 +18,16 @@ Route::get('','Frontend\Page@home__Page')->name('home__Page');
     //Login student
 Route::get('loginStudent','Frontend\Page@loginStudent')->name('loginStudent');
 Route::post('loginStudent','Frontend\Page@postloginStudent')->name('postloginStudent');
+
+
+
+
 Route::get('dang_xuat','Frontend\Page@logout')->name('logout');
     //registration student
+    Route::get('chuc-nang','Frontend\Page@dashboard')->name('dashboard');
 
 Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
-    Route::get('','Frontend\Page@dashboard')->name('dashboard');
+
     Route::group(['prefix' => 'contronller'], function () {
         //xem danh sach mon
         Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
@@ -37,8 +42,20 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         Route::post('post_create_group','Frontend\Page@post_create_group')->name('post_create_group');
         //Xem Danh Sách Yêu cầu
         Route::get('view_contact','Frontend\Page@view_contact')->name('view_contact');
+        //Đăng Ký Môn Học Update
+        Route::get('dang-ky.html','Frontend\Update@dang_ky')->name('dang_ky');
+        Route::post('postdang_ky','Frontend\Update@post_dang_ky')->name('post_dang_ky');
+        Route::get('huy_dang_ky/{id_lopmonhoc}','Frontend\Update@huy_dang_ky')->name('huy_dang_ky');
+        //Thời Khóa biểu
+        Route::get('thoi-khoa-bieu.html','Frontend\Update@thoi_khoa_bieu')->name('thoi_khoa_bieu');
+        // Đăng ký nhóm ajax
 
-
+        Route::get('danh_sach/{id}/{id_monhoc}', 'Frontend\Update@getRequest')->name('getRequest');
+        // Chọn nhóm
+        Route::get('nhom/{id_nhom}/{id_monhoc}', 'Frontend\Update@chon_nhom')->name('chon_nhom');
+        //yêu cầu tạo nhóm
+        Route::get('tao_nhom/{id_monhoc}','Frontend\Update@tao_nhom')->name('tao_nhom');
+        Route::post('tao_nhom_post/{id_monhoc}','Frontend\Update@tao_nhom_post')->name('tao_nhom_post');
     });
 
 });
@@ -62,8 +79,25 @@ Route::get('/active-student/{student_id}', 'StudentManagementController@active_s
 Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
 
+
 //get 
 Route::get('danhsach/{id_lopmh}', 'StudentManagementController@danhsach')->name('danhsach');
+
+
+//router de o day di
+    //registration student
+
+
+
+Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
+	//contact student
+Route::get('contact','Frontend\userController@contactStudent')->name('contactStudent');
+Route::post('contact','Frontend\userController@postcontactStudent')->name('postcontactStudent');
+    //talkpage Sutudent
+Route::get('talkkpage','Frontend\userController@talkpageStudent')->name('talkpageStudent');
+Route::get('posts','Frontend\userController@postsStudent')->name('postsStudent');
+//=======
+
 //Backend quản lý môn học
 Route::get('/add-subject', 'SubjectManagementController@add_subject');
 Route::get('/edit-subject/{subject_id}', 'SubjectManagementController@edit_subject');
@@ -104,3 +138,4 @@ Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teachin
 Route::get('/view_report/','ReportController@reportview')->name('view_report');
 //Route::get('/view_port-un/{id_phanhoi}','ReportController@postReportUn')->name('post_report');
 Route::get('/view_port-ac/{id_phanhoi}','ReportController@postReportAc')->name('post_report');
+

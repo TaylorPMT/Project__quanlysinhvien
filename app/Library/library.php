@@ -15,6 +15,28 @@ class library{
             }
         return $arr;
     }
-
+    public static function ds_thanhvienlop_mh_l_sv($list)
+    {
+        foreach ($list as $row)
+        {
+            if($row ->id_sinhvien !=null)
+            {
+                $arr[]=$row->id_sinhvien;
+            }
+        }
+        return $arr;
+    }
+    public static function nhom_id_dk($list)
+    {
+        foreach($list as $row)
+        {
+            if($row ->id_lop_mh !=null)
+            {
+                $arr[]=$row->id_lop_mh;
+            }
+        }
+        return $arr;
+    }
 
 }
+

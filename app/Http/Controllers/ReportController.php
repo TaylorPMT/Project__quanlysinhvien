@@ -22,20 +22,16 @@ class ReportController extends Controller
     }
     public function reportview(/*$id_giangvien*/) {
          $this->AuthLogin();
-        $list_report = phan_hoi::join('sinh_vien','sinh_vien.id_sinhvien','=','phan_hoi.id_sinhvien')
-        
-        ->where('phan_hoi.id_giangvien',/*$id_giangvien*/ 1)
+         $id_taikhoan= Session::get('admin_id');
+
+         $id_giangviendn= DB::table('giang_vien')->where('id_taikhoan',$id_taikhoan)
+         ->get('id_giangvien');
+  
+        foreach($id_giangviendn as $value) {
+          $list_report = phan_hoi::join('sinh_vien','sinh_vien.id_sinhvien','=','phan_hoi.id_sinhvien')->where('id_giangvien',$value->id_giangvien)
         ->get();
-        // dd($list_report);
+        }
         return view('admin.list_report', compact('list_report'));
-       /* $list = DB::table('giang_vien')->where('id_giangvien',$id_giangvien);
-      
-        ->join('sinh_vien','sinh_vien.id_sinhvien','=','phan_hoi.id_sinhvien')
-        
-        ->get();
-        
-        $manager_report = view('admin.list_report')->with('list', $list);
-        return view('admin_layout')->with('admin.list_report',$manager_report);*/
     }
     
     //public function postReportUn($id_phanhoi) {

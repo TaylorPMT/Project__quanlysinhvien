@@ -3,24 +3,39 @@
 namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Support\Facades\Auth;
-
+use Session;
 use App\Http\Controllers\Controller;
 use App\Models\ds_thanhviennhom;
 use App\Models\lop_monhoc;
 use App\Models\mon_hoc;
 use App\Models\nhom;
 use App\Models\sinh_vien;
+
+use App\Models\thong_bao;
+use App\Models\phan_hoi;
+use App\Models\giang_vien;
+
+
 use App\Library\library;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\Request\contactRequest;
-use App\Models\phan_hoi;
+
 
 class Page extends Controller
 {
-    //trang chủ
-    function home__Page()
-    {
-        return view('frontend.home');
+
+    function home__Page(){
+        if (Auth::check()) {
+            # code...
+          $list_thong_bao=thong_bao::get();
+
+        return view('frontend.dashboard',compact('list_thong_bao'));
+    }
+    else{
+        return view('frontend.loginstudent');
+    }
+
     }
     //Đăng Nhập Sinh Viên
 
@@ -39,6 +54,7 @@ class Page extends Controller
             $id_taikhoan=Auth::user()->id;
             $sql_query=sinh_vien::where('id_taikhoan','=',$id_taikhoan)->first();
             $ten_sinh_vien=$sql_query->ten_sinhvien;
+            $id_sinh_vien=$sql_query->id_sinhvien;
             $request->session()->put('ten_sinh_vien',$ten_sinh_vien);
        return redirect()->route('dashboard');
       }
@@ -50,9 +66,18 @@ class Page extends Controller
 
 
     }
+
     function dashboard()
     {
-        return view('frontend.dashboard');
+         if (Auth::check()) {
+            # code...
+          $list_thong_bao=thong_bao::get();
+
+        return view('frontend.dashboard',compact('list_thong_bao'));
+    }
+    else{
+        return view('frontend.loginstudent');
+    }
     }
     // view trang đăng ký
 
@@ -92,6 +117,7 @@ class Page extends Controller
 
 
     }
+
     function registration_group($id_group,$id_monhoc)
     {
         $id_nhom=$id_group;
@@ -116,6 +142,12 @@ class Page extends Controller
 
                 if($save->save()==true)
                 {
+                    $row_ds_thanhviennhom= new ds_thanhviennhom;
+                    $row_ds_thanhviennhom->id_nhom=$id_nhom;
+
+                    $row_ds_thanhviennhom->id_sinhvien=$id_sinhvien;
+                    $list_nhom->so_luong=$soluongnhom-1;
+                    $list_nhom->save();
 
                 return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu chuyển nhóm được gửi đến GV  "]);
 
@@ -160,7 +192,7 @@ class Page extends Controller
          ->join("giang_day","lop_monhoc.id_lop_mh","=","giang_day.id_lopmonhoc")
          ->join("giang_vien","giang_day.id_giangvien","=","giang_vien.id_giangvien")
          ->join("mon_hoc","mon_hoc.id_monhoc","=","lop_monhoc.id_monhoc")
-         ->select("nhom.*","lop_monhoc.*","mon_hoc.*","giang_vien.ten_giangvien as ten_giangvien","giang_day.lich_day as ngay")->get();
+         ->select("nhom.*","lop_monhoc.*","mon_hoc.*","giang_vien.ten_giangvien as ten_giangvien","giang_day.lich_day as ngay","giang_vien.id_giangvien as id_giangvien")->get();
 
 
 
@@ -183,6 +215,7 @@ class Page extends Controller
         $monHocYeuCau=$request->id_monhoc;
         $MonHoc=mon_hoc::find($monHocYeuCau);
         $tenMonHoc=$MonHoc->ten_monhoc;
+        $id_giangvien=$request->id_giang_vien;
 
         $listPhanHoi=phan_hoi::where('id_sinhvien','=',$id_sinhvien)->get('noi_dung');
         $noiDung="Yêu cầu mở lớp ".$tenMonHoc;
@@ -195,7 +228,9 @@ class Page extends Controller
      }
             $row_yc=new phan_hoi;
             $row_yc->noi_dung=$noiDung;
-
+            $row_yc->trang_thai=0;
+            $row_yc->id_giangvien=$id_giangvien;
+            $row_yc->id_giangvien=
             $row_yc->id_sinhvien=$id_sinhvien;
             $row_yc->save();
             return redirect()->back()->with("message",["type"=>"success","msg"=>"Một yêu cầu tạo nhóm được gửi đến GV  "]);
@@ -208,5 +243,6 @@ class Page extends Controller
         $list_contact=phan_hoi::where('id_sinhvien','=',$id_sinhvien)->get();
         return view('frontend.view_contact',compact('list_contact'));
     }
+
 
 }

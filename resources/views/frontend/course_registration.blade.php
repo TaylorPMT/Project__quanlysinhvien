@@ -17,15 +17,14 @@
             <div class="col-md-12">
                 @includeIf('frontend.modules.message')
                 {{--  table đăng ký  --}}
-                <div class="container">
+                <div class="table-responsive">
                     <table class="table table-striped table__height" id="myTable">
                         <thead>
                         <tr>
                             <th scope="col "> <span class="title__head"></span> </th>
 
                             <th scope="col "><span class="title__head">Lớp Học</span> </th>
-                            <th scope="col "><span class="title__head">Tên Môn Học</span> </th>
-                            <th scope="col "><span class="title__head">Giảng Viên</span> </th>
+
 
                             <th scope="col "><span class="title__head">Nhóm</span> </th>
                             <th scope="col "><span class="title__head">Có Thể Đăng Ký</span> </th>
@@ -53,9 +52,8 @@
                              </th>
 
                             <td>{{ $item->ten_lop_mh }}</td>
-                            <td>{{ $item->tenmonhoc }}</td>
-                            <td>{{ $item->ten_giang_vien }}</td>
-                                {{ $item->id_monhoc }}
+
+
                             <td> {{ $item->ten_nhom }}</td>
                             <td> {{ $item->soluongnhom }}</td>
 
@@ -84,16 +82,46 @@
         <div class="row">
             <div class="col col__notification title__col"><span class="title__text">Yêu Cầu Tạo Nhóm</span></div>
         </div>
+        @php
+        $filter=array();
+        foreach ($list_lopmonhoc as $item)
+            {
+
+
+
+                    $filter[$item->id_giangvien]=$item->ten_giang_vien;
+                    echo "<br>";
+
+
+            }
+
+            $filter=array_unique($filter);
+
+
+        @endphp
             {{--  form đăng ký  --}}
         <div class="row">
             <div class="col-md-12">
+
                     <div class="form__box">
                         @foreach ($monHocYeuCau as $item)
                         <form action="{{ Route('post_create_group') }}" method="POST">
                             @csrf
 
 
+                        <div class="form-group">
+                                <label for="sel1">Chọn Giáo Viên Mở Lớp</label>
+                                <select class="form-control" id="sel1" name="id_giang_vien">
+                                @foreach ($filter as $key =>$value)
 
+
+                                <option value="{{  $key }}">{{ $value}}</option>
+
+
+
+                                @endforeach
+                             </select>
+                            </div>
                             <div class="form-group">
                               <label for="exampleFormControlSelect1" class="form__tilte">Môn Học Yêu Cầu Mở Lớp </label>
                               <select class="form-control" id="exampleFormControlSelect1" name="id_monhoc">
