@@ -29,15 +29,7 @@
                                     <label for="exampleInputEmail1">Lịch dạy</label>
                                     <input type="date" name="teaching_schedule" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Tên giảng viên</label>
-                                     <select name="lecturer_id" class="form-control input-sm m-bot15">
-                                       @foreach($account_lecturer as $key => $cate)
-                                        <option value="{{$cate->id_giangvien}}">{{$cate->ten_giangvien}}</option>
-                                        @endforeach
-                                        
-                                    </select>
-                                </div>
+                                
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tên Lớp MH</label>
                                      <select name="classsub_id" class="form-control input-sm m-bot15">

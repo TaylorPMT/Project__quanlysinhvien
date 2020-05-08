@@ -23,7 +23,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng</label>
-                                    <input type="text" name="classsub_amount" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
+                                    <input type="number" name="classsub_amount" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Ngày bắt đầu</label>
+                                    <input type="date" name="classsub_start" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Ngày kết thúc</label>
+                                    <input type="date" name="classsub_end" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tên môn học</label>
@@ -34,7 +42,15 @@
                                         
                                     </select>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tên giảng viên</label>
+                                     <select name="lecturer_id" class="form-control input-sm m-bot15">
+                                       @foreach($account_classsublec as $key => $cate)
+                                        <option value="{{$cate->id_giangvien}}">{{$cate->ten_giangvien}}</option>
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
                                 
                                 <button type="submit" name="add_classsub" class="btn btn-info">Thêm lớp môn học</button>
                             </form>

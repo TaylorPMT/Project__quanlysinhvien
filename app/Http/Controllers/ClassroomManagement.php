@@ -29,8 +29,12 @@ class ClassroomManagement extends Controller
     }
     public function all_classroom(){
         $this->AuthLogin();
+        
+        $admin_id=Session::get('admin_id');
+        $giangvienId = DB::table('giang_vien')->where('id_taikhoan','=',$admin_id)->value('id_giangvien');
         $all_classroom = DB::table('lop')
-        ->join('giang_vien','giang_vien.id_giangvien','=','lop.id_giangvien')
+        ->join('giang_vien','giang_vien.id_giangvien','=','lop.id_giangvien')->where('lop.id_giangvien','=',$giangvienId)
+        ->join('tai_khoan','tai_khoan.id','=','giang_vien.id_taikhoan')
         ->join('sinh_vien','sinh_vien.id_sinhvien','=','lop.id_sinhvien')
         ->orderby('lop.id_lop','desc')->get();
         $manager_classroom = view('admin.all_classroom')->with('all_classroom',$all_classroom);

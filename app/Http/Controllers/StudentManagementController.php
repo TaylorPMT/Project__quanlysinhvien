@@ -23,12 +23,17 @@ class StudentManagementController extends Controller
     }
     public function add_student(){
         $this->AuthLogin();
+        $lop_monhoc = DB::table('lop_monhoc')->get();
         $account_product = DB::table('tai_khoan')->orderby('id','desc')->get();
-        return view('admin.add_student')->with('account_product',$account_product);
+        return view('admin.add_student')->with('account_product',$account_product)->with('lop_monhoc', $lop_monhoc);
     }
     public function all_student(){
         $this->AuthLogin();
-        $all_student = DB::table('sinh_vien')->join('tai_khoan','tai_khoan.id','=','sinh_vien.id_taikhoan')->orderby('sinh_vien.id_sinhvien','desc')->get();
+        $admin_id=Session::get('admin_id');
+        $giangvienId = DB::table('giang_vien')->where('id_taikhoan','=',$admin_id)->value('id_giangvien');
+        $all_student = DB::table('lop_monhoc')->where('id_giangvien','=',$giangvienId)->get();
+
+        
         $manager_student = view('admin.all_student')->with('all_student',$all_student);
         return view('admin_layout')->with('admin.all_student',$manager_student);
     }
@@ -40,8 +45,9 @@ class StudentManagementController extends Controller
         $data['gioi_tinh'] = $request->student_sex;
         $data['dia_chi'] = $request->student_address;
         $data['sdt'] = $request->student_phone;
+        $data['trang_thai'] = $request->student_status;
         $data['id_taikhoan'] = $request->student_cate;
-        
+        $lop['id_lopmonhoc'] = $request->student_class;
         //$dulieu = DB::table('nha_cung_cap')->where('tenNcc',$request->brand_product_name)->get();
         $new = $data['ten_sinhvien'];
         $dulieu = DB::table('sinh_vien')->where('ten_sinhvien',$request->student_name)->value('ten_sinhvien');
@@ -52,10 +58,27 @@ class StudentManagementController extends Controller
 
             DB::table('sinh_vien')->insert($data);
             Session::put('message','Thêm sinh viên thành công!');
+            $lop['id_sinhvien'] = DB::table('sinh_vien')->orderby('id_sinhvien','desc')->value('id_sinhvien');
+            DB::table('ds_thanhvienlop_mh')->insert($lop);
             return Redirect::to('add-student');
         }
     }
-    
+    public function unactive_student($student_id){
+        $this->AuthLogin();
+        DB::table('sinh_vien')->where('id_sinhvien',$student_id)->update(['trang_thai'=>1]);
+        $id_lop = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien',$student_id)->value('id_lopmonhoc');
+        Session::put('message','Kích hoạt sinh viên thành công!');
+        return Redirect::to('danhsach/'.$id_lop);
+       
+    }
+    public function active_student($student_id){
+        $this->AuthLogin();
+        DB::table('sinh_vien')->where('id_sinhvien',$student_id)->update(['trang_thai'=>0]);
+        $id_lop = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien',$student_id)->value('id_lopmonhoc');
+        Session::put('message','Không kích hoạt sinh viên thành công!');
+        return Redirect::to('danhsach/'.$id_lop);
+
+    }
     public function edit_student($student_id){
         $this->AuthLogin();
         $account_product = DB::table('tai_khoan')->orderby('id','desc')->get();
@@ -71,19 +94,35 @@ class StudentManagementController extends Controller
         $data['gioi_tinh'] = $request->student_sex;
         $data['dia_chi'] = $request->student_address;
         $data['sdt'] = $request->student_phone;
+        $data['trang_thai'] = $request->student_status;
         $data['id_taikhoan'] = $request->student_cate;
         DB::table('sinh_vien')->where('id_sinhvien',$student_id)->update($data);
+        $id_lop = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien',$student_id)->value('id_lopmonhoc');
         Session::put('message','Cập nhật thông tin thành công!');
-        return Redirect::to('all-student');
+       return Redirect::to('danhsach/'.$id_lop);
+
+       
+        //return Redirect()->route('danhsach',['id_lopmh'=>4]);
     }
     public function delete_student($student_id){
         $this->AuthLogin();
-        DB::table('sinh_vien')->where('id_sinhvien',$student_id)->delete();
+        DB::table('sinh_vien')
+        
+        ->where('id_sinhvien',$student_id)->delete();
         Session::put('message','Xóa sinh viên thành công!');
         return Redirect::to('all-student');
     }
 
-    
+    function danhsach($id_lopmonhoc)
+    {
+      
+        $l_ds_thanhvien=DB::table('ds_thanhvienlop_mh')->where('id_lopmonhoc','=',$id_lopmonhoc)
+        ->join('sinh_vien','sinh_vien.id_sinhvien','=','ds_thanhvienlop_mh.id_sinhvien')
+        ->join('tai_khoan','tai_khoan.id','=','sinh_vien.id_taikhoan')
+        ->select('ds_thanhvienlop_mh.*','sinh_vien.*','tai_khoan.*')->get();
+        $id=$id_lopmonhoc;
+        return view('admin.danhsach',compact('l_ds_thanhvien','id'));
+    }
 
 
 }
