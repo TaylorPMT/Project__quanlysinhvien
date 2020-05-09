@@ -24,7 +24,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng</label>
-                                    <input type="text" value="{{$edit_value->so_luong}}" name="classsub_amount" class="form-control" id="exampleInputEmail1" placeholder="Số lượng">
+                                    <input type="text" value="{{$edit_value->soluong}}" name="classsub_amount" class="form-control" id="exampleInputEmail1" placeholder="Số lượng">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Ngày bắt đầu</label>
+                                    <input type="date" value="{{$edit_value->Ngay_bd}}" name="classsub_start" class="form-control" id="exampleInputEmail1" placeholder="Số lượng">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Ngày kết thúc</label>
+                                    <input type="date" value="{{$edit_value->Ngay_kt}}" name="classsub_end" class="form-control" id="exampleInputEmail1" placeholder="Số lượng">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Tên môn học</label>
@@ -34,6 +42,19 @@
                                         <option selected value="{{$cate->id_monhoc}}">{{$cate->ten_monhoc}}</option>
                                         @else
                                         <option value="{{$cate->id_monhoc}}">{{$cate->ten_monhoc}}</option>
+                                        @endif
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Tên giảng viên</label>
+                                     <select name="lecturer_id" class="form-control input-sm m-bot15" >
+                                       @foreach($account_classsublec as $key => $cate)
+                                       @if($cate->id_giangvien==$edit_value->id_giangvien)
+                                        <option selected value="{{$cate->id_giangvien}}">{{$cate->ten_giangvien}}</option>
+                                        @else
+                                        <option value="{{$cate->id_giangvien}}">{{$cate->ten_giangvien}}</option>
                                         @endif
                                         @endforeach
                                         

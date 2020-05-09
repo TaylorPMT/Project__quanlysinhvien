@@ -42,6 +42,23 @@
                                         
                                     </select>
                                 </div>
+                                 <div class="form-group">
+                                    <label for="exampleInputPassword1">Lop</label>
+                                     <select name="student_class" class="form-control input-sm m-bot15">
+                                       @foreach($lop_monhoc as $key => $value)
+                                        <option value="{{$value->id_lop_mh}}">{{$value->ten_lop_mh}}</option>
+                                        @endforeach
+                                        
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hiển thị</label>
+                                     <select name="student_status" class="form-control input-sm m-bot15">
+                                        <option value="0">Ẩn</option>
+                                        <option value="1">Hiển thị</option>
+                                        
+                                    </select>
+                                </div>
                                 
                                 
                                 <button type="submit" name="add_student" class="btn btn-info">Thêm sinh viên</button>

@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh sách lớp môn học
+      Liệt kê danh sách sinh viên
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -24,33 +24,48 @@
                   Session::put('message',null);
               }
       ?>
+      <div><a href="{{ URL::to('/add-student') }}">Thêm sinh viên</a></div>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
             
-            <th>Tên lớp môn học</th>
-            <th>Số lượng</th>
-            <th>Ngày bắt đầu</th>
-            <th>Ngày kết thúc</th>
-            <th>Tên môn học</th>
-            <th>Tên giảng viên</th>
+            <th>Tên sinh viên</th>
+            <th>Giới tính</th>
+            <th>Địa chỉ</th>
+            <th>Số điện thoại</th>
+            <th>Email</th>
+            <th>Trạng thái</th>
             
             
+           
           </tr>
         </thead>
         <tbody>
-          @foreach($all_classsub as $key => $cate_pro)
+          @foreach($l_ds_thanhvien as $key => $cate_pro)
           <tr>
             
-            <td>{{ $cate_pro->ten_lop_mh}}</td>
-            <td>{{ $cate_pro->soluong}}</td>
-            <td>{{ $cate_pro->Ngay_bd}}</td>
-            <td>{{ $cate_pro->Ngay_kt}}</td>
-            <td>{{ $cate_pro->ten_monhoc}}</td>
-            <td>{{ $cate_pro->ten_giangvien}}</td>
+            <td>{{ $cate_pro->ten_sinhvien}}</td>
+            <td>{{ $cate_pro->gioi_tinh}}</td>
+            <td>{{ $cate_pro->dia_chi}}</td>
+            <td>{{ $cate_pro->sdt}}</td>
+            <td>{{ $cate_pro->email}}</td>
+            <td><span class="text-ellipsis">
+              <?php
+              if($cate_pro->trang_thai==0){
+                ?>
+                  <a href="{{URL::to('/unactive-student/'.$cate_pro->id_sinhvien)}}"><span style="font-size:24px;color:red;" class="fa-thumb-styling fa fa-thumbs-down"></span></a>
+                  <?php
+              }else{
+                ?>
+                  <a href="{{URL::to('/active-student/'.$cate_pro->id_sinhvien)}}"><span style="font-size:24px;color:green" class="fa-thumb-styling fa fa-thumbs-up"></span></a>
+                  <?php
+              }
+              ?>
+            </span></td>
+            
             <td>
-              <a href="{{URL::to('/edit-classsub/'.$cate_pro->id_lop_mh)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa lớp môn học này không?')" href="{{URL::to('/delete-classsub/'.$cate_pro->id_lop_mh)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
+              <a href="{{URL::to('/edit-student/'.$cate_pro->id_sinhvien)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
+              <a onclick="return confirm('Bạn có chắc là muốn xóa sinh viên này không?')" href="{{URL::to('/delete-student/'.$cate_pro->id_sinhvien)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
                 <i class="fa fa-times text-danger text"></i>
               </a>
             </td>
