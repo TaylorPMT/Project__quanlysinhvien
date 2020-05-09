@@ -24,24 +24,42 @@
                 <div class="card-body">
                    <h5> đăng bởi :<a href="#" style="font-size: 16px;">{{$tl->tensv}}</a></h5>
                      <h3 class="tieude">{{$tl->noi_dung}}</h3> 
-                     <div class="noidung" name="hinh" >
-                         <img src="/public/image{{$tl->hinh_anh}}" >
-                     </div> 
-                     <div class="like">
+                     
+                     <div class="binhluan">
 
-                      <a href="#">{{ Session::get('ten_sinh_vien') }}</a><input type="text" name="binhluan" class="form-control" > 
+                        <form role="form" action="{{ Route('postComments',['$tl->id_binhluan'])}}" method="POST">
+                            @csrf
+                             <div class="form-group">
+                             
+                             
+                                <textarea class="form-control"   name ="noidung" rows="5"></textarea> 
+                            </div>
+
+                            
+                                <button type="submit" class="btn btn-success">
+                                    Bình Luận
+                                </button>
+                                 
+                           
  
+                        </form>
+
+                     
                      </div>
-                          <!-- ======================================================-->
-                    
-  <!-- =================================================================== -->
-</div>
+                     
+                     
+                          
+                  </div>
                 
 
                 </div>
                 <div class="my-5"></div>         
                 @endforeach
             </div>
+           
+
+
+
         </div>
 
     </div>

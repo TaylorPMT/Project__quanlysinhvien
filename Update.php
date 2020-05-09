@@ -102,7 +102,7 @@ class Update extends Controller
         ->join('nhom','lop_monhoc.id_lop_mh','=','nhom.id_lopmonhoc')
         ->get();
 
-      
+
 
 
         return view('Frontend.thoi_khoa_bieu',compact('list_thoikhoabieu','list_dk_nhom'));
@@ -133,16 +133,13 @@ class Update extends Controller
                   <th scope='col'>Tên Nhóm</th>
                   <th scope='col'>Số Lượng</th>
                   <th scope='col'></th>
-
                 </tr>
               </thead>";
                 foreach($l_nhom as $item)
                 {   if(in_array($item->id_nhom,$nhom_listid,true))
                     {
 
-                    $output .= "<thead>
-                    <tr>
-
+                    $output .= "<tr>
                          <td>  <input type='checkbox' class='checkbox' disabled  checked></td>
                         <td> $item->ten_nhom </td>
                         <td>  $item->so_luong  </td>
@@ -152,13 +149,11 @@ class Update extends Controller
                     else
                     {
                         $output .= "<tr>
-
                         <td>  <input type='checkbox' class='checkbox' disabled ></td>
                        <td> $item->ten_nhom </td>
                        <td>  $item->so_luong  </td>
                        <td>   <a href='nhom/$item->id_nhom/$id_monhoc'>Chọn Nhóm</a> </td>
-                       </tr>
-                       </thead>";
+                       </tr>";
                     }
                 }
 
@@ -169,7 +164,6 @@ class Update extends Controller
                            <a href='tao_nhom/$id_monhoc' class='btn-warning' style='padding:6px 10px;'>yêu cầu tạo nhóm</a>
                         </div>
                     </div>
-
                 ";
                 return Response($output);
 
@@ -189,7 +183,7 @@ class Update extends Controller
         $list_nhom=nhom::find($id_group);
         $soluongnhom=$list_nhom->so_luong;
 
-        if($soluongnhom ==0 )
+        if($soluongnhom ==0)
         {
             return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Nhóm Đã Đủ Số Lượng  "]);
         }else
@@ -246,9 +240,6 @@ class Update extends Controller
         $l_id_sinhvien=library::ds_thanhvienlop_mh_l_sv($f_l_sinhvien);
         $l_sinhvien=sinh_vien::whereIn('id_sinhvien',$l_id_sinhvien)->get();
 
-
-        return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten'));
-
         return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten','id_monhoc'));
     }
     function tao_nhom_post($id_monhoc,Request $request)
@@ -260,10 +251,8 @@ class Update extends Controller
         $t_sinhvien =sinh_vien::find($id_sv_tao);
         //tạo nhóm
         $check_exist=nhom::where([['nhom.id_lopmonhoc','=',$i_lopmonhoc]])->join('ds_thanhviennhom','nhom.id_nhom','=','ds_thanhviennhom.id_nhom')->first();
-        if($check_exist ==NULL)
-        {
         $rows_nhom=new nhom;
-        $rows_nhom->ten_nhom="Yêu  Cầu Tạo Nhóm  ".$t_sinhvien->ten_sinhvien;
+        $rows_nhom->ten_nhom="Nhóm Của Sinh Viên ".$t_sinhvien->ten_sinhvien;
         $rows_nhom->id_lopmonhoc=$i_lopmonhoc;
         $rows_nhom->trang_thai=1;
         $rows_nhom->id_yeu_cau=$id_sv_tao;
@@ -284,11 +273,7 @@ class Update extends Controller
 
 
         }
-        }
-        else
-        {
-            return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Bạn Đã Có Nhóm"]);
-        }
+
 
     }
 }

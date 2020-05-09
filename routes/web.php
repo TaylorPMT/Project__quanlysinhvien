@@ -55,6 +55,7 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         Route::get('nhom/{id_nhom}/{id_monhoc}', 'Frontend\Update@chon_nhom')->name('chon_nhom');
         //yêu cầu tạo nhóm
         Route::get('tao_nhom/{id_monhoc}','Frontend\Update@tao_nhom')->name('tao_nhom');
+        Route::post('tao_nhom_post/{id_monhoc}','Frontend\Update@tao_nhom_post')->name('tao_nhom_post');
     });
 
 });
@@ -77,20 +78,29 @@ Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
 
 
-//router de o day di
-    //registration student
-
-
-
+//==========router Phần của THI de o day đây==================================//
+//---------------------------Thông Báo--------------------------------------//
+    
 Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
-	//contact student
-Route::get('contact','Frontend\userController@contactStudent')->name('contactStudent');
-Route::post('contact','Frontend\userController@postcontactStudent')->name('postcontactStudent');
-    //talkpage Sutudent
+
+//-------------------------------------Gửi Yêu Cầu-------------------------------//
+
+Route::get('contact/{id_giangvien}/{id_lop_mh}','Frontend\userController@contactStudent')->name('contactStudent');
+Route::post('contact/{id_giangvien}/{id_lop_mh}','Frontend\userController@postcontactStudent')->name('postcontactStudent');
+Route::get('danh_sach/{id_lop_mh}', 'Frontend\userController@getdanhsach')->name('getdanhsach'); 
+
+//-----------------------------Thảo Luận--------------------------------------//
 Route::get('talkkpage','Frontend\userController@talkpageStudent')->name('talkpageStudent');
+
+//-----------------------------tạo bài viết-------------------------------------------//
 Route::get('posts','Frontend\userController@postsStudent')->name('postsStudent');
 Route::post('posts','Frontend\userController@Post_postsStudent')->name('Post_postsStudent');
-//=======
+
+//---------------------------tạo bình luận--------------------------------------------//
+Route::get('comments', 'Frontend\userController@getComments')->name('getComments');
+Route::post('comments', 'Frontend\userController@postComments')->name('postComments');
+
+//===========================================================================================
 //Backend quản lý môn học
 Route::get('/add-subject', 'SubjectManagementController@add_subject');
 Route::get('/edit-subject/{subject_id}', 'SubjectManagementController@edit_subject');

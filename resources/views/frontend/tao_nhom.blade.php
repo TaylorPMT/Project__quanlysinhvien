@@ -10,10 +10,12 @@
     <div class="my-3"></div>
     <div class="container main__notification">
         <div class="row">
-            <div class="col col__notification title__col"><span class="title__text">Danh Sách Sinh Viên Đã Đăng Ký Môn Học</span></div>
+            <div class="col col__notification title__col"><span class="title__text">Danh Sách Sinh Viên Đã Đăng Ký Môn Học {{ $f_lop_monhoc_ten->ten_lop_mh }}</span></div>
         </div>
         <div class="row my-5">
             <div class="table-responsive">
+                <form action="{{ Route('tao_nhom_post',['id_monhoc'=>$id_monhoc]) }}" method="POST">
+                    @csrf
                 {{--  table đăng ký  --}}
                     <table class="table table-striped table__height" id="myTable">
                         <thead>
@@ -25,12 +27,14 @@
 
                         </tr>
                         </thead>
+
                         <tbody>
+
                             @foreach ($l_sinhvien as $item)
 
                         <tr>
                             <th scope="row">
-                                <input type="checkbox" />
+                                <input type="checkbox" value="{{ $item->id_sinhvien }}" name="id_sinhvien[]"/>
                             </th>
                             <td>{{ $item->id_sinhvien }}</td>
                             <td>{{ $item->ten_sinhvien }}</td>
@@ -38,15 +42,24 @@
 
                          </tr>
 
+
                             @endforeach
 
 
 
+
                         </tbody>
+
+
                     </table>
+                    <div class="col text-center">
+                        <button type="submit" >Đăng Ký Nhóm</button>
+                    </div>
+                </form>
                 </div>
                 {{--  end table đăng ký  --}}
         </div>
+
 
 </main>
 @endsection

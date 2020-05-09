@@ -85,7 +85,7 @@ html {
     background-color: royalblue;
     font-size: 18px;
     font-family: Tahoma;
-    color:#EEEEEE;
+    color: #EEEEEE;
 }
 
 .footer__coppyright {
@@ -222,6 +222,7 @@ body {
 .title__text {
     color: var(--color-nav-href);
     cursor: text;
+    text-transform: capitalize;
 }
 
 
