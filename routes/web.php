@@ -80,16 +80,19 @@ Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
 
 
+
 //==========router Phần của THI de o day đây==================================//
 //---------------------------Thông Báo--------------------------------------//
 
 Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
+
 //get
 Route::get('danhsach/{id_lopmh}', 'StudentManagementController@danhsach')->name('danhsach');
 
 
 //router de o day di
     //registration student
+
 
 //-------------------------------------Gửi Yêu Cầu-------------------------------//
 
@@ -102,6 +105,7 @@ Route::get('talkkpage','Frontend\userController@talkpageStudent')->name('talkpag
 
 //-----------------------------tạo bài viết-------------------------------------------//
 Route::get('posts','Frontend\userController@postsStudent')->name('postsStudent');
+
 Route::post('posts','Frontend\userController@Post_postsStudent')->name('Post_postsStudent');
 
 //---------------------------tạo bình luận--------------------------------------------//
@@ -109,7 +113,9 @@ Route::get('comments', 'Frontend\userController@getComments')->name('getComments
 Route::post('comments', 'Frontend\userController@postComments')->name('postComments');
 
 //===========================================================================================
+
 //=======
+
 
 //Backend quản lý môn học
 Route::get('/add-subject', 'SubjectManagementController@add_subject');
@@ -151,4 +157,3 @@ Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teachin
 Route::get('/view_report/','ReportController@reportview')->name('view_report');
 //Route::get('/view_port-un/{id_phanhoi}','ReportController@postReportUn')->name('post_report');
 Route::get('/view_port-ac/{id_phanhoi}','ReportController@postReportAc')->name('post_report');
-
