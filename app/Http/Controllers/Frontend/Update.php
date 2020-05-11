@@ -102,7 +102,7 @@ class Update extends Controller
         ->join('nhom','lop_monhoc.id_lop_mh','=','nhom.id_lopmonhoc')
         ->get();
 
-      
+
 
 
         return view('Frontend.thoi_khoa_bieu',compact('list_thoikhoabieu','list_dk_nhom'));
@@ -247,7 +247,6 @@ class Update extends Controller
         $l_sinhvien=sinh_vien::whereIn('id_sinhvien',$l_id_sinhvien)->get();
 
 
-        return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten'));
 
         return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten','id_monhoc'));
     }
