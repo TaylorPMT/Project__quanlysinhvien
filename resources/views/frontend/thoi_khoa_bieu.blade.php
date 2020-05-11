@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ asset('css/jquery.dataTables.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/registration.css') }}">
 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-//<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     $(document).ready( function () {
       $('#myTable').DataTable();
@@ -36,7 +36,9 @@
 
                             <th scope="col "><span class="title__head">Ngày Học</span> </th>
                             <th scope="col "><span class="title__head">Ngày Kết Thúc</span> </th>
+                            <th scope="col "><span class="title__head"></span> </th>
                             <th scope="col "><span class="title__head">Nhóm</span> </th>
+                            <th></th>
                         </tr>
                         </thead>
 
@@ -62,7 +64,12 @@
 
 
                             </td>
+
+
+                            <td>
+
                             <td class="text-center">
+
                             @foreach ($list_dk_nhom as $list_dk)
 
 
@@ -83,6 +90,9 @@
 
 
                              </td>
+                             <td> 
+                            
+                              <a  class="btn btn-sm btn-danger" href="{{ Route('contactStudent',['id_giangvien'=>$item->id_giangvien,'id_lop_mh'=>$item->id_lop_mh]) }}"> Gửi yêu Cầu  id giang vien </td>
 
                         </tr>
 

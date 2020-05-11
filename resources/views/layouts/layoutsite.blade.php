@@ -21,9 +21,9 @@
 <body>
     <!-- START LOADER HTML -->
 <div class="fullpage-loader">
-	<div class="fullpage-loader__logo">
+    <div class="fullpage-loader__logo">
         <img src="{{ asset('image/load.gif')  }}" />
-	</div>
+    </div>
 </div>
 <!-- END LOADER HTML -->
     <div class="container-fluid">
@@ -73,9 +73,7 @@
                                 <a class="nav-link nav__link-href" href="{{ Route('thoi_khoa_bieu') }}">Xem thời khóa biểu</a>
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link nav__link-href" href="{{ Route('contactStudent') }}">Gửi Yêu Cầu </a>
-                            </li>
+                            
                              <li class="nav-item">
                                 <a class="nav-link nav__link-href" href="{{ Route('talkpageStudent') }}">Thảo Luận </a>
                             </li>
@@ -160,10 +158,8 @@
 <script>
     //Get the button
     var mybutton = document.getElementById("myBtn");
-
     // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function() {scrollFunction()};
-
     function scrollFunction() {
       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
         mybutton.style.display = "block";
@@ -171,7 +167,6 @@
         mybutton.style.display = "none";
       }
     }
-
     // When the user clicks on the button, scroll to the top of the document
     function topFunction() {
       document.body.scrollTop = 0;
@@ -179,7 +174,6 @@
     }
     </script>
  <script src="{{ asset('js/loader.js') }}">
-
 </script>
 @yield('script')
 

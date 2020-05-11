@@ -102,7 +102,7 @@ class Update extends Controller
         ->join('nhom','lop_monhoc.id_lop_mh','=','nhom.id_lopmonhoc')
         ->get();
 
-
+      
 
 
         return view('Frontend.thoi_khoa_bieu',compact('list_thoikhoabieu','list_dk_nhom'));
@@ -140,7 +140,8 @@ class Update extends Controller
                 {   if(in_array($item->id_nhom,$nhom_listid,true))
                     {
 
-                    $output .= "<tr>
+                    $output .= "<thead>
+                    <tr>
 
                          <td>  <input type='checkbox' class='checkbox' disabled  checked></td>
                         <td> $item->ten_nhom </td>
@@ -156,7 +157,8 @@ class Update extends Controller
                        <td> $item->ten_nhom </td>
                        <td>  $item->so_luong  </td>
                        <td>   <a href='nhom/$item->id_nhom/$id_monhoc'>Chọn Nhóm</a> </td>
-                       </tr>";
+                       </tr>
+                       </thead>";
                     }
                 }
 
@@ -243,6 +245,9 @@ class Update extends Controller
         $f_l_sinhvien=ds_thanhvienlop_mh::where('id_lopmonhoc','=',$f_lop_monhoc)->get('id_sinhvien');
         $l_id_sinhvien=library::ds_thanhvienlop_mh_l_sv($f_l_sinhvien);
         $l_sinhvien=sinh_vien::whereIn('id_sinhvien',$l_id_sinhvien)->get();
+
+
+        return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten'));
 
         return view('Frontend.tao_nhom',compact('f_lop_monhoc','l_sinhvien','f_lop_monhoc_ten','id_monhoc'));
     }

@@ -47,6 +47,13 @@
                                         
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Hiển thị</label>
+                                     <select name="student_status" class="form-control input-sm m-bot15">
+                                        <option value="0">Ẩn</option>
+                                        <option value="1">Hiển thị</option>
+                                    </select>
+                                </div>
                                 <button type="submit" name="update_student" class="btn btn-info">Cập nhật thông tin </button>
                             </form>
                             </div>
