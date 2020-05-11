@@ -57,7 +57,8 @@
 				</div>
 				<div class="d-flex justify-content-center">
 					<a href="{{ Route('home__Page') }}"><i class="fas fa-backward"></i>   Back Home </a>
-				</div>
+                </div>
+
 			</div>
 		</div>
 	</div>
