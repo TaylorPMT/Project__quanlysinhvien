@@ -80,19 +80,19 @@ Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
 
 
-<<<<<<< HEAD
+
 //==========router Phần của THI de o day đây==================================//
 //---------------------------Thông Báo--------------------------------------//
     
 Route::get('registration','Frontend\Page@registrationStudent')->name('registrationStudent');
-=======
+
 //get 
 Route::get('danhsach/{id_lopmh}', 'StudentManagementController@danhsach')->name('danhsach');
 
 
 //router de o day di
     //registration student
->>>>>>> b171727fdfb74eb03bd1a87b77b4c5738b6ae729
+
 
 //-------------------------------------Gửi Yêu Cầu-------------------------------//
 
@@ -105,7 +105,7 @@ Route::get('talkkpage','Frontend\userController@talkpageStudent')->name('talkpag
 
 //-----------------------------tạo bài viết-------------------------------------------//
 Route::get('posts','Frontend\userController@postsStudent')->name('postsStudent');
-<<<<<<< HEAD
+
 Route::post('posts','Frontend\userController@Post_postsStudent')->name('Post_postsStudent');
 
 //---------------------------tạo bình luận--------------------------------------------//
@@ -113,10 +113,10 @@ Route::get('comments', 'Frontend\userController@getComments')->name('getComments
 Route::post('comments', 'Frontend\userController@postComments')->name('postComments');
 
 //===========================================================================================
-=======
+
 //=======
 
->>>>>>> b171727fdfb74eb03bd1a87b77b4c5738b6ae729
+
 //Backend quản lý môn học
 Route::get('/add-subject', 'SubjectManagementController@add_subject');
 Route::get('/edit-subject/{subject_id}', 'SubjectManagementController@edit_subject');
