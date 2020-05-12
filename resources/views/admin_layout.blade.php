@@ -149,7 +149,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{URL::to('/view_report/')}}">Danh sách phản hồi</a></li>
                     </ul>
                 </li>
-            </ul>            </div>
+                  <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Quản lý nhóm</span>
+                    </a>
+                    <ul class="sub">
+                        <li><a href="{{URL::to('/list-lop-mon-hoc')}}">Liệt kê danh sách các nhóm</a></li>
+                        <li><a href="{{URL::to('/add-nhom')}}">Thêm nhóm</a></li>
+                    </ul>
+                </li>
+
         <!-- sidebar menu end-->
     </div>
 </aside>

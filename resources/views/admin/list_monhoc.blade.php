@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-  Danh Sách Các Phản Hồi
+      Liệt kê danh sách giảng dạy
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -17,41 +17,21 @@
       </div>
     </div>
     <div class="table-responsive">
-      <?php
-          $message = Session::get('message');
-              if ($message){
-                  echo '<span class="text-alert">' .$message.'</span>';
-                  Session::put('message',null);
-              }
-      ?>
+      
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            
-            <th>ID phan hồi</th>
-            <th>Nội dung</th>
-            <th>Phản hồi lại</th>
+            <th>Tiết Lớp Môn Học</th>
           </tr>
         </thead>
-        @foreach ($list_report as $key => $item)
         <tbody>
-          @if($item->trang_thai == 0) 
+          @foreach($data as $value)
           <tr>
-            <td>{{ $item->id_phanhoi }}</td>
-            <td>{{ $item->noi_dung }}</td>
-            <td><form action="{{URL::to('/report-to/')}}" method="POST">
-              @csrf
-              <input type="hidden" name="id" value="{{$item->id_phanhoi}}"/>
-              <input type="text" name="phanhoi_gv"/>
-              <input type="submit" value="Gui"/>
-            </form></td>
+            <td><a href="{{URL::to('/nhom/'.$value->id_lop_mh)}}">{{ $value->ten_lop_mh }}<a/></td>
           </tr>
-          @endif
-                  
+          @endforeach
         </tbody>
-        @endforeach
       </table>
-      <a href="{{URL::to('/list-report/')}}" ><h3 > Danh sách tất cả các phản hồi</h3></a>
     </div>
     <footer class="panel-footer">
       <div class="row">
