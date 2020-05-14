@@ -42,4 +42,23 @@ class ReportController extends Controller
        DB::table('phan_hoi')->where('id_phanhoi', $id_phanhoi)->update(['trang_thai'=>0]);
        return Redirect::to('/view_report');
     }
+    public function postReportTo(Request $request) {
+      $data =  $request->phanhoi_gv;
+      $id = $request->id;
+      DB::table('phan_hoi')->where('id_phanhoi', $id)->update(['trang_thai'=>1,'phan_hoigv'=>$data]);
+      return Redirect::to('/view_report');
+    }
+    public function listReport() {
+       $this->AuthLogin();
+         $id_taikhoan= Session::get('admin_id');
+
+         $id_giangviendn= DB::table('giang_vien')->where('id_taikhoan',$id_taikhoan)
+         ->get('id_giangvien');
+  
+        foreach($id_giangviendn as $value) {
+          $list_report = phan_hoi::join('sinh_vien','sinh_vien.id_sinhvien','=','phan_hoi.id_sinhvien')->where('id_giangvien',$value->id_giangvien)
+        ->get();
+        }
+        return view('admin.all_report', compact('list_report'));
+    }
 }

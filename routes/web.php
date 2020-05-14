@@ -159,3 +159,12 @@ Route::post('/update-teaching/{teaching_id}', 'TeachingManagement@update_teachin
 Route::get('/view_report/','ReportController@reportview')->name('view_report');
 //Route::get('/view_port-un/{id_phanhoi}','ReportController@postReportUn')->name('post_report');
 Route::get('/view_port-ac/{id_phanhoi}','ReportController@postReportAc')->name('post_report');
+Route::post('/report-to','ReportController@postReportTo');
+Route::get('/list-report/','ReportController@listReport');
+Route::get('list-lop-mon-hoc', 'TeamController@listLopMonHoc');
+Route::get('/nhom/{id_lop_mh}','TeamController@listNhom');
+Route::get('/xoa-nhom/{id_nhom}', 'TeamController@xoaNhom');
+Route::get('/add-nhom','TeamController@addNhom');
+Route::post('/post-add-nhom', 'TeamController@postAddNhom');
+Route::get('/edit-nhom/{id_nhom}', 'TeamController@editNhom');
+Route::post('/update-nhom/{id_nhom}', 'TeamController@update');
