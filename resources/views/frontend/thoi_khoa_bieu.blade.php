@@ -70,19 +70,32 @@
 
                             <td class="text-center">
 
+
+
+
+
+
+
+
                             @foreach ($list_dk_nhom as $list_dk)
 
 
-
-                                @if ($list_dk->id_lopmonhoc == $item->id_lopmonhoc)
-
-
-                              <a  href="{{  Route('getRequest',['id'=>$list_dk->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global " style="width: 50%"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
+                                    @if ($list_dk->id_lopmonhoc == $item->id_lopmonhoc)
 
 
-                                @include('frontend.modules.bootmodal');
 
-                                @endif
+                                                <a  href="{{  Route('getRequest',['id'=>$list_dk->id_lopmonhoc,'id_monhoc'=>$item->id_monhoc]) }}" class="btn btn-info btn-sm modal-global " style="width: 50%"><i class="glyphicon glyphicon-eye-open"></i> Xem Danh Sách </a>
+
+
+                                                @include('frontend.modules.bootmodal');
+
+
+
+
+                                    @endif
+
+
+
 
                              @endforeach
 
@@ -90,8 +103,8 @@
 
 
                              </td>
-                             <td> 
-                            
+                             <td>
+
                               <a  class="btn btn-sm btn-danger" href="{{ Route('contactStudent',['id_giangvien'=>$item->id_giangvien,'id_lop_mh'=>$item->id_lop_mh]) }}"> Gửi yêu Cầu  id giang vien </td>
 
                         </tr>

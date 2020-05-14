@@ -17,6 +17,7 @@ class library{
     }
     public static function ds_thanhvienlop_mh_l_sv($list)
     {
+        $arr=[];
         foreach ($list as $row)
         {
             if($row ->id_sinhvien !=null)
@@ -28,6 +29,7 @@ class library{
     }
     public static function nhom_id_dk($list)
     {
+        $arr=[];
         foreach($list as $row)
         {
             if($row ->id_lop_mh !=null)

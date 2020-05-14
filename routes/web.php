@@ -56,6 +56,8 @@ Route::group(['prefix' => 'student','middleware'=>'LoginStudent'], function () {
         //yêu cầu tạo nhóm
         Route::get('tao_nhom/{id_monhoc}','Frontend\Update@tao_nhom')->name('tao_nhom');
         Route::post('tao_nhom_post/{id_monhoc}','Frontend\Update@tao_nhom_post')->name('tao_nhom_post');
+        //thông báo
+        Route::get('message/{id_message}','Frontend\Update@message');
     });
 
 });

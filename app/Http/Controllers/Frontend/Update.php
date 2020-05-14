@@ -13,6 +13,7 @@ use App\Models\ds_thanhviennhom;
 use App\Models\nhom;
 use App\Library\library;
 use App\Models\sinh_vien;
+use Illuminate\Support\Carbon;
 
 class Update extends Controller
 {
@@ -105,6 +106,7 @@ class Update extends Controller
 
 
 
+
         return view('Frontend.thoi_khoa_bieu',compact('list_thoikhoabieu','list_dk_nhom'));
 
     }
@@ -112,8 +114,14 @@ class Update extends Controller
     {
             $id_sv=Auth::user()->id;
             $id_nhom=$id;
+            $date_time=Carbon::now('Asia/Ho_Chi_Minh');
+            $fDt=$date_time->format('Y/m/d');
 
-            $l_nhom=nhom::where('id_lopmonhoc','=',$id_nhom)->get();
+            $carbon=date('Y-m-d',strtotime($fDt));
+
+
+
+            $l_nhom=nhom::where([['id_lopmonhoc','=',$id_nhom],['id_yeu_cau','==',0]])->get();
             $l_ds_nhomdk=ds_thanhviennhom::where('id_sinhvien','=',$id_sv)->get();
 
                  if($l_ds_nhomdk->count())
@@ -137,8 +145,14 @@ class Update extends Controller
                 </tr>
               </thead>";
                 foreach($l_nhom as $item)
-                {   if(in_array($item->id_nhom,$nhom_listid,true))
+
+                {
+
+
+
+                    if(in_array($item->id_nhom,$nhom_listid,true))
                     {
+
 
                     $output .= "<thead>
                     <tr>
@@ -151,6 +165,8 @@ class Update extends Controller
                     }
                     else
                     {
+                        if($carbon <=$item->ngay_ket_thuc_dang_ky)
+                        {
                         $output .= "<tr>
 
                         <td>  <input type='checkbox' class='checkbox' disabled ></td>
@@ -159,8 +175,22 @@ class Update extends Controller
                        <td>   <a href='nhom/$item->id_nhom/$id_monhoc'>Chọn Nhóm</a> </td>
                        </tr>
                        </thead>";
+                        }else
+                        {
+                            $output .= "<tr>
+
+                        <td>  <input type='checkbox' class='checkbox' disabled ></td>
+                       <td> $item->ten_nhom </td>
+                       <td>  $item->so_luong  </td>
+                       <td>  Hết thời hạn đăng ký </td>
+                       </tr>
+                       </thead>";
+                        }
+
                     }
                 }
+
+
 
                 $output.="</table>";
                 $output.="
@@ -186,7 +216,10 @@ class Update extends Controller
 
         $l_id_monhocdk=library::nhom_id_dk($id_monhocdk);
 
-        $list_nhom=nhom::find($id_group);
+
+        $list_nhom=nhom::find($id_nhom);
+
+
         $soluongnhom=$list_nhom->so_luong;
 
         if($soluongnhom ==0 )
@@ -239,7 +272,17 @@ class Update extends Controller
     }
     function tao_nhom($id_monhoc)
     {
+        $id_sinhvien=Auth::user()->id;
+
+
         $f_lop_monhoc=lop_monhoc::where('id_monhoc','=',$id_monhoc)->value('id_lop_mh');
+        $check_f_exits=nhom::where([['id_yeu_cau','=',$id_sinhvien],['id_lopmonhoc','=',$f_lop_monhoc]])->first();
+
+        if($check_f_exits !=NULL)
+        {
+            return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"success","msg"=>"Yêu cầu tạo nhóm của bạn đang xét duyệt"]);
+
+        }
         $f_lop_monhoc_ten=lop_monhoc::where('id_monhoc','=',$id_monhoc)->first();
 
         $f_l_sinhvien=ds_thanhvienlop_mh::where('id_lopmonhoc','=',$f_lop_monhoc)->get('id_sinhvien');
@@ -265,6 +308,7 @@ class Update extends Controller
         $rows_nhom->ten_nhom="Yêu  Cầu Tạo Nhóm  ".$t_sinhvien->ten_sinhvien;
         $rows_nhom->id_lopmonhoc=$i_lopmonhoc;
         $rows_nhom->trang_thai=1;
+
         $rows_nhom->id_yeu_cau=$id_sv_tao;
         if($rows_nhom->save())
         {
@@ -276,6 +320,7 @@ class Update extends Controller
                     $rows_ds_nhom=new ds_thanhviennhom;
                     $rows_ds_nhom->id_nhom=$id_nhom_news;
                     $rows_ds_nhom->id_sinhvien=$value;
+                    $rows_ds_nhom->trang_thai=0;
                     $rows_ds_nhom->save();
 
             }
@@ -289,5 +334,9 @@ class Update extends Controller
             return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Bạn Đã Có Nhóm"]);
         }
 
+    }
+    function message($id)
+    {
+        return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Hết thời gian đăng ký"]);
     }
 }
