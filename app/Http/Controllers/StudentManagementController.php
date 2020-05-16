@@ -75,7 +75,7 @@ class StudentManagementController extends Controller
         $this->AuthLogin();
         DB::table('sinh_vien')->where('id_sinhvien',$student_id)->update(['trang_thai'=>0]);
         $id_lop = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien',$student_id)->value('id_lopmonhoc');
-        Session::put('message','Không kích hoạt sinh viên thành công!');
+        Session::put('message_ac','Không kích hoạt sinh viên thành công!');
         return Redirect::to('danhsach/'.$id_lop);
 
     }
@@ -89,7 +89,7 @@ class StudentManagementController extends Controller
     public function update_student(Request $request,$student_id){
        $this->AuthLogin();
         $data = array();
-        
+        $data['ma_sinhvien'] = $request->student_ma;
         $data['ten_sinhvien'] = $request->student_name;
         $data['gioi_tinh'] = $request->student_sex;
         $data['dia_chi'] = $request->student_address;
@@ -106,14 +106,14 @@ class StudentManagementController extends Controller
     }
     public function delete_student($student_id){
         $this->AuthLogin();
-        DB::table('sinh_vien')
-        
-        ->where('id_sinhvien',$student_id)->delete();
+        DB::table('sinh_vien')->where('id_sinhvien',$student_id)->delete();
+        DB::table('ds_thanhvienlop_mh')->where('id_sinhvien', $student_id)->count();
+
         Session::put('message','Xóa sinh viên thành công!');
         return Redirect::to('all-student');
     }
 
-    function danhsach($id_lopmonhoc)
+    public function danhsach($id_lopmonhoc)
     {
       
         $l_ds_thanhvien=DB::table('ds_thanhvienlop_mh')->where('id_lopmonhoc','=',$id_lopmonhoc)
@@ -123,6 +123,32 @@ class StudentManagementController extends Controller
         $id=$id_lopmonhoc;
         return view('admin.danhsach',compact('l_ds_thanhvien','id'));
     }
+    public function view_search($id) {
+        $data = DB::table('sinh_vien')->get(['id_sinhvien','ma_sinhvien']);
+        // dd($data);
+        return view('admin.all_search_student')->with('data', $data)->with('id', $id);
+    }
+    public function addToClass($id, $id_student) {
+        $data = array();
+        $data['id_lopmonhoc'] = $id;
+        $data['id_sinhvien'] = $id_student;
+        $newSinhvien = $data['id_sinhvien'];
+        $sinhvien = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien', $id_student)->value('id_sinhvien');
+        if($sinhvien == $newSinhvien) {
+            Session::put('message','SV đã tồn tại!');
+            return Redirect::to('all-search-student/'.$id);
+        } else {
+            DB::table('ds_thanhvienlop_mh')->insert($data);
+            Session::put('message','Thêm SV thành công!');
+            return Redirect::to('danhsach/'.$id);
+        }
+    }
+    public function search(Request $request){
 
-
+        $keywords = $request->maSV;
+        $id = $request->id_class;
+        $data = DB::table('sinh_vien')->where('ma_sinhvien','like','%'.$keywords.'%')->get(['id_sinhvien','ma_sinhvien']);
+        // dd($data);
+         return view('admin.all_search_student')->with('data', $data)->with('id', $id);
+    }
 }

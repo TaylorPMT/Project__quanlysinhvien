@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Liệt kê danh sách lớp
+      Liệt kê danh sách sinh viên
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -16,41 +16,35 @@
         
       </div>
     </div>
+     <form action="{{URL::to('/search-student')}}" method="post">
+      {{ csrf_field() }}
+        <input type="text" name="maSV"/>
+        <input type="hidden" name="id_class" value="{{ $id }}">
+        <button type="submit">Search</button>
+      </form>
     <div class="table-responsive">
       <?php
           $message = Session::get('message');
+         
               if ($message){
-                  echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
+                echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
                   Session::put('message',null);
               }
+              
       ?>
+     
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            
-            <th>Tên lớp học</th>
-            <th>Số lượng</th>
-            <th>Tên giảng viên</th>
-            <th>Tên sinh viên</th>
-            
-            
-            
+            <th>Mã sinh viên</th>         
+            <th></th> 
           </tr>
         </thead>
         <tbody>
-          @foreach($all_classroom as $key => $cate_pro)
+          @foreach($data as $value)
           <tr>
-            
-            <td>{{ $cate_pro->ten_lop}}</td>
-            <td>{{ $cate_pro->so_luong}}</td>
-            <td>{{ $cate_pro->ten_giangvien}}</td>
-            <td>{{ $cate_pro->ten_sinhvien}}</td>
-            <td>
-              <a href="{{URL::to('/edit-classroom/'.$cate_pro->id_lop)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
-              <a onclick="return confirm('Bạn có chắc là muốn xóa lớp học này không?')" href="{{URL::to('/delete-classroom/'.$cate_pro->id_lop)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
-                <i class="fa fa-times text-danger text"></i>
-              </a>
-            </td>
+            <td>{{ $value->ma_sinhvien }}</td>
+            <td><a href="{{ URL::to('add-student-to-class/'.$id.'/'.$value->id_sinhvien) }}">Add</a></td>
           </tr>
           @endforeach
         </tbody>

@@ -41,14 +41,16 @@ class ClasssubjectManagement extends Controller
     }
     public function save_classsub(Request $request){
         $this->AuthLogin();
+        $admin_id=Session::get('admin_id');
+        $giangvienId = DB::table('giang_vien')->where('id_taikhoan','=',$admin_id)->value('id_giangvien');
         $data = array();
         
         $data['ten_lop_mh'] = $request->classsub_name;
-        $data['soluong'] = $request->classsub_amount;
+        //$data['soluong'] = $request->classsub_amount;
         $data['Ngay_bd'] = $request->classsub_start;
         $data['Ngay_kt'] = $request->classsub_end;
         $data['id_monhoc'] = $request->subject_id;
-        $data['id_giangvien'] = $request->lecturer_id;
+        $data['id_giangvien'] = $giangvienId;
         
         //$dulieu = DB::table('nha_cung_cap')->where('tenNcc',$request->brand_product_name)->get();
         $new = $data['ten_lop_mh'];
@@ -74,14 +76,16 @@ class ClasssubjectManagement extends Controller
     }
     public function update_classsub(Request $request,$classsub_id){
        $this->AuthLogin();
+       $admin_id=Session::get('admin_id');
+        $giangvienId = DB::table('giang_vien')->where('id_taikhoan','=',$admin_id)->value('id_giangvien');
         $data = array();
         
         $data['ten_lop_mh'] = $request->classsub_name;
-        $data['soluong'] = $request->classsub_amount;
+        //$data['soluong'] = $request->classsub_amount;
         $data['Ngay_bd'] = $request->classsub_start;
         $data['Ngay_kt'] = $request->classsub_end;
         $data['id_monhoc'] = $request->subject_id;
-        $data['id_giangvien'] = $request->lecturer_id;
+        $data['id_giangvien'] = $giangvienId;
         DB::table('lop_monhoc')->where('id_lop_mh',$classsub_id)->update($data);
         Session::put('message','Cập nhật thông tin thành công!');
         return Redirect::to('all-classsub');

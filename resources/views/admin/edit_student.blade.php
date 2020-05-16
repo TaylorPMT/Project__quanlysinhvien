@@ -9,7 +9,7 @@
                         <?php
                             $message = Session::get('message');
                             if ($message){
-                                echo '<span class="text-alert">' .$message.'</span>';
+                                echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
                                 Session::put('message',null);
                             }
                         ?>
@@ -18,6 +18,10 @@
                             <div class="position-center">
                                 <form role="form" action="{{URL::to('/update-student/'.$edit_value->id_sinhvien)}}" method="post">
                                     {{ csrf_field() }}
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Mã số sinh viên</label>
+                                    <input type="text" value="{{$edit_value->ma_sinhvien}}" name="student_ma" class="form-control" id="exampleInputEmail1" placeholder="Mã sinh viên">
+                                </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên sinh viên</label>
                                     <input type="text" value="{{$edit_value->ten_sinhvien}}" name="student_name" class="form-control" id="exampleInputEmail1" placeholder="Tên sinh viên">
