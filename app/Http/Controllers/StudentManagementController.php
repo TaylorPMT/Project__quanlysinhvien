@@ -106,11 +106,12 @@ class StudentManagementController extends Controller
     }
     public function delete_student($student_id){
         $this->AuthLogin();
-        DB::table('sinh_vien')->where('id_sinhvien',$student_id)->delete();
-        DB::table('ds_thanhvienlop_mh')->where('id_sinhvien', $student_id)->count();
+        $id_lop = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien',$student_id)->value('id_lopmonhoc');
+        // DB::table('sinh_vien')->where('id_sinhvien',$student_id)->delete();
+        DB::table('ds_thanhvienlop_mh')->where('id_sinhvien', $student_id)->delete();
 
         Session::put('message','Xóa sinh viên thành công!');
-        return Redirect::to('all-student');
+        return Redirect::to('danhsach/'.$id_lop);
     }
 
     public function danhsach($id_lopmonhoc)
