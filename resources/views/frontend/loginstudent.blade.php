@@ -22,20 +22,20 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form action="{{ Route('postloginStudent') }}" method="POST">
+				<form action="{{ Route('postloginStudent') }}" method="POST" onsubmit="return checkform()">
                     @csrf
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="username" name="username">
+						<input type="text" class="form-control" placeholder="username" name="username" id="username">
 
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password" name="password">
+						<input type="password" class="form-control" placeholder="password" name="password" id="password">
 					</div>
 					<div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -65,9 +65,11 @@
 </div>
 </body>
 <script defer src="./js/all.js"></script>
-
 <!--load all styles -->--}}
 <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/checkform.js') }}">
+
+</script>
 </html>

@@ -30,7 +30,7 @@ class AdminController extends Controller
     	return view('admin.dashboard');
     }
     public function dashboard(Request $request){
-        $this->validate($request,
+       $this->validate($request,
         [
         'admin_email' => 'bail|required|email',
         'admin_password' => 'bail|required|min:6|max:15|',

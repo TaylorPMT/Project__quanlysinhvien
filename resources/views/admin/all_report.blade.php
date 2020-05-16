@@ -30,28 +30,25 @@
             
             <th>ID phan hồi</th>
             <th>Nội dung</th>
-            <th>Phản hồi lại</th>
           </tr>
         </thead>
         @foreach ($list_report as $key => $item)
         <tbody>
-          @if($item->trang_thai == 0) 
+         
           <tr>
             <td>{{ $item->id_phanhoi }}</td>
             <td>{{ $item->noi_dung }}</td>
-            <td><form action="{{URL::to('/report-to/')}}" method="POST">
+            <!-- <td><form action="{{URL::to('/report-to/')}}" method="POST">
               @csrf
               <input type="hidden" name="id" value="{{$item->id_phanhoi}}"/>
               <input type="text" name="phanhoi_gv"/>
               <input type="submit" value="Gui"/>
-            </form></td>
+            </form></td> -->
           </tr>
-          @endif
                   
         </tbody>
         @endforeach
       </table>
-      <a href="{{URL::to('/list-report/')}}" ><h3 > Danh sách tất cả các phản hồi</h3></a>
     </div>
     <footer class="panel-footer">
       <div class="row">
