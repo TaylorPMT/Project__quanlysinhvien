@@ -20,7 +20,7 @@
       <?php
           $message = Session::get('message');
               if ($message){
-                  echo '<span class="text-alert">' .$message.'</span>';
+                  echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
                   Session::put('message',null);
               }
       ?>
@@ -29,11 +29,11 @@
           <tr>
             
             <th>Tên lớp môn học</th>
-            <th>Số lượng</th>
+            {{-- <th>Số lượng</th> --}}
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>
             <th>Tên môn học</th>
-            <th>Tên giảng viên</th>
+            
             
             
           </tr>
@@ -43,11 +43,11 @@
           <tr>
             
             <td>{{ $cate_pro->ten_lop_mh}}</td>
-            <td>{{ $cate_pro->soluong}}</td>
+            {{-- <td>{{ $cate_pro->soluong}}</td> --}}
             <td>{{ $cate_pro->Ngay_bd}}</td>
             <td>{{ $cate_pro->Ngay_kt}}</td>
             <td>{{ $cate_pro->ten_monhoc}}</td>
-            <td>{{ $cate_pro->ten_giangvien}}</td>
+            
             <td>
               <a href="{{URL::to('/edit-classsub/'.$cate_pro->id_lop_mh)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
               <a onclick="return confirm('Bạn có chắc là muốn xóa lớp môn học này không?')" href="{{URL::to('/delete-classsub/'.$cate_pro->id_lop_mh)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">

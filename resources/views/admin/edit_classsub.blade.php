@@ -9,7 +9,7 @@
                         <?php
                             $message = Session::get('message');
                             if ($message){
-                                echo '<span class="text-alert">' .$message.'</span>';
+                                echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
                                 Session::put('message',null);
                             }
                         ?>
@@ -22,10 +22,10 @@
                                     <label for="exampleInputEmail1">Tên lớp môn học</label>
                                     <input type="text" value="{{$edit_value->ten_lop_mh}}" name="classsub_name" class="form-control" id="exampleInputEmail1" placeholder="Tên lớp môn học">
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="exampleInputEmail1">Số lượng</label>
                                     <input type="text" value="{{$edit_value->soluong}}" name="classsub_amount" class="form-control" id="exampleInputEmail1" placeholder="Số lượng">
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Ngày bắt đầu</label>
                                     <input type="date" value="{{$edit_value->Ngay_bd}}" name="classsub_start" class="form-control" id="exampleInputEmail1" placeholder="Số lượng">
@@ -47,7 +47,7 @@
                                         
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="exampleInputPassword1">Tên giảng viên</label>
                                      <select name="lecturer_id" class="form-control input-sm m-bot15" >
                                        @foreach($account_classsublec as $key => $cate)
@@ -59,7 +59,7 @@
                                         @endforeach
                                         
                                     </select>
-                                </div>
+                                </div> --}}
                                 <button type="submit" name="update_classsub" class="btn btn-info">Cập nhật thông tin </button>
                             </form>
                             </div>

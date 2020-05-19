@@ -19,16 +19,21 @@
     <div class="table-responsive">
       <?php
           $message = Session::get('message');
+           $message_ac = Session::get('message_ac');
               if ($message){
-                  echo '<span class="text-alert">' .$message.'</span>';
+                  echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
                   Session::put('message',null);
               }
+              if($message_ac) {
+                echo '<span style="color:red" class="text-alert">' .$message_ac.'</span>';
+                  Session::put('message_ac',null);
+              }
       ?>
-      <div><a href="{{ URL::to('/add-student') }}">Thêm sinh viên</a></div>
+      <div><a href="{{ URL::to('/all-search-student/'.$id) }}">Thêm sinh viên</a></div>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            
+            <th>MSSV</th>
             <th>Tên sinh viên</th>
             <th>Giới tính</th>
             <th>Địa chỉ</th>
@@ -43,7 +48,7 @@
         <tbody>
           @foreach($l_ds_thanhvien as $key => $cate_pro)
           <tr>
-            
+            <td>{{ $cate_pro->ma_sinhvien}}</td>
             <td>{{ $cate_pro->ten_sinhvien}}</td>
             <td>{{ $cate_pro->gioi_tinh}}</td>
             <td>{{ $cate_pro->dia_chi}}</td>

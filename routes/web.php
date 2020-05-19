@@ -85,8 +85,9 @@ Route::get('/active-student/{student_id}', 'StudentManagementController@active_s
 
 Route::post('/save-student', 'StudentManagementController@save_student');
 Route::post('/update-student/{student_id}', 'StudentManagementController@update_student');
-
-
+Route::get('/all-search-student/{id}', 'StudentManagementController@view_search');
+Route::get('/add-student-to-class/{id}/{id_student}','StudentManagementController@addToClass');
+Route::post('/search-student','StudentManagementController@search');
 
 //==========router Phần của THI de o day đây==================================//
 //---------------------------Thông Báo--------------------------------------//
