@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/normalize.min.css') }}">
     <link href="{{ asset('css/all.css') }}" rel="stylesheet">
     {{-- fonts google --}}
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap&subset=vietnamese" rel="stylesheet">
+    <link href="{{ asset('fonts/css.css') }}" rel="stylesheet">
 
     <!--load all styles -->
     <link rel="stylesheet" href="{{ asset('css/layoutsite.css') }}">
@@ -73,7 +73,7 @@
                                 <a class="nav-link nav__link-href" href="{{ Route('thoi_khoa_bieu') }}">Xem thời khóa biểu</a>
                             </li>
 
-                            
+
                              <li class="nav-item">
                                 <a class="nav-link nav__link-href" href="{{ Route('talkpageStudent') }}">Thảo Luận </a>
                             </li>
@@ -152,7 +152,7 @@
 <script defer src="{{ asset('js/all.js') }}"></script>
 {{--
 <!--load all styles -->--}}
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="{{asset('js/jquery-3.1.1.min.js')}}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script>

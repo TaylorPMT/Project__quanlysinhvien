@@ -38,7 +38,7 @@ class Update extends Controller
         $id_request=$request->input('id_lop_monhoc');
 
        // $id_dk=ds_thanhvienlop_mh::where(['id_sinhvien','=',$id_sv])->whereNotIn('id_lop_monhoc',$id_request)->get();
-       // dd($id_dk);
+
        $list_dsthanhvienlop_mh=ds_thanhvienlop_mh::where('id_sinhvien','=',$id_sv)->first();
        if($list_dsthanhvienlop_mh !=null)
        {
@@ -103,11 +103,15 @@ class Update extends Controller
         ->join('nhom','lop_monhoc.id_lop_mh','=','nhom.id_lopmonhoc')
         ->get();
 
+        $list_ds_yeu_cau=nhom::where([['nhom.id_yeu_cau','=',$id_sv]])
+        ->join("lop_monhoc","nhom.id_lopmonhoc","=","lop_monhoc.id_lop_mh")->get();
 
 
 
 
-        return view('Frontend.thoi_khoa_bieu',compact('list_thoikhoabieu','list_dk_nhom'));
+
+
+        return view('Frontend.thoi_khoa_bieu',compact('list_thoikhoabieu','list_dk_nhom','list_ds_yeu_cau'));
 
     }
     function getRequest($id,$id_monhoc)
@@ -339,4 +343,15 @@ class Update extends Controller
     {
         return redirect()->Route('thoi_khoa_bieu')->with("message",["type"=>"danger","msg"=>"Hết thời gian đăng ký"]);
     }
+    function dssvdk($id_nhom)
+    {     $id_sv_tao=Auth::user()->id;
+        $listNhom=nhom::where([['nhom.id_nhom','=',$id_nhom],['nhom.id_yeu_cau','=',$id_sv_tao]])
+        ->join('ds_thanhviennhom','nhom.id_nhom','=','ds_thanhviennhom.id_nhom')
+        ->join('sinh_vien','ds_thanhviennhom.id_sinhvien','=','sinh_vien.id_sinhvien')
+        ->select('sinh_vien.ten_sinhvien','ds_thanhviennhom.*')
+        ->get();
+
+        return response()->json($listNhom);
+    }
+
 }
