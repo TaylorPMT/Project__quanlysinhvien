@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                     <section class="panel">
                         <header class="panel-heading">
-                            Thêm lớp môn học mới
+                            Thêm Nhóm Mới
                         </header>
                         <?php
                             $message = Session::get('message');

@@ -21,13 +21,13 @@
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th>Tiết Lớp Môn Học</th>
+            <th>Lớp Môn Học</th>
           </tr>
         </thead>
         <tbody>
           @foreach($data as $value)
           <tr>
-            <td><a href="{{URL::to('/nhom/'.$value->id_lop_mh)}}">{{ $value->ten_lop_mh }}<a/></td>
+            <td><a href="{{URL::to('/nhomtl/'.$value->id_lop_mh)}}">{{ $value->ten_lop_mh }}<a/></td>
           </tr>
           @endforeach
         </tbody>

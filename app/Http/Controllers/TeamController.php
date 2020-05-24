@@ -69,4 +69,26 @@ class TeamController extends Controller
             return Redirect::to('/nhom/'.$id);
         }
     }
+    public function timkiem()
+    {
+        return view('admin.tim_kiem');
+    }
+    public function getSearch(Request $req)
+    {
+        $data= DB::table('sinh_vien')->where('ten_sinhvien','like','%'.$req->key.'%')
+            ->orWhere('ma_sinhvien',$req->key)
+            ->get();
+            //dd($timkiem);
+            return view('admin.tim_kiem',compact('data'));
+
+    }
+  public function thanhviennhom($id_nhom)
+  {
+
+    $dulieu=DB::table('ds_thanhviennhom')->where('id_nhom',$id_nhom)
+            ->join('sinh_vien','sinh_vien.id_sinhvien','ds_thanhviennhom.id_sinhvien')
+
+            ->get(); 
+    return view('admin.thanhviennhom',compact('dulieu'));
+  }
 }

@@ -174,3 +174,12 @@ Route::get('/add-nhom','TeamController@addNhom');
 Route::post('/post-add-nhom', 'TeamController@postAddNhom');
 Route::get('/edit-nhom/{id_nhom}', 'TeamController@editNhom');
 Route::post('/update-nhom/{id_nhom}', 'TeamController@update');
+Route::get('/tim-kiem','TeamController@timkiem');
+Route::get('/search','TeamController@getSearch');
+Route::get('dsthanhviennhom/{id_nhom}','TeamController@thanhviennhom');
+// thảo luận
+Route::get('/list_thaoluan','Thaoluan@dsmonhoc');
+Route::get('/nhomtl/{id_lop_mh}','Thaoluan@allnhom');
+Route::get('/list_binhluan/{id_nhom}','Thaoluan@allthaoluan');
+Route::get('/comment/{id_thaoluan}','Thaoluan@listComment');
+Route::post('/binhluan/{id_thaoluan}','Thaoluan@postBinhLuan')->name('traloi');

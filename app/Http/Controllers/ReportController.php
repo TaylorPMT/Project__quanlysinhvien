@@ -22,6 +22,7 @@ class ReportController extends Controller
     }
     public function reportview(/*$id_giangvien*/) {
          $this->AuthLogin();
+         $trangthai='0';
          $id_taikhoan= Session::get('admin_id');
 
          $id_giangviendn= DB::table('giang_vien')->where('id_taikhoan',$id_taikhoan)
@@ -29,7 +30,8 @@ class ReportController extends Controller
   
         foreach($id_giangviendn as $value) {
           $list_report = phan_hoi::join('sinh_vien','sinh_vien.id_sinhvien','=','phan_hoi.id_sinhvien')->where('id_giangvien',$value->id_giangvien)
-        ->get();
+          ->where('phan_hoi.trang_thai','=',$trangthai)
+          ->get();
         }
         return view('admin.list_report', compact('list_report'));
     }
@@ -38,10 +40,10 @@ class ReportController extends Controller
        // DB::table('phan_hoi')->where('id_phanhoi', $id_phanhoi)->update(['trang_thai'=>1]);
        // return Redirect::to('/view_report');
    // }
-   public function postReportAc($id_phanhoi){
-       DB::table('phan_hoi')->where('id_phanhoi', $id_phanhoi)->update(['trang_thai'=>0]);
-       return Redirect::to('/view_report');
-    }
+   // public function postReportAc($id_phanhoi){
+   //     DB::table('phan_hoi')->where('id_phanhoi', $id_phanhoi)->update(['trang_thai'=>0]);
+   //     return Redirect::to('/view_report');
+   //  }
     public function postReportTo(Request $request) {
       $data =  $request->phanhoi_gv;
       $id = $request->id;

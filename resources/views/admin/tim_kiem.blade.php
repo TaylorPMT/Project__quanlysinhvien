@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-      Danh sách các lớp
+  Danh Sách Các Phản Hồi
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -16,23 +16,37 @@
         
       </div>
     </div>
+        <div align="center">
+            <form action="{{URL::to('/search')}}" method="get">
+            <input type="text" size='75' placeholder="Nhap ma hoac ten sinh vien" name="key" value="{{\Request::get('key')}}">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
     <div class="table-responsive">
-      
+      <?php
+          $message = Session::get('message');
+              if ($message){
+                  echo '<span class="text-alert">' .$message.'</span>';
+                  Session::put('message',null);
+              }
+      ?>
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
-            <th>Tiết Lớp Môn Học</th>
+            <th>Mã Số Sinh Viên</th>
+            <th>Tên Sinh Viên</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($data as $value)
+         @foreach($data as $key => $item)
           <tr>
-            <td><a href="{{URL::to('/nhom/'.$value->id_lop_mh)}}">{{ $value->ten_lop_mh }}<a/></td>
-          </tr>
-          @endforeach
+            <td>{{ $item->ma_sinhvien }}</td>
+            <td>{{ $item->ten_sinhvien }}</td>
+          </tr>                  
+        @endforeach
         </tbody>
       </table>
-    </div>
+      
     <footer class="panel-footer">
       <div class="row">
         
