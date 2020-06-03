@@ -3,7 +3,7 @@
 <div class="table-agile-info">
   <div class="panel panel-default">
     <div class="panel-heading">
-  Danh Sách Các Phản Hồi
+  Danh Sách Các Nhóm
     </div>
     <div class="row w3-res-tb">
       <div class="col-sm-5 m-b-xs">
@@ -37,7 +37,7 @@
         @foreach ($data as $key => $item)
         <tbody>
           <tr>
-            <td>{{ $item->ten_nhom }}</td>
+            <td><a href="{{URL::to('dsthanhviennhom/'.$item->id_nhom)}}" >{{ $item->ten_nhom }}</a></td>
             <td>{{ $item->so_luong }}</td>
             <td><a href="{{URL::to('xoa-nhom/'.$item->id_nhom)}}">Xoa</a></td>
             <td><a href="{{URL::to('edit-nhom/'.$item->id_nhom)}}">Sua</a></td>
