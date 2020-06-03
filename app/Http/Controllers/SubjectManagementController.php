@@ -62,8 +62,8 @@ class SubjectManagementController extends Controller
        $this->AuthLogin();
         $data = array();
         $data['so_tiet'] = $request->subject_secretion;
-        $data['so_tinchi'] = $request->student_credits;
-        $data['ten_mochoc'] = $request->subject_name;
+        $data['so_tinchi'] = $request->subject_credits;
+        $data['ten_monhoc'] = $request->subject_name;
         DB::table('mon_hoc')->where('id_monhoc',$subject_id)->update($data);
         Session::put('message','Cập nhật thông tin thành công!');
         return Redirect::to('all-subject');

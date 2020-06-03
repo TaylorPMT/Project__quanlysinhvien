@@ -125,9 +125,10 @@ class StudentManagementController extends Controller
         return view('admin.danhsach',compact('l_ds_thanhvien','id'));
     }
     public function view_search($id) {
-        $data = DB::table('sinh_vien')->get(['id_sinhvien','ma_sinhvien']);
+        $data = DB::table('ds_thanhvienlop_mh')->rightJoin('sinh_vien','sinh_vien.id_sinhvien','=','ds_thanhvienlop_mh.id_sinhvien')->get();
+        /*$count = DB::table('sinh_vien')->join('ds_thanhvienlop_mh','ds_thanhvienlop_mh.id_sinhvien','=','sinh_vien.id_sinhvien')->count();*/
         // dd($data);
-        return view('admin.all_search_student')->with('data', $data)->with('id', $id);
+        return view('admin.all_search_student')->with('data', $data)->with('id', $id)/*->with('count',$count)*/;
     }
     public function addToClass($id, $id_student) {
         $data = array();
@@ -135,8 +136,9 @@ class StudentManagementController extends Controller
         $data['id_sinhvien'] = $id_student;
         $newSinhvien = $data['id_sinhvien'];
         $sinhvien = DB::table('ds_thanhvienlop_mh')->where('id_sinhvien', $id_student)->value('id_sinhvien');
+
         if($sinhvien == $newSinhvien) {
-            Session::put('message','SV đã tồn tại!');
+            Session::put('message_ac','SV đã tồn tại!');
             return Redirect::to('all-search-student/'.$id);
         } else {
             DB::table('ds_thanhvienlop_mh')->insert($data);

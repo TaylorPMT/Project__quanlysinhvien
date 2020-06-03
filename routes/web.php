@@ -122,7 +122,6 @@ Route::post('comments', 'Frontend\userController@postComments')->name('postComme
 
 //===========================================================================================
 
-//=======
 
 
 //Backend quản lý môn học

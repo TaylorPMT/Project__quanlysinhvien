@@ -32,11 +32,21 @@ class ClasssubjectManagement extends Controller
         $this->AuthLogin();
         $admin_id=Session::get('admin_id');
         $giangvienId = DB::table('giang_vien')->where('id_taikhoan','=',$admin_id)->value('id_giangvien');
+        $dem = $all_classsub = DB::table('lop_monhoc')->where('lop_monhoc.id_giangvien','=',$giangvienId)
+        ->join('mon_hoc','mon_hoc.id_monhoc','=','lop_monhoc.id_monhoc')
+        ->join('giang_vien','giang_vien.id_giangvien','=','lop_monhoc.id_giangvien')
+        ->join('ds_thanhvienlop_mh','lop_monhoc.id_lop_mh','=','ds_thanhvienlop_mh.id_lopmonhoc')
+        ->select('ds_thanhvienlop_mh.id_lopmonhoc','lop_monhoc.id_lop_mh')
+        ->orderby('lop_monhoc.id_lop_mh','desc')->get()->toArray();
+        
+        
         $all_classsub = DB::table('lop_monhoc')->where('lop_monhoc.id_giangvien','=',$giangvienId)
         ->join('mon_hoc','mon_hoc.id_monhoc','=','lop_monhoc.id_monhoc')
         ->join('giang_vien','giang_vien.id_giangvien','=','lop_monhoc.id_giangvien')
+
         ->orderby('lop_monhoc.id_lop_mh','desc')->get();
-        $manager_classsub = view('admin.all_classsub')->with('all_classsub',$all_classsub);
+
+        $manager_classsub = view('admin.all_classsub')->with('all_classsub',$all_classsub)->with('dem',$dem);
         return view('admin_layout')->with('admin.all_classsub',$manager_classsub);
     }
     public function save_classsub(Request $request){

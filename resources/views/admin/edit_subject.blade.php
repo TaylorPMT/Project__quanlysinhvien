@@ -16,7 +16,7 @@
                         <div class="panel-body">
                             @foreach ($edit_subject as $key => $subject_value)
                             <div class="position-center">
-                                <form role="form" action="{{URL::to('/update-student/'.$subject_value->id_monhoc)}}" method="post">
+                                <form role="form" action="{{URL::to('/update-subject/'.$subject_value->id_monhoc)}}" method="post">
                                     {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tên môn học</label>

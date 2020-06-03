@@ -25,14 +25,21 @@
     <div class="table-responsive">
       <?php
           $message = Session::get('message');
+          $message_ac = Session::get('message_ac');
+
          
               if ($message){
                 echo '<span style="color:blue" class="text-alert">' .$message.'</span>';
                   Session::put('message',null);
               }
+              if ($message_ac){
+                echo '<span style="color:red" class="text-alert">' .$message_ac.'</span>';
+                  Session::put('message_ac',null);
+              }
+              
               
       ?>
-     
+     {{-- <p>{{ $count }}</p> --}}
       <table class="table table-striped b-t b-light">
         <thead>
           <tr>
@@ -44,7 +51,11 @@
           @foreach($data as $value)
           <tr>
             <td>{{ $value->ma_sinhvien }}</td>
-            <td><a href="{{ URL::to('add-student-to-class/'.$id.'/'.$value->id_sinhvien) }}">Add</a></td>
+            @if($value->id_lopmonhoc != $id)
+            <td>
+              <a href="{{ URL::to('add-student-to-class/'.$id.'/'.$value->id_sinhvien) }}">Add</a>
+            </td>
+            @endif
           </tr>
           @endforeach
         </tbody>

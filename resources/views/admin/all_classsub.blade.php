@@ -33,6 +33,7 @@
             <th>Ngày bắt đầu</th>
             <th>Ngày kết thúc</th>
             <th>Tên môn học</th>
+            <td>Số lượng</td>
             
             
             
@@ -47,7 +48,14 @@
             <td>{{ $cate_pro->Ngay_bd}}</td>
             <td>{{ $cate_pro->Ngay_kt}}</td>
             <td>{{ $cate_pro->ten_monhoc}}</td>
-            
+            <td>
+              @foreach($dem as $key => $demId)
+                @if($demId->id_lopmonhoc == $cate_pro->id_lop_mh)
+                  {{ count($dem) }}
+                  @break
+                @endif
+              @endforeach
+            </td>
             <td>
               <a href="{{URL::to('/edit-classsub/'.$cate_pro->id_lop_mh)}}" style="font-size: 20px;"class="active styling-edit" ui-toggle-class=""><i class="fa fa-pencil-square-o text-success text-active"></i></a>
               <a onclick="return confirm('Bạn có chắc là muốn xóa lớp môn học này không?')" href="{{URL::to('/delete-classsub/'.$cate_pro->id_lop_mh)}}" style="font-size: 20px;" class="active styling-edit" ui-toggle-class="">
